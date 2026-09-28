@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { transpileModule, ModuleKind } from "typescript";
+import { inflateRawSync } from "node:zlib";
 
 const source = await readFile(
   new URL("../lib/skills.ts", import.meta.url),
@@ -31,7 +32,7 @@ test("Every prompt targets its exact public skill and asks for a working accessi
     assert.ok(prompt.includes("reduced-motion"));
     assert.ok(prompt.includes("attach the ZIP"));
     assert.ok(prompt.includes("[Enter your prompt here]"));
-    assert.ok(!prompt.includes(skill.idea));
+    assert.ok(!prompt.includes("Build a "));
     assert.ok(skill.description.length > 100);
   }
 });
@@ -131,4 +132,120 @@ test("Gallery polish keeps prompts themed, removes source badges, and animates n
   assert.ok(component.includes('paletteInput.current === "keyboard"'));
   assert.equal((component.match(/<Seam /g) || []).length, 6);
   assert.ok(component.includes('className="paper-flight"'));
+});
+
+test("Page chrome reserves the gutter and every edition has a distinct scroll entrance", async () => {
+  const css = await readFile(new URL("app/globals.css", root), "utf8");
+  const component = await readFile(
+    new URL("components/gallery.tsx", root),
+    "utf8",
+  );
+  assert.ok(css.includes("scrollbar-gutter: stable"));
+  assert.ok(css.includes("--page-scroll-track"));
+  assert.ok(css.includes("--page-scroll-ink"));
+  assert.ok(css.includes("@media (forced-colors: active)"));
+  for (let i = 0; i < 7; i++) {
+    assert.ok(css.includes(`.site-header[data-theme="${i}"]`));
+  }
+  assert.ok(component.includes("html.dataset.chapterTheme = String(active)"));
+  assert.ok(component.includes("navigationEditions[active]"));
+  assert.ok(component.includes('seam.querySelectorAll("i")'));
+  assert.ok(component.includes('end: "top 18%"'));
+  assert.ok(css.includes(".chapter:focus-within .chapter-seam"));
+});
+
+test("README exposes instructions and both direct downloads for every skill", async () => {
+  const readme = await readFile(new URL("README.md", root), "utf8");
+  for (const skill of skills) {
+    assert.ok(readme.includes(`skills/${skill.slug}/SKILL.md`));
+    for (const extension of ["zip", "skill"]) {
+      assert.ok(
+        readme.includes(
+          `/raw/refs/heads/main/public/downloads/${skill.slug}.${extension}`,
+        ),
+      );
+    }
+  }
+  assert.ok(readme.includes("npm run check"));
+});
+
+test("Selection is themed without disabling selection of real content", async () => {
+  const css = await readFile(new URL("app/globals.css", root), "utf8");
+  assert.ok(css.includes("::selection"));
+  assert.ok(css.includes("background: var(--selection-paper)"));
+  assert.ok(css.includes("color: var(--selection-ink)"));
+  assert.ok(css.includes("text-shadow: none"));
+  assert.ok(css.includes("user-select: text"));
+  assert.ok(!/(?:body|main|\.chapter)\s*\{[^}]*user-select:\s*none/.test(css));
+});
+
+test("Deployment gates builds and serves bundles as attachments", async () => {
+  const config = JSON.parse(
+    await readFile(new URL("vercel.json", root), "utf8"),
+  );
+  assert.equal(config.framework, "nextjs");
+  assert.ok(config.buildCommand.includes("npm run check"));
+  const globalHeaders = config.headers.find(
+    (h) => h.source === "/(.*)",
+  ).headers;
+  assert.ok(
+    globalHeaders.some(
+      (h) => h.key === "X-Content-Type-Options" && h.value === "nosniff",
+    ),
+  );
+  assert.ok(
+    globalHeaders.some(
+      (h) => h.key === "X-Frame-Options" && h.value === "DENY",
+    ),
+  );
+  const downloadHeaders = config.headers.find(
+    (h) => h.source === "/downloads/:file*",
+  ).headers;
+  assert.ok(
+    downloadHeaders.some(
+      (h) => h.key === "Content-Disposition" && h.value === "attachment",
+    ),
+  );
+});
+
+test("Every bundled file matches its checked-in source byte for byte", async () => {
+  let files = 0;
+  for (const skill of skills) {
+    const buffer = await readFile(
+      new URL(`public/downloads/${skill.slug}.zip`, root),
+    );
+    for (let i = 0; i < buffer.length - 46; i++) {
+      if (buffer.readUInt32LE(i) !== 0x02014b50) continue;
+      const method = buffer.readUInt16LE(i + 10);
+      const compressedSize = buffer.readUInt32LE(i + 20);
+      const nameLength = buffer.readUInt16LE(i + 28);
+      const name = buffer
+        .subarray(i + 46, i + 46 + nameLength)
+        .toString()
+        .replaceAll("\\", "/");
+      const offset = buffer.readUInt32LE(i + 42);
+      const start =
+        offset +
+        30 +
+        buffer.readUInt16LE(offset + 26) +
+        buffer.readUInt16LE(offset + 28);
+      if (!name.endsWith("/")) {
+        const compressed = buffer.subarray(start, start + compressedSize);
+        assert.ok(method === 0 || method === 8);
+        const unpacked = method === 8 ? inflateRawSync(compressed) : compressed;
+        assert.deepEqual(
+          unpacked,
+          await readFile(new URL(`skills/${name}`, root)),
+          name,
+        );
+        files++;
+      }
+      i +=
+        45 +
+        nameLength +
+        buffer.readUInt16LE(i + 30) +
+        buffer.readUInt16LE(i + 32);
+    }
+  }
+  assert.ok(files > 50);
 });

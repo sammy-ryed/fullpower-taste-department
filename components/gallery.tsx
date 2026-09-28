@@ -10,6 +10,7 @@ const Arrow = ({ down = false }: { down?: boolean }) => (
 );
 function useSoftDialog(reduce: boolean) {
   const ref = useRef<HTMLDialogElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
   const open = () => {
@@ -17,32 +18,39 @@ function useSoftDialog(reduce: boolean) {
     if (!ref.current) return;
     delete ref.current.dataset.closing;
     ref.current.showModal();
+    setIsOpen(true);
   };
   const close = (afterClose?: () => void) => {
     const node = ref.current;
     if (!node || node.dataset.closing) return;
     if (reduce) {
       node.close();
+      setIsOpen(false);
       afterClose?.();
       return;
     }
     node.dataset.closing = "true";
     timer.current = setTimeout(() => {
       node.close();
+      setIsOpen(false);
       delete node.dataset.closing;
       afterClose?.();
     }, 240);
   };
-  return { ref, open, close };
+  return { ref, open, close, isOpen };
 }
 
 function Seam({ color }: { color: string }) {
   return (
     <div
       className="chapter-seam"
-      style={{ background: color }}
+      style={{ "--seam-paper": color } as CSSProperties}
       aria-hidden="true"
-    />
+    >
+      <i />
+      <i />
+      <i />
+    </div>
   );
 }
 function Flower({ className = "" }: { className?: string }) {
@@ -153,7 +161,12 @@ function Kit({
         </div>
       </div>
       <div className="kit-actions">
-        <button className="primary-action" onClick={() => onOpen(skill)}>
+        <button
+          className="primary-action"
+          aria-haspopup="dialog"
+          aria-controls="skill-handoff"
+          onClick={() => onOpen(skill)}
+        >
           Take this to GPT <Arrow />
         </button>
         <a
@@ -197,6 +210,20 @@ const cartoonPalettes = [
   ["After hours", "#61609a", "#f9f5f2"],
 ];
 
+const navigationEditions = [
+  { mark: "FP", name: "FULL POWER", note: "Thoda loud. Very proud." },
+  { mark: "fp.", name: "the type room", note: "Less stuff. Better letters." },
+  { mark: "FP!", name: "TYPE CLUB", note: "NO INSIDE VOICES." },
+  { mark: "The", name: "Frontend Post", note: "Independent taste. Daily." },
+  { mark: "fp!", name: "PAPER PARTY", note: "Please don't feed the pixels." },
+  { mark: "F/P", name: "FORM & POWER", note: "006 — BUILT DIFFERENT" },
+  {
+    mark: "✿",
+    name: "fullpower soda co.",
+    note: "A little fizz for your frontend.",
+  },
+];
+
 export default function Gallery() {
   const root = useRef<HTMLDivElement>(null);
   const [handoff, setHandoff] = useState<Skill>(skills[0]);
@@ -226,7 +253,19 @@ export default function Gallery() {
         ? posterPalettes[poster].slice(1)
         : active === 4
           ? cartoonPalettes[cartoonPreview].slice(1)
-          : null;
+          : active === 1
+            ? ["#ffffff", "#121212"]
+            : active === 3
+              ? ["#cdc6be", "#1d1d1b"]
+              : active === 5
+                ? ["#d9d9d9", "#1f1f1f"]
+                : ["#fdf7e7", "#14433d"];
+  const [pagePaper, pageInk] = headerInks;
+  const navigation = navigationEditions[active];
+  const chromeStyle = {
+    "--nav-paper": pagePaper,
+    "--nav-ink": pageInk,
+  } as CSSProperties;
   const showKit = (skill: Skill) => {
     setHandoff(skill);
     setHandoffMessage("");
@@ -246,6 +285,20 @@ export default function Gallery() {
       delete document.documentElement.dataset.motion;
     };
   }, [reduce]);
+  useEffect(() => {
+    const html = document.documentElement;
+    html.dataset.chapterTheme = String(active);
+    html.style.setProperty("--page-scroll-track", pagePaper);
+    html.style.setProperty(
+      "--page-scroll-ink",
+      active === 1 ? "#ee585a" : pageInk,
+    );
+    return () => {
+      delete html.dataset.chapterTheme;
+      html.style.removeProperty("--page-scroll-track");
+      html.style.removeProperty("--page-scroll-ink");
+    };
+  }, [active, pagePaper, pageInk]);
   useEffect(() => {
     const chapters = Array.from(
       root.current?.querySelectorAll<HTMLElement>("[data-chapter]") || [],
@@ -296,37 +349,96 @@ export default function Gallery() {
             ease: "elastic.out(1, .6)",
             transformOrigin: "50% 0%",
           });
+          // Each boundary is a different piece of stage machinery. Only the
+          // decorative curtain moves; native scrolling and document order stay intact.
           gsap.utils
-            .toArray<HTMLElement>(".chapter:not(.indian) .chapter-intro")
-            .forEach((el) => {
-              gsap.from(el, {
-                y: "2.5rem",
-                opacity: 0.4,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top 95%",
-                  end: "top 40%",
-                  scrub: 0.45,
-                },
-              });
-            });
-          gsap.utils.toArray<HTMLElement>(".chapter-seam").forEach((seam) => {
-            gsap.fromTo(
-              seam,
-              { scaleY: 1 },
-              {
-                scaleY: 0,
-                transformOrigin: "50% 0%",
-                ease: "none",
+            .toArray<HTMLElement>(".chapter-seam")
+            .forEach((seam, index) => {
+              const panels = seam.querySelectorAll("i");
+              gsap.set(seam, { opacity: 1 });
+              const scene = gsap.timeline({
                 scrollTrigger: {
                   trigger: seam.parentElement,
                   start: "top bottom",
-                  end: "top 45%",
-                  scrub: 0.35,
+                  end: "top 18%",
+                  scrub: 0.45,
                 },
+              });
+              if (index === 0) {
+                scene.to(panels, {
+                  xPercent: (i: number) => (i === 0 ? -105 : 105),
+                  duration: 1,
+                  ease: "power2.inOut",
+                });
+              } else if (index === 1) {
+                scene.to(panels, {
+                  yPercent: -105,
+                  stagger: 0.16,
+                  duration: 1,
+                  ease: "power2.inOut",
+                });
+              } else if (index === 2) {
+                scene.to(panels, {
+                  scaleX: 0,
+                  skewY: -8,
+                  transformOrigin: "0% 50%",
+                  duration: 1,
+                  ease: "power2.inOut",
+                });
+              } else if (index === 3) {
+                scene.to(panels, {
+                  yPercent: -125,
+                  rotation: (i: number) => (i - 1) * 18,
+                  stagger: 0.12,
+                  duration: 1,
+                  ease: "power2.inOut",
+                });
+              } else if (index === 4) {
+                scene.to(panels, {
+                  xPercent: 105,
+                  stagger: 0.18,
+                  duration: 1,
+                  ease: "power3.inOut",
+                });
+              } else {
+                scene.to(panels, {
+                  yPercent: -105,
+                  borderRadius: "0 0 50% 50%",
+                  duration: 1,
+                  ease: "sine.inOut",
+                });
+              }
+            });
+          const entrances = [
+            {
+              selector: ".minimal .chapter-intro",
+              from: { x: "3rem", opacity: 0.3 },
+            },
+            {
+              selector: ".colorful .chapter-intro",
+              from: { y: "5rem", scale: 0.88 },
+            },
+            {
+              selector: ".newspaper .masthead",
+              from: { scaleX: 0.8, transformOrigin: "0 50%" },
+            },
+            { selector: ".architecture .chapter-intro", from: { x: "-5rem" } },
+            {
+              selector: ".cute .chapter-intro",
+              from: { y: "4rem", scale: 0.92, rotation: -2 },
+            },
+          ];
+          entrances.forEach(({ selector, from }) => {
+            gsap.from(selector, {
+              ...from,
+              ease: "none",
+              scrollTrigger: {
+                trigger: selector,
+                start: "top 95%",
+                end: "top 32%",
+                scrub: 0.5,
               },
-            );
+            });
           });
           gsap.from(".warp-slice", {
             y: (i: number) =>
@@ -539,28 +651,18 @@ export default function Gallery() {
       <a className="skip-link" href="#main">
         Skip to the skills
       </a>
-      <header
-        className="site-header"
-        data-theme={active}
-        style={
-          headerInks
-            ? {
-                background: headerInks[0],
-                color: headerInks[1],
-                borderColor: headerInks[1],
-              }
-            : undefined
-        }
-      >
-        <a href="#indian-print-maximalism" className="wordmark">
-          FP
-          <span>
-            THE TASTE
-            <br />
-            DEPARTMENT
-          </span>
+      <header className="site-header" data-theme={active} style={chromeStyle}>
+        <a
+          href="#indian-print-maximalism"
+          className="wordmark"
+          aria-label="Fullpower Frontend — back to the first style"
+        >
+          <b className="brand-mark" key={active}>
+            {navigation.mark}
+          </b>
+          <span className="brand-name">{navigation.name}</span>
         </a>
-        <span className="header-caption">Made for your next “what if…”</span>
+        <span className="header-caption">{navigation.note}</span>
         <div className="header-controls">
           <button
             className="motion-button"
@@ -571,7 +673,13 @@ export default function Gallery() {
             {reduce ? "Motion off" : "Motion on"}{" "}
             <span aria-hidden="true">{reduce ? "Ⅱ" : "↝"}</span>
           </button>
-          <button className="index-button" onClick={menuDialog.open}>
+          <button
+            className="index-button"
+            aria-haspopup="dialog"
+            aria-controls="skill-index"
+            aria-expanded={menuDialog.isOpen}
+            onClick={menuDialog.open}
+          >
             Pick a style{" "}
             <span className="menu-icon" aria-hidden="true">
               <i />
@@ -580,7 +688,11 @@ export default function Gallery() {
           </button>
         </div>
       </header>
-      <nav className="chapter-rail" aria-label="Skill chapters">
+      <nav
+        className="chapter-rail"
+        aria-label="Skill chapters"
+        data-theme={active}
+      >
         {skills.map((s, i) => (
           <a
             key={s.slug}
@@ -1146,6 +1258,7 @@ export default function Gallery() {
 
       <dialog
         className="handoff-dialog"
+        id="skill-handoff"
         aria-label="Use this skill in your AI app"
         ref={handoffDialog.ref}
         data-style={handoff.slug}
@@ -1212,6 +1325,9 @@ export default function Gallery() {
       </dialog>
       <dialog
         className="index-dialog"
+        id="skill-index"
+        data-theme={active}
+        style={chromeStyle}
         aria-label="Choose a design skill"
         ref={menuDialog.ref}
         onCancel={(e) => {
@@ -1244,7 +1360,14 @@ export default function Gallery() {
                 onClick={(e) => {
                   e.preventDefault();
                   menuDialog.close(() => {
-                    window.location.hash = skill.slug;
+                    if (window.location.hash === `#${skill.slug}`) {
+                      document.getElementById(skill.slug)?.scrollIntoView({
+                        behavior: reduce ? "instant" : "smooth",
+                        block: "start",
+                      });
+                    } else {
+                      window.location.hash = skill.slug;
+                    }
                   });
                 }}
               >

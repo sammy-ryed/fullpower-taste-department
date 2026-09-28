@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
-import { resolve, extname, sep } from "node:path";
+import { resolve, extname, sep, basename } from "node:path";
 const root = resolve("out");
 const mime = {
   ".html": "text/html; charset=utf-8",
@@ -12,6 +12,8 @@ const mime = {
   ".zip": "application/zip",
   ".skill": "application/zip",
   ".txt": "text/plain",
+  ".xml": "application/xml",
+  ".png": "image/png",
 };
 const server = createServer(async (req, res) => {
   try {
@@ -27,7 +29,10 @@ const server = createServer(async (req, res) => {
     if ((await stat(file)).isDirectory()) file = resolve(file, "index.html");
     const body = await readFile(file);
     res.writeHead(200, {
-      "Content-Type": mime[extname(file)] || "application/octet-stream",
+      "Content-Type":
+        basename(file) === "opengraph-image"
+          ? "image/png"
+          : mime[extname(file)] || "application/octet-stream",
       "X-Content-Type-Options": "nosniff",
     });
     res.end(req.method === "HEAD" ? undefined : body);

@@ -6,8 +6,13 @@
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "start": "node scripts/serve.mjs",
-    "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.mjs"
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run typecheck && npm test",
+    "verify:build": "node scripts/verify-build.mjs"
+  },
+  "engines": {
+    "node": "22.x"
   },
   "dependencies": {
     "gsap": "3.15.0",

@@ -1,50 +1,127 @@
 # Fullpower Frontend — The Taste Department
 
-Seven frontend design skills, one deliberately opinionated scroll. Built for the **Full-power Frontend** workshop by **OpenAI Student Collective**, hosted by **Samarth Ryan Edward** and **Parv Bhawsar**.
+Seven ways to stop making the same website.
 
-## Run locally
+A scroll-through library for the **Full-power Frontend** workshop, by **OpenAI Student Collective**. Hosted by **Samarth Ryan Edward** and **Parv Bhawsar**.
 
-Requires Node.js 20.9 or newer (tested on Node 22).
+## Pick a skill. Take it home.
+
+Click a style name to read its instructions. The download links give you the complete bundle, not just the Markdown.
+
+| Skill                                                                     | What you're getting                                | Download                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Indian print maximalism](skills/indian-print-maximalism/SKILL.md)        | Truck-art energy, painted type, mango + maroon.    | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/indian-print-maximalism.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/indian-print-maximalism.skill)       |
+| [Minimal type gallery](skills/minimal-type-gallery/SKILL.md)              | White space, big serifs, coral type distortion.    | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/minimal-type-gallery.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/minimal-type-gallery.skill)             |
+| [Colorful type poster](skills/colorful-type-poster/SKILL.md)              | Giant words and switchable two-colour palettes.    | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/colorful-type-poster.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/colorful-type-poster.skill)             |
+| [Vintage newspaper](skills/vintage-newspaper/SKILL.md)                    | Warm paper, loud mastheads, proper columns.        | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/vintage-newspaper.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/vintage-newspaper.skill)                   |
+| [Animated cartoon pop](skills/animated-cartoon-pop/SKILL.md)              | GSAP paper flights, chunky type, playful palettes. | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/animated-cartoon-pop.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/animated-cartoon-pop.skill)             |
+| [Architectural colour blocks](skills/architectural-color-blocks/SKILL.md) | Concrete, flat colour, the big 1–2–3 reveal.       | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/architectural-color-blocks.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/architectural-color-blocks.skill) |
+| [Cute retro pastels](skills/cute-retro-pastels/SKILL.md)                  | Cream, forest green, soft corners, tiny treats.    | [ZIP](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/cute-retro-pastels.zip) · [.skill](https://github.com/sammy-ryed/fullpower-taste-department/raw/refs/heads/main/public/downloads/cute-retro-pastels.skill)                 |
+
+Each bundle contains `SKILL.md`, design notes, theme CSS, CSS variables, and design tokens. Some also include motion recipes, palette controls, original illustrations, and licensed fonts.
+
+**Which download?** Use **ZIP** unless your app explicitly accepts `.skill`. Both contain the same ZIP-format archive. The `.skill` extension is not a universal installer.
+
+## Use it with your own idea
+
+1. Download and extract a bundle, or give your coding assistant the linked `SKILL.md`.
+2. Ask it to read the linked references and assets too.
+3. Paste this, replace the brackets, and let it build:
+
+```text
+Use the [skill name] frontend skill for my request below.
+Read its SKILL.md and linked references/assets before coding.
+If you cannot access the files, ask me to attach the ZIP.
+
+Follow the skill's design and motion guidance. Use rem-based sizing,
+responsive layouts, keyboard-accessible controls, and reduced-motion fallbacks.
+Keep my content and requirements. Don't invent a different project.
+
+My request:
+[Enter your prompt here]
+```
+
+On the website, **Take this to GPT** helps you copy the prompt and then open ChatGPT. Nothing is auto-sent. The optional desktop handoff needs a compatible installed app. You can always copy the prompt manually instead.
+
+## Run the website
+
+Use **Node.js 22** and npm.
 
 ```sh
+git clone https://github.com/sammy-ryed/fullpower-taste-department.git
+cd fullpower-taste-department
 npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. `npm run build` produces the static site in `out/`. Serve that folder using any static host, or import this repository into a Next.js-compatible host. No backend, tracking, or API keys are required.
+Open [localhost:3000](http://localhost:3000).
 
 ```sh
-npm run typecheck
-npm test
+npm run check    # TypeScript + automated checks
+npm run build    # Static production output in out/
+npm run verify:build # Verify exported assets, downloads, anchors, and metadata
+npm start        # Serve that production output locally
+```
+
+No database, API keys, account system, or tracking scripts. Fonts and artwork used by the page are local.
+
+## Deploy on Vercel
+
+Import this GitHub repository as a **Next.js** project. Set the root directory to `./` (the repository root, not `site/`), use **Node.js 22**, and keep `main` as the production branch.
+
+The checked-in `vercel.json` runs `npm ci`, then the type checks and tests before building. It also sets security headers and makes both bundle formats download as ZIP archives. Vercel's Git integration deploys subsequent pushes automatically. See [Vercel's Git deployment guide](https://vercel.com/docs/git).
+
+The app exports static files. Do not add server-only features without updating that deployment model.
+
+Optional build-time configuration:
+
+| Variable                      | When to use it                                                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_SKILLS_REPO_URL` | Point starter prompts at your fork; otherwise this repository is used.                                                   |
+| `NEXT_PUBLIC_SITE_URL`        | Set your canonical URL on another host or a custom domain. Vercel's production URL is used automatically when available. |
+
+These are public values, not secrets. See [.env.example](.env.example).
+
+## Where things live
+
+| Folder/file                                      | Purpose                                                      |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| [skills/](skills/)                               | The source of truth for all seven downloadable skills        |
+| [public/downloads/](public/downloads/)           | The fourteen ready-to-use archives                           |
+| [components/gallery.tsx](components/gallery.tsx) | Sections, prompts, interactions, and GSAP scenes             |
+| [app/globals.css](app/globals.css)               | Section styles, selection, scrollbars, responsive layout     |
+| [lib/skills.ts](lib/skills.ts)                   | Skill names, descriptions, and starter prompts               |
+| [public/art/](public/art/)                       | Page artwork and licensed fonts                              |
+| [tests/](tests/)                                 | Content, bundle, accessibility-structure, and release checks |
+
+### Update a skill
+
+Edit its folder under `skills/`, then rebuild the archives with PowerShell 7:
+
+```sh
+pwsh -File scripts/prepare-skills.ps1
+npm run check
 npm run build
 ```
 
-## The seven
+The packaging script works from a fresh clone. It refuses to include reference screenshots or moodboards. Commit the source changes **and** the rebuilt files in `public/downloads/`.
 
-1. Indian print maximalism — the opening painted poster.
-2. Minimal type gallery — a sliced coral type echo.
-3. Colorful type poster — seven contrast-checked colorways.
-4. Vintage newspaper — a ruled broadsheet.
-5. Animated cartoon pop — a scrubbed paper-flight scene, flying sheets, a scroll-driven ribbon, and hover/focus/tap palettes.
-6. Architectural color blocks — a bounded desktop 1–2–3 stacked-panel scroll.
-7. Cute retro pastels — a quiet, soft landing.
+## Motion, access, and browser behaviour
 
-Design instructions are in `skills/<name>/SKILL.md`. Downloadable packages live in `public/downloads/`. Each `.skill` is the same ZIP-format archive as its `.zip` counterpart; it is not a universal installer. Extract the ZIP or use an app that supports importing these bundles.
+- Native scrolling; no wheel interception.
+- Seven navigation treatments and six reversible section transitions.
+- System reduced-motion preferences take priority. The **Motion off** switch also removes pins and decorative transitions.
+- Phone and short-screen layouts use normal vertical flow.
+- Keyboard focus indicators, a skip link, Escape-dismissable native dialogs, and a stable scrollbar gutter.
+- Text selection and scrollbars match the current design. Decorative duplicate lettering is excluded from copied selections.
+- Clipboard failures leave a manual selection/copy option.
+- Core content and download links are rendered into HTML. Interactive palettes, menus, copy controls, and animation need JavaScript.
+- OS/browser settings can hide native scrollbars until scrolling; no fake scrollbar is substituted.
 
-The original local library is preserved outside this app. To refresh public packages from its sibling folders, run `pwsh -File scripts/prepare-skills.ps1`. The script excludes reference screenshots and supplied moodboards. Some historical reference notes mention those local-only images; they are not needed to use the design instructions. Do not republish artwork or proprietary fonts from the inspiration sites.
+## Credits and reuse
 
-## AI handoff
+This is an independent educational style library, not an affiliation with the reference sites. Credits and design sources remain inside each skill's documentation.
 
-Each prompt links to this public repository. The ChatGPT action copies a prompt and opens ChatGPT in a separate, explicit step. It does not auto-send or install a skill. The desktop action uses the documented `codex://new?prompt=...` route to prefill a compatible installed app. If remote files cannot be read, attach the ZIP. See [official desktop command reference](https://learn.chatgpt.com/docs/reference/commands).
+The Indian print motifs, paper character, and flower artwork are original project assets. **Teko** and **Yatra One** include their SIL Open Font License files. Other typography uses system font stacks.
 
-Set `NEXT_PUBLIC_SKILLS_REPO_URL` before building to use a fork's GitHub URL. The default is https://github.com/sammy-ryed/fullpower-taste-department.
-
-## Motion and accessibility
-
-Native scrolling, no wheel interception. Section boundaries peel away as the next style arrives. GSAP is scoped and reverted on media changes/unmount. The header has a motion-off switch; system reduced-motion preferences take precedence. Paper-flight and architectural pins return to ordinary vertical flow on narrow or short screens and when motion is disabled. All essential content is visible without animation. Native dialogs provide keyboard focus containment, animated entry/exit, and Escape dismissal. Menu jumps wait until the dialog releases its scroll lock. Downloads remain ordinary anchors with inline feedback. Prompt scrollbars use each section's ink and paper; prompts leave the project choice to the student via `[Enter your prompt here]`.
-
-## Credits and rights
-
-Descriptions use the supplied behuman writing guidance. References remain credited in the skill documentation; visible inspiration links have been removed from the gallery. The page is an independent style study; it is not affiliated with Fonts Ninja, Good Glyphs, Miranda, Flying Papers, The1, or OLIPOP. The new paper-flight sequence is an original interpretation of the supplied motion skill, not a reconstruction of the reference site's code.
-
-Teko and Yatra One are bundled with their SIL Open Font License files. Other fonts use local system stacks. The lime/chilli and border motifs are original assets from the Indian Print Maximalism skill; the paper character and flower illustrations were authored for this page. Third-party reference images and watermarked moodboards are not included in this public repository. No blanket license is applied to third-party materials.
+Private reference screenshots, supplied moodboards, and watermarked artwork are not distributed here. Historical design notes may mention those local-only references; the instructions work without them. Do not assume this repository grants rights to third-party brands, photos, or proprietary fonts.

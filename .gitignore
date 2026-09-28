@@ -5,3 +5,9 @@ out/
 !.env.example
 *.tsbuildinfo
 qa/
+.vercel/
+CLAUDE.md
+*.log
+.DS_Store
+Thumbs.db
+next-env.d.ts
