@@ -5,6 +5,12 @@
   "buildCommand": "npm run check && npm run build && npm run verify:build",
   "headers": [
     {
+      "source": "/opengraph-image",
+      "headers": [
+        { "key": "Content-Type", "value": "image/png" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
