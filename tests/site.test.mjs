@@ -208,7 +208,7 @@ test("Deployment gates builds and serves bundles as attachments", async () => {
   );
 });
 
-test("Every bundled file matches its checked-in source byte for byte", async () => {
+test("Every bundled file matches its source across Windows and Linux checkouts", async () => {
   let files = 0;
   for (const skill of skills) {
     const buffer = await readFile(
@@ -233,11 +233,18 @@ test("Every bundled file matches its checked-in source byte for byte", async () 
         const compressed = buffer.subarray(start, start + compressedSize);
         assert.ok(method === 0 || method === 8);
         const unpacked = method === 8 ? inflateRawSync(compressed) : compressed;
-        assert.deepEqual(
-          unpacked,
-          await readFile(new URL(`skills/${name}`, root)),
-          name,
-        );
+        const sourceFile = await readFile(new URL(`skills/${name}`, root));
+        // Git's text checkout conversion must not look like a corrupted ZIP.
+        // Fonts and other binary assets remain an exact byte comparison.
+        if (/\.(md|txt|css|json|html|mjs|js|svg)$/.test(name)) {
+          assert.equal(
+            unpacked.toString("utf8").replaceAll("\r\n", "\n"),
+            sourceFile.toString("utf8").replaceAll("\r\n", "\n"),
+            name,
+          );
+        } else {
+          assert.deepEqual(unpacked, sourceFile, name);
+        }
         files++;
       }
       i +=
