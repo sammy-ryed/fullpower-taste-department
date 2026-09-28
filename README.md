@@ -2,6 +2,8 @@
 
 Seven ways to stop making the same website.
 
+**[Open the live gallery →](https://fullpower-taste-department.vercel.app/)**
+
 A scroll-through library for the **Full-power Frontend** workshop, by **OpenAI Student Collective**. Hosted by **Samarth Ryan Edward** and **Parv Bhawsar**.
 
 ## Pick a skill. Take it home.
