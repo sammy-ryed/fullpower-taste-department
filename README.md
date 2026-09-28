@@ -25,7 +25,7 @@ npm run build
 2. Minimal type gallery — a sliced coral type echo.
 3. Colorful type poster — seven contrast-checked colorways.
 4. Vintage newspaper — a ruled broadsheet.
-5. Animated cartoon pop — original paper mascot, GSAP entrance, hover/focus/tap palettes.
+5. Animated cartoon pop — a scrubbed paper-flight scene, flying sheets, a scroll-driven ribbon, and hover/focus/tap palettes.
 6. Architectural color blocks — a bounded desktop 1–2–3 stacked-panel scroll.
 7. Cute retro pastels — a quiet, soft landing.
 
@@ -41,10 +41,10 @@ Set `NEXT_PUBLIC_SKILLS_REPO_URL` before building to use a fork's GitHub URL. Th
 
 ## Motion and accessibility
 
-Native scrolling, no wheel interception. GSAP is scoped and reverted on media changes/unmount. The header has a motion-off switch; system reduced-motion preferences take precedence. The architectural panels return to ordinary vertical flow on narrow or short screens and when motion is disabled. All essential content is visible without animation. Native dialogs provide keyboard focus containment and Escape dismissal. Downloads remain ordinary anchors.
+Native scrolling, no wheel interception. Section boundaries peel away as the next style arrives. GSAP is scoped and reverted on media changes/unmount. The header has a motion-off switch; system reduced-motion preferences take precedence. Paper-flight and architectural pins return to ordinary vertical flow on narrow or short screens and when motion is disabled. All essential content is visible without animation. Native dialogs provide keyboard focus containment, animated entry/exit, and Escape dismissal. Menu jumps wait until the dialog releases its scroll lock. Downloads remain ordinary anchors with inline feedback. Prompt scrollbars use each section's ink and paper; prompts leave the project choice to the student via `[Enter your prompt here]`.
 
 ## Credits and rights
 
-Descriptions use the supplied behuman writing guidance. References are credited in each section and skill. The page is an independent style study; it is not affiliated with Fonts Ninja, Good Glyphs, Miranda, Flying Papers, The1, or OLIPOP.
+Descriptions use the supplied behuman writing guidance. References remain credited in the skill documentation; visible inspiration links have been removed from the gallery. The page is an independent style study; it is not affiliated with Fonts Ninja, Good Glyphs, Miranda, Flying Papers, The1, or OLIPOP. The new paper-flight sequence is an original interpretation of the supplied motion skill, not a reconstruction of the reference site's code.
 
 Teko and Yatra One are bundled with their SIL Open Font License files. Other fonts use local system stacks. The lime/chilli and border motifs are original assets from the Indian Print Maximalism skill; the paper character and flower illustrations were authored for this page. Third-party reference images and watermarked moodboards are not included in this public repository. No blanket license is applied to third-party materials.

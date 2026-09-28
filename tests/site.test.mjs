@@ -30,6 +30,8 @@ test("Every prompt targets its exact public skill and asks for a working accessi
     assert.ok(prompt.includes("rem-based"));
     assert.ok(prompt.includes("reduced-motion"));
     assert.ok(prompt.includes("attach the ZIP"));
+    assert.ok(prompt.includes("[Enter your prompt here]"));
+    assert.ok(!prompt.includes(skill.idea));
     assert.ok(skill.description.length > 100);
   }
 });
@@ -88,7 +90,7 @@ test("Authored UI uses rem dimensions and no proprietary font URLs or tracking",
   assert.ok(component.includes("mm.revert()"));
   assert.ok(component.includes("document.fonts.ready"));
   assert.ok(component.includes("prefers-reduced-motion"));
-  assert.ok(!component.includes("preventDefault"));
+  assert.ok(!/onWheel|addEventListener\(["']wheel/.test(component));
 });
 
 test("Every style has local design notes, tokens, and CSS", async () => {
@@ -111,4 +113,22 @@ test("Every style has local design notes, tokens, and CSS", async () => {
       ),
     );
   }
+});
+
+test("Gallery polish keeps prompts themed, removes source badges, and animates native dialogs", async () => {
+  const css = await readFile(new URL("app/globals.css", root), "utf8");
+  const component = await readFile(
+    new URL("components/gallery.tsx", root),
+    "utf8",
+  );
+  assert.ok(!css.includes("Courier New"));
+  assert.ok(css.includes("scrollbar-color: var(--scroll-ink)"));
+  assert.ok(css.includes("resize: none"));
+  assert.ok(!component.includes("{skill.source}"));
+  assert.ok(!component.includes("{skill.url}"));
+  assert.ok(component.includes("useSoftDialog"));
+  assert.ok(component.includes("afterClose?.()"));
+  assert.ok(component.includes('paletteInput.current === "keyboard"'));
+  assert.equal((component.match(/<Seam /g) || []).length, 6);
+  assert.ok(component.includes('className="paper-flight"'));
 });

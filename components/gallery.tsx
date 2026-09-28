@@ -8,6 +8,43 @@ import { repository, skills, starterPrompt, type Skill } from "@/lib/skills";
 const Arrow = ({ down = false }: { down?: boolean }) => (
   <span aria-hidden="true">{down ? "↓" : "↗"}</span>
 );
+function useSoftDialog(reduce: boolean) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  const open = () => {
+    clearTimeout(timer.current);
+    if (!ref.current) return;
+    delete ref.current.dataset.closing;
+    ref.current.showModal();
+  };
+  const close = (afterClose?: () => void) => {
+    const node = ref.current;
+    if (!node || node.dataset.closing) return;
+    if (reduce) {
+      node.close();
+      afterClose?.();
+      return;
+    }
+    node.dataset.closing = "true";
+    timer.current = setTimeout(() => {
+      node.close();
+      delete node.dataset.closing;
+      afterClose?.();
+    }, 240);
+  };
+  return { ref, open, close };
+}
+
+function Seam({ color }: { color: string }) {
+  return (
+    <div
+      className="chapter-seam"
+      style={{ background: color }}
+      aria-hidden="true"
+    />
+  );
+}
 function Flower({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -69,6 +106,11 @@ function Kit({
   const promptRef = useRef<HTMLTextAreaElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
+  function downloadFeedback(format: string) {
+    setFeedback(`${format} requested. Check your downloads.`);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setFeedback(""), 4500);
+  }
   async function copy() {
     try {
       await navigator.clipboard.writeText(starterPrompt(skill));
@@ -84,23 +126,13 @@ function Kit({
   return (
     <div className="skill-kit" id={`${skill.slug}-kit`}>
       <div className="kit-description">
-        <span className="eyebrow">The skill, in plain English</span>
+        <span className="eyebrow">What you're getting</span>
         <h3>{skill.name}</h3>
         <p>{skill.description}</p>
-        <a
-          className="source-link"
-          href={skill.url}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {skill.source} <Arrow />
-        </a>
       </div>
       <div className="prompt-slip">
         <div className="prompt-label">
-          <label htmlFor={`${skill.slug}-prompt`}>
-            A little push. A big idea.
-          </label>
+          <label htmlFor={`${skill.slug}-prompt`}>Start with this</label>
           <span aria-hidden="true">↳</span>
         </div>
         <textarea
@@ -113,7 +145,7 @@ function Kit({
         />
         <div className="prompt-bottom">
           <span className="copy-feedback" role="status">
-            {feedback || "Steal the prompt. Change the idea."}
+            {feedback || "Copy this, then add what you want to make."}
           </span>
           <button className="copy-button" onClick={copy}>
             Copy prompt <span aria-hidden="true">⧉</span>
@@ -128,6 +160,7 @@ function Kit({
           className="download-action"
           href={`/downloads/${skill.slug}.zip`}
           download
+          onClick={() => downloadFeedback("ZIP")}
         >
           Download .zip <Arrow down />
         </a>
@@ -135,6 +168,7 @@ function Kit({
           className="download-action small-action"
           href={`/downloads/${skill.slug}.skill`}
           download
+          onClick={() => downloadFeedback("Skill bundle")}
         >
           .skill <Arrow down />
         </a>
@@ -165,8 +199,6 @@ const cartoonPalettes = [
 
 export default function Gallery() {
   const root = useRef<HTMLDivElement>(null);
-  const dialog = useRef<HTMLDialogElement>(null);
-  const indexDialog = useRef<HTMLDialogElement>(null);
   const [handoff, setHandoff] = useState<Skill>(skills[0]);
   const [handoffMessage, setHandoffMessage] = useState("");
   const [active, setActive] = useState(0);
@@ -177,8 +209,11 @@ export default function Gallery() {
   const [cartoon, setCartoon] = useState(0);
   const [hoverPalette, setHoverPalette] = useState<number | null>(null);
   const [focusPalette, setFocusPalette] = useState<number | null>(null);
+  const paletteInput = useRef<"keyboard" | "pointer">("keyboard");
   const cartoonPreview = focusPalette ?? hoverPalette ?? cartoon;
   const reduce = motionOff || systemReduced;
+  const handoffDialog = useSoftDialog(reduce);
+  const menuDialog = useSoftDialog(reduce);
   const indianInks: Record<string, string[]> = {
     mango: ["#ffcc32", "#701c39"],
     indigo: ["#25216b", "#fff2cc"],
@@ -195,7 +230,7 @@ export default function Gallery() {
   const showKit = (skill: Skill) => {
     setHandoff(skill);
     setHandoffMessage("");
-    dialog.current?.showModal();
+    handoffDialog.open();
   };
 
   useEffect(() => {
@@ -265,20 +300,38 @@ export default function Gallery() {
             .toArray<HTMLElement>(".chapter:not(.indian) .chapter-intro")
             .forEach((el) => {
               gsap.from(el, {
-                y: "3rem",
-                opacity: 0.25,
-                duration: 0.8,
-                ease: "power3.out",
+                y: "2.5rem",
+                opacity: 0.4,
+                ease: "none",
                 scrollTrigger: {
                   trigger: el,
-                  start: "top 92%",
-                  toggleActions: "play none none none",
+                  start: "top 95%",
+                  end: "top 40%",
+                  scrub: 0.45,
                 },
               });
             });
+          gsap.utils.toArray<HTMLElement>(".chapter-seam").forEach((seam) => {
+            gsap.fromTo(
+              seam,
+              { scaleY: 1 },
+              {
+                scaleY: 0,
+                transformOrigin: "50% 0%",
+                ease: "none",
+                scrollTrigger: {
+                  trigger: seam.parentElement,
+                  start: "top bottom",
+                  end: "top 45%",
+                  scrub: 0.35,
+                },
+              },
+            );
+          });
           gsap.from(".warp-slice", {
-            y: (i: number) => `${Math.sin(i * 0.8) * 0.7}rem`,
-            skewY: 3,
+            y: (i: number) =>
+              `${Math.sin(i * 0.8) * (window.innerWidth < 672 ? 0.15 : 0.5)}rem`,
+            skewY: 1.5,
             stagger: 0.025,
             duration: 0.8,
             ease: "power2.inOut",
@@ -295,7 +348,6 @@ export default function Gallery() {
             scrollTrigger: { trigger: ".cartoon-stage", start: "top 70%" },
           });
           gsap.to(".cartoon-sticker", {
-            rotation: 9,
             y: "-2rem",
             ease: "none",
             scrollTrigger: {
@@ -305,12 +357,120 @@ export default function Gallery() {
               scrub: 0.6,
             },
           });
+          gsap.fromTo(
+            ".cartoon-ribbon-track",
+            { xPercent: 8 },
+            {
+              xPercent: -20,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".cartoon-ribbon",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.6,
+              },
+            },
+          );
+        },
+        root,
+      );
+      mm.add(
+        "(max-width: 59.999rem) and (prefers-reduced-motion: no-preference)",
+        () => {
+          gsap.fromTo(
+            ".paper-flight",
+            { y: "1rem", rotation: -8 },
+            {
+              y: "-2rem",
+              rotation: 10,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".cartoon-stage",
+                start: "top 75%",
+                end: "bottom 15%",
+                scrub: 0.5,
+              },
+            },
+          );
+          gsap.from(".flying-sheet", {
+            y: "3rem",
+            rotation: -25,
+            scale: 0.6,
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: ".cartoon-stage",
+              start: "top 75%",
+              end: "bottom 30%",
+              scrub: 0.5,
+            },
+          });
         },
         root,
       );
       mm.add(
         "(min-width: 60rem) and (min-height: 40rem) and (prefers-reduced-motion: no-preference)",
         () => {
+          const flight =
+            root.current!.querySelector<HTMLElement>(".cartoon-stage")!;
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: flight,
+                start: () =>
+                  `top ${parseFloat(getComputedStyle(document.documentElement).fontSize) * 5}`,
+                end: () => `+=${flight.offsetHeight * 1.25}`,
+                pin: true,
+                scrub: 0.7,
+                invalidateOnRefresh: true,
+              },
+            })
+            .to(
+              ".cartoon-line:nth-child(1)",
+              { xPercent: 7, rotation: -3, duration: 1 },
+              0,
+            )
+            .to(
+              ".cartoon-line:nth-child(2)",
+              { xPercent: 1, rotation: 2, duration: 1 },
+              0,
+            )
+            .to(".cartoon-line:nth-child(3)", { xPercent: 9, duration: 1 }, 0)
+            .to(
+              ".paper-flight",
+              {
+                xPercent: -28,
+                yPercent: -13,
+                rotation: -22,
+                scale: 1.12,
+                duration: 0.5,
+              },
+              0,
+            )
+            .to(
+              ".paper-flight",
+              {
+                xPercent: 6,
+                yPercent: 8,
+                rotation: 12,
+                scale: 0.95,
+                duration: 0.55,
+              },
+              0.5,
+            )
+            .from(
+              ".flying-sheet",
+              {
+                xPercent: 50,
+                yPercent: 150,
+                rotation: -70,
+                scale: 0.2,
+                opacity: 0,
+                stagger: 0.09,
+                duration: 0.7,
+              },
+              0.1,
+            )
+            .to(".cartoon-sticker", { rotation: 18, duration: 0.5 }, 0.5);
           const stage =
             root.current!.querySelector<HTMLElement>(".number-stage")!;
           const panels = Array.from(
@@ -332,7 +492,8 @@ export default function Gallery() {
               scrollTrigger: {
                 trigger: stage,
                 // ScrollTrigger start offsets use browser coordinates, not CSS rem syntax.
-                start: () => `top ${parseFloat(getComputedStyle(document.documentElement).fontSize) * 4}`,
+                start: () =>
+                  `top ${parseFloat(getComputedStyle(document.documentElement).fontSize) * 4}`,
                 end: () => `+=${stage.offsetHeight * 2}`,
                 pin: true,
                 scrub: 0.65,
@@ -367,7 +528,14 @@ export default function Gallery() {
   }
 
   return (
-    <div ref={root} className="gallery" data-motion={reduce ? "off" : "on"}>
+    <div
+      ref={root}
+      className="gallery"
+      data-motion={reduce ? "off" : "on"}
+      onKeyDownCapture={(e) => {
+        if (e.key === "Tab") paletteInput.current = "keyboard";
+      }}
+    >
       <a className="skip-link" href="#main">
         Skip to the skills
       </a>
@@ -380,7 +548,6 @@ export default function Gallery() {
                 background: headerInks[0],
                 color: headerInks[1],
                 borderColor: headerInks[1],
-                transition: "none",
               }
             : undefined
         }
@@ -393,9 +560,7 @@ export default function Gallery() {
             DEPARTMENT
           </span>
         </a>
-        <span className="header-caption">
-          FULL-POWER FRONTEND / FIELD GUIDE
-        </span>
+        <span className="header-caption">Made for your next “what if…”</span>
         <div className="header-controls">
           <button
             className="motion-button"
@@ -406,11 +571,12 @@ export default function Gallery() {
             {reduce ? "Motion off" : "Motion on"}{" "}
             <span aria-hidden="true">{reduce ? "Ⅱ" : "↝"}</span>
           </button>
-          <button
-            className="index-button"
-            onClick={() => indexDialog.current?.showModal()}
-          >
-            The seven <span aria-hidden="true">☷</span>
+          <button className="index-button" onClick={menuDialog.open}>
+            Pick a style{" "}
+            <span className="menu-icon" aria-hidden="true">
+              <i />
+              <i />
+            </span>
           </button>
         </div>
       </header>
@@ -439,8 +605,8 @@ export default function Gallery() {
           <div className="poster-frame">
             <div className="ornament-rail top-rail" />
             <div className="hero-topline">
-              <span>OPENAI STUDENT COLLECTIVE PRESENTS</span>
-              <span>A WORKSHOP. A TOOLKIT. A VERY GOOD EXCUSE.</span>
+              <span>Made by the OpenAI Student Collective</span>
+              <span>Bring your laptop. And that weird idea.</span>
             </div>
             <div className="hero-composition">
               <div className="hero-copy">
@@ -453,7 +619,7 @@ export default function Gallery() {
                   <span className="issue-tag">
                     7 SKILLS
                     <br />
-                    ZERO BEIGE
+                    ALL YOURS
                   </span>
                   <p>
                     Your next website
@@ -489,7 +655,7 @@ export default function Gallery() {
                 <span>&</span>
                 <strong>Parv Bhawsar</strong>
               </p>
-              <span>SCROLL DOWN. THE WHOLE VIBE CHANGES. ↓</span>
+              <span>Keep going. There are seven of these. ↓</span>
             </div>
             <div className="ornament-rail bottom-rail" />
           </div>
@@ -533,10 +699,11 @@ export default function Gallery() {
           data-chapter="1"
           aria-labelledby="minimal-title"
         >
+          <Seam color={indianInks[indianPalette][0]} />
           <div className="section-shell">
             <div className="chapter-meta">
-              <span>02 / A STUDY IN RESTRAINT</span>
-              <span>Minimal type gallery ®-ish</span>
+              <span>02 / Type gallery</span>
+              <span>Give the letters some room.</span>
             </div>
             <div className="chapter-intro">
               <div className="minimal-kicker">
@@ -567,7 +734,7 @@ export default function Gallery() {
                 </div>
               </div>
               <div className="minimal-caption">
-                <span>THE LETTERS ARE HAVING A MOMENT.</span>
+                <span>Yes, the letters are doing that on purpose.</span>
                 <span className="coral-disc" aria-hidden="true">
                   ↗
                 </span>
@@ -589,9 +756,10 @@ export default function Gallery() {
           }
           aria-labelledby="color-title"
         >
+          <Seam color="#ffffff" />
           <div className="section-shell">
             <div className="chapter-meta">
-              <span>03 / NO INSIDE VOICE</span>
+              <span>03 / Color riot</span>
               <button
                 className="palette-cycle"
                 onClick={() => setPoster((poster + 1) % posterPalettes.length)}
@@ -630,6 +798,7 @@ export default function Gallery() {
           data-chapter="3"
           aria-labelledby="paper-title"
         >
+          <Seam color={posterPalettes[poster][1]} />
           <div className="section-shell">
             <div className="chapter-meta">
               <span>04 / THE DAILY FRONTEND</span>
@@ -695,10 +864,11 @@ export default function Gallery() {
           }
           aria-labelledby="cartoon-title"
         >
+          <Seam color="#e2dedb" />
           <div className="section-shell">
             <div className="chapter-meta">
-              <span>05 / PLEASE DO NOT FEED THE WEBSITE</span>
-              <span>GSAP INSIDE. ADULT SUPERVISION OPTIONAL.</span>
+              <span>05 / Cartoon brain</span>
+              <span>Someone gave the paper legs.</span>
             </div>
             <div className="cartoon-stage chapter-intro">
               <div>
@@ -708,18 +878,40 @@ export default function Gallery() {
                   UNSERIOUS
                 </span>
                 <h2 id="cartoon-title">
-                  BAD AT
-                  <br />
-                  SITTING
-                  <br />
-                  <em>STILL.</em>
+                  <span className="cartoon-line">BAD AT</span>
+                  <span className="cartoon-line">SITTING</span>
+                  <span className="cartoon-line">
+                    <em>STILL.</em>
+                  </span>
                 </h2>
               </div>
               <div className="character-wrap">
-                <PaperPal />
+                <div className="paper-flight">
+                  <PaperPal />
+                </div>
                 <span className="character-caption">
                   HE HAS NO DELIVERABLES.
                 </span>
+              </div>
+              <div className="flying-sheet sheet-one" aria-hidden="true">
+                Aa
+                <span>
+                  HANDLE WITH
+                  <br />
+                  ABSOLUTELY NO CARE
+                </span>
+              </div>
+              <div className="flying-sheet sheet-two" aria-hidden="true">
+                ↗
+              </div>
+              <div className="flying-sheet sheet-three" aria-hidden="true">
+                oops.
+              </div>
+            </div>
+            <div className="cartoon-ribbon" aria-hidden="true">
+              <div className="cartoon-ribbon-track">
+                FOLD IT. SEND IT. <span>SEE WHAT HAPPENS.</span> FOLD IT. SEND
+                IT.
               </div>
             </div>
             <div className="cartoon-palette">
@@ -730,6 +922,13 @@ export default function Gallery() {
               </p>
               <div
                 className="mood-buttons"
+                onKeyDown={() => {
+                  paletteInput.current = "keyboard";
+                }}
+                onPointerDown={() => {
+                  paletteInput.current = "pointer";
+                  setFocusPalette(null);
+                }}
                 onBlur={(e) => {
                   if (!e.currentTarget.contains(e.relatedTarget))
                     setFocusPalette(null);
@@ -748,8 +947,19 @@ export default function Gallery() {
                       )
                         setHoverPalette(i);
                     }}
-                    onPointerLeave={() => setHoverPalette(null)}
-                    onFocus={() => setFocusPalette(i)}
+                    onPointerLeave={() =>
+                      setHoverPalette((current) =>
+                        current === i ? null : current,
+                      )
+                    }
+                    onFocus={() => {
+                      if (paletteInput.current === "keyboard")
+                        setFocusPalette(i);
+                    }}
+                    onKeyDown={() => {
+                      paletteInput.current = "keyboard";
+                      setFocusPalette(i);
+                    }}
                     onClick={() => setCartoon(i)}
                   >
                     <span aria-hidden="true">{cartoon === i ? "✓" : ""}</span>
@@ -770,10 +980,11 @@ export default function Gallery() {
           data-chapter="5"
           aria-labelledby="architecture-title"
         >
+          <Seam color={cartoonPalettes[cartoonPreview][1]} />
           <div className="section-shell architecture-top">
             <div className="chapter-meta">
-              <span>06 / TYPE WITH A BUILDING PERMIT</span>
-              <span>FORM FOLLOWS “MAKE IT BIGGER.”</span>
+              <span>06 / Big concrete</span>
+              <span>Start big. You can edit it down.</span>
             </div>
             <div className="chapter-intro">
               <h2 id="architecture-title">
@@ -855,10 +1066,11 @@ export default function Gallery() {
           data-chapter="6"
           aria-labelledby="cute-title"
         >
+          <Seam color="#d9d9d9" />
           <div className="section-shell">
             <div className="chapter-meta">
-              <span>07 / YOU DESERVE A LITTLE TREAT</span>
-              <span>Freshly baked pixels. Figuratively.</span>
+              <span>07 / Soft serve</span>
+              <span>You've earned a quieter tab.</span>
             </div>
             <div className="cute-hero chapter-intro">
               <div>
@@ -912,9 +1124,7 @@ export default function Gallery() {
             <Kit skill={skills[6]} onOpen={showKit} />
           </div>
           <footer className="site-footer">
-            <span className="eyebrow">
-              YOU’VE REACHED THE END. THE GOOD BIT STARTS NOW.
-            </span>
+            <span className="eyebrow">Found one you like?</span>
             <h2>Go make a thing.</h2>
             <p>
               Full-power Frontend · OpenAI Student Collective
@@ -923,19 +1133,13 @@ export default function Gallery() {
             </p>
             <div>
               <a href="#indian-print-maximalism">One more scroll? ↑</a>
-              <button onClick={() => indexDialog.current?.showModal()}>
-                Pick your skill ↗
-              </button>
+              <button onClick={menuDialog.open}>Pick your skill ↗</button>
               {repository && (
                 <a href={repository} target="_blank" rel="noreferrer">
                   Get everything on GitHub ↗
                 </a>
               )}
             </div>
-            <small>
-              Independent style studies, with credit to the references. No
-              affiliation with the inspiration sites.
-            </small>
           </footer>
         </section>
       </main>
@@ -943,24 +1147,28 @@ export default function Gallery() {
       <dialog
         className="handoff-dialog"
         aria-label="Use this skill in your AI app"
-        ref={dialog}
+        ref={handoffDialog.ref}
+        data-style={handoff.slug}
+        onCancel={(e) => {
+          e.preventDefault();
+          handoffDialog.close();
+        }}
         onClick={(e) => {
-          if (e.target === e.currentTarget) dialog.current?.close();
+          if (e.target === e.currentTarget) handoffDialog.close();
         }}
       >
         <div className="dialog-inner">
           <button
             className="dialog-close"
-            onClick={() => dialog.current?.close()}
+            onClick={() => handoffDialog.close()}
             aria-label="Close handoff"
           >
             ×
           </button>
-          <span className="eyebrow">TAKE THE GOOD STUFF WITH YOU</span>
+          <span className="eyebrow">{handoff.name}</span>
           <h2>
-            Your idea.
+            Take it from here.
             <br />
-            Their problem.
           </h2>
           <p>
             Start a new chat with <strong>{handoff.name}</strong>. The prompt
@@ -976,8 +1184,8 @@ export default function Gallery() {
                 Open ChatGPT ↗
               </a>
               <span>
-                Paste the prompt. If it cannot read the repository, attach the
-                ZIP.
+                Paste the prompt and replace [Enter your prompt here] with your
+                idea. If it cannot read the repository, attach the ZIP.
               </span>
             </li>
             <li>
@@ -1005,31 +1213,40 @@ export default function Gallery() {
       <dialog
         className="index-dialog"
         aria-label="Choose a design skill"
-        ref={indexDialog}
+        ref={menuDialog.ref}
+        onCancel={(e) => {
+          e.preventDefault();
+          menuDialog.close();
+        }}
         onClick={(e) => {
-          if (e.target === e.currentTarget) indexDialog.current?.close();
+          if (e.target === e.currentTarget) menuDialog.close();
         }}
       >
         <div className="dialog-inner">
           <button
             className="dialog-close"
-            onClick={() => indexDialog.current?.close()}
+            onClick={() => menuDialog.close()}
             aria-label="Close skill index"
           >
             ×
           </button>
-          <span className="eyebrow">THE WHOLE DEPARTMENT</span>
+          <span className="eyebrow">All seven styles</span>
           <h2>
-            Pick your poison.
+            What feels like you?
             <br />
-            <i>It’s mostly CSS.</i>
+            <i>You can always change your mind.</i>
           </h2>
           <nav aria-label="All skills">
             {skills.map((skill, i) => (
               <a
                 href={`#${skill.slug}`}
                 key={skill.slug}
-                onClick={() => indexDialog.current?.close()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  menuDialog.close(() => {
+                    window.location.hash = skill.slug;
+                  });
+                }}
               >
                 <span>{String(i + 1).padStart(2, "0")}</span>
                 <span>{skill.name}</span>

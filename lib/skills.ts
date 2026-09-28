@@ -62,7 +62,7 @@ export const skills = [
     url: "https://www.flyingpapers.com/",
     color: "#8584bd",
     description:
-      "This one ate the brief. Now it’s bouncing around in a purple room. Chunky lettering, paper characters, hover-to-change colors, and GSAP with actual stage direction. A sensible amount of nonsense. Fine, a slightly unreasonable amount.",
+      "This one ate the brief. Now it’s bouncing around in a purple room. The paper flies, the type gets out of its way, and you can try a new color just by hovering. Switch motion off if the little guy gets on your nerves.",
     idea: "Build a playful landing page for an independent animation club.",
     direction:
       "Use Animated Cartoon Pop with GSAP and ScrollTrigger: oversized chunky type, an original paper mascot, a choreographed entrance, and hover/focus/tap palette controls. Honor reduced motion.",
@@ -99,5 +99,5 @@ export function starterPrompt(skill: Skill) {
   const location = repository
     ? `Read ${repository.replace(/\/$/, "")}/blob/main/skills/${skill.slug}/SKILL.md and its linked references and assets. If you cannot fetch them, ask me to attach the ZIP before proceeding.`
     : `Read the attached ${skill.slug} skill bundle, starting with SKILL.md and its linked references and assets. If the bundle is missing, ask me to attach it before proceeding.`;
-  return `${location}\n\n${skill.idea} ${skill.direction}\n\nImplement it in Next.js. Use rem-based dimensions, responsive layouts, keyboard-accessible controls, and a reduced-motion fallback. Make the buttons work. Use only assets and fonts we can distribute. Explain how to run the project.`;
+  return `Use the ${skill.name} frontend skill for my request below.\n\n${location}\n\nFollow the skill's design and motion guidance. Use rem-based dimensions, responsive layouts, keyboard-accessible controls, and a reduced-motion fallback. Keep my content and requirements; don't invent a different project. Use my chosen framework, or Next.js if I haven't specified one. If I haven't replaced the placeholder below, ask what I want to make before writing code.\n\nMy request:\n[Enter your prompt here]`;
 }

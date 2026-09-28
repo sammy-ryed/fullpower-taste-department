@@ -6,11 +6,11 @@
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 4rem;
 }
 body {
   margin: 0;
-  background: #ffcc32;
+  background: #14433d;
   color: #1a1a1a;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -107,8 +107,8 @@ button {
 }
 .header-caption {
   font:
-    0.62rem/1.2 "Courier New",
-    monospace;
+    0.62rem/1.2 Arial,
+    sans-serif;
   letter-spacing: 0.08rem;
 }
 .header-controls {
@@ -223,8 +223,8 @@ button {
   gap: 1rem;
   flex-wrap: wrap;
   font:
-    0.68rem/1.4 "Courier New",
-    monospace;
+    0.68rem/1.4 Arial,
+    sans-serif;
   letter-spacing: 0.045rem;
   border-bottom: 0.0625rem solid currentColor;
   padding-bottom: 1rem;
@@ -232,14 +232,14 @@ button {
 }
 .eyebrow {
   font:
-    0.65rem/1.5 "Courier New",
-    monospace;
+    0.65rem/1.5 Arial,
+    sans-serif;
   letter-spacing: 0.08rem;
   text-transform: uppercase;
 }
 .skill-kit {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   gap: 2.5rem 5rem;
   margin-top: 4rem;
 }
@@ -266,8 +266,8 @@ button {
   display: flex;
   justify-content: space-between;
   font:
-    0.7rem/1.5 "Courier New",
-    monospace;
+    0.7rem/1.5 Arial,
+    sans-serif;
   border-bottom: 0.0625rem solid currentColor;
   padding-bottom: 0.75rem;
 }
@@ -283,8 +283,8 @@ button {
   min-height: 10rem;
   max-height: 25rem;
   font:
-    0.875rem/1.65 "Courier New",
-    monospace;
+    0.875rem/1.65 Arial,
+    sans-serif;
   padding: 1rem 0;
   display: block;
 }
@@ -337,8 +337,8 @@ button {
 .bundle-caption {
   margin-left: auto;
   font:
-    0.62rem/1.5 "Courier New",
-    monospace;
+    0.62rem/1.5 Arial,
+    sans-serif;
   max-width: 13rem;
 }
 .chapter-intro {
@@ -376,8 +376,8 @@ button {
   padding: 0.5rem 0 1rem;
   border-bottom: 0.08rem solid var(--ipm-ink);
   font:
-    700 0.6rem/1.4 "Courier New",
-    monospace;
+    700 0.6rem/1.4 Arial,
+    sans-serif;
   letter-spacing: 0.08rem;
 }
 .hero-composition {
@@ -418,8 +418,8 @@ button {
 }
 .issue-tag {
   font:
-    700 0.7rem/1.4 "Courier New",
-    monospace;
+    700 0.7rem/1.4 Arial,
+    sans-serif;
   border: 0.1rem solid currentColor;
   padding: 0.5rem 0.7rem;
   transform: rotate(-6deg);
@@ -460,8 +460,8 @@ button {
   right: 0;
   transform: rotate(6deg);
   font:
-    700 0.65rem/1.3 "Courier New",
-    monospace;
+    700 0.65rem/1.3 Arial,
+    sans-serif;
 }
 .hero-flower {
   position: absolute;
@@ -486,8 +486,8 @@ button {
 }
 .hero-footer > span {
   font:
-    0.6rem/1.3 "Courier New",
-    monospace;
+    0.6rem/1.3 Arial,
+    sans-serif;
   letter-spacing: 0.04rem;
 }
 .indian-details {
@@ -502,8 +502,8 @@ button {
   border: 0;
   padding: 0.6rem 0.1rem;
   font:
-    0.7rem/1 "Courier New",
-    monospace;
+    0.7rem/1 Arial,
+    sans-serif;
   text-transform: capitalize;
   min-height: 2.75rem;
 }
@@ -562,7 +562,7 @@ button {
   isolation: isolate;
   line-height: 0.86;
   font:
-    400 clamp(4rem, 12vw, 13rem)/0.88 Georgia,
+    400 clamp(4rem, 12vw, 13rem)/1.04 Georgia,
     "Times New Roman",
     serif;
   letter-spacing: -0.065em;
@@ -581,7 +581,8 @@ button {
   inset: 0;
   color: #ee585a;
   z-index: 1;
-  transform: translate(0.35rem, -0.4rem);
+  transform: translate(0.25rem, -0.25rem);
+  pointer-events: none;
 }
 .warp-slice {
   position: absolute;
@@ -595,8 +596,8 @@ button {
   border-bottom: 0.0625rem solid #dbdada;
   padding: 2.5rem 0 2rem;
   font:
-    0.6rem/1.3 "Courier New",
-    monospace;
+    0.6rem/1.3 Arial,
+    sans-serif;
 }
 .coral-disc {
   display: grid;
@@ -778,8 +779,8 @@ button {
 }
 .print-symbol > div {
   font:
-    0.5rem/1.4 "Courier New",
-    monospace;
+    0.5rem/1.4 Arial,
+    sans-serif;
   margin-top: 1.3rem;
   text-align: center;
 }
@@ -798,7 +799,7 @@ button {
   outline-offset: 0.18rem;
 }
 .newspaper .skill-kit {
-  grid-template-columns: 1fr 1.35fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
   gap: 2rem 3rem;
 }
 .newspaper .kit-description h3 {
@@ -864,8 +865,8 @@ button {
   color: #1a1a1a;
   transform: rotate(-10deg);
   font:
-    700 0.65rem/1.2 "Courier New",
-    monospace;
+    700 0.65rem/1.2 Arial,
+    sans-serif;
   margin-bottom: 2rem;
 }
 .character-wrap {
@@ -879,8 +880,8 @@ button {
 }
 .character-caption {
   font:
-    0.6rem/1.5 "Courier New",
-    monospace;
+    0.6rem/1.5 Arial,
+    sans-serif;
   display: block;
   text-align: center;
   margin-top: 1rem;
@@ -926,8 +927,8 @@ button {
 .mood-name {
   margin-left: auto;
   font:
-    0.65rem/1.3 "Courier New",
-    monospace;
+    0.65rem/1.3 Arial,
+    sans-serif;
 }
 .cartoon .kit-description h3 {
   font-size: 2.3rem;
@@ -1061,8 +1062,8 @@ button {
 }
 .cute-label {
   font:
-    0.65rem/1.4 "Courier New",
-    monospace;
+    0.65rem/1.4 Arial,
+    sans-serif;
   letter-spacing: 0.07rem;
 }
 .cute h2 {
@@ -1149,8 +1150,8 @@ button {
 }
 .flavor > span:first-child {
   font:
-    0.65rem/1 "Courier New",
-    monospace;
+    0.65rem/1 Arial,
+    sans-serif;
   align-self: flex-start;
 }
 .flavor strong {
@@ -1332,8 +1333,8 @@ dialog::backdrop {
 }
 .index-dialog nav a > span:first-child {
   font:
-    0.65rem/1 "Courier New",
-    monospace;
+    0.65rem/1 Arial,
+    sans-serif;
 }
 .index-dialog nav i {
   width: 0.9rem;
@@ -1429,7 +1430,7 @@ dialog::backdrop {
   }
   .skill-kit {
     gap: 2rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
   .bundle-caption {
     display: none;
@@ -1471,6 +1472,9 @@ dialog::backdrop {
   }
 }
 @media (max-width: 42rem) {
+  html {
+    scroll-padding-top: 3.5rem;
+  }
   .site-header {
     height: 3.5rem;
     padding: 0.3rem 1rem;
@@ -1895,4 +1899,533 @@ html[data-motion="off"] {
 .gallery[data-motion="off"] * {
   animation: none !important;
   transition: none !important;
+}
+
+/* Shared controls borrow their paper, ink and shape from the current section. */
+html,
+body,
+.gallery,
+main {
+  width: 100%;
+  min-width: 0;
+}
+.chapter {
+  width: 100%;
+  overflow-x: clip;
+}
+.section-shell,
+.skill-kit > *,
+.chapter-intro,
+.cute-hero > *,
+.newspaper-columns > * {
+  min-width: 0;
+}
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+.chapter-seam {
+  position: absolute;
+  z-index: 4;
+  inset: -0.0625rem 0 auto;
+  height: clamp(3rem, 12svh, 7rem);
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 100%);
+  transform: scaleY(0);
+}
+.newspaper .chapter-seam {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 35%);
+}
+.cute .chapter-seam {
+  border-radius: 0 0 50% 50%;
+  clip-path: none;
+}
+.header-caption {
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.hero-topline {
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+.eyebrow,
+.chapter-meta,
+.prompt-label,
+.bundle-caption {
+  letter-spacing: 0;
+  text-transform: none;
+}
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.chapter-meta {
+  font-size: 0.8rem;
+}
+.newspaper :is(.eyebrow, .chapter-meta, .prompt-label) {
+  font-family: Georgia, serif;
+}
+.prompt-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.prompt-slip {
+  --scroll-ink: currentColor;
+  --scroll-track: transparent;
+  --scroll-radius: 1rem;
+}
+.indian .prompt-slip {
+  --scroll-ink: var(--ipm-panel-ink);
+  --scroll-track: var(--ipm-panel);
+  --scroll-radius: 0;
+}
+.minimal .prompt-slip {
+  --scroll-ink: #ee585a;
+  --scroll-track: #e8e8e8;
+}
+.colorful .prompt-slip {
+  --scroll-ink: var(--poster-bg);
+  --scroll-track: var(--poster-ink);
+}
+.newspaper .prompt-slip {
+  --scroll-ink: #69645f;
+  --scroll-track: #e2dedb;
+  --scroll-radius: 0;
+}
+.cartoon .prompt-slip {
+  --scroll-ink: #61609a;
+  --scroll-track: #e6e1ec;
+  --scroll-radius: 0.25rem;
+}
+.architecture .prompt-slip {
+  --scroll-ink: #1f1f1f;
+  --scroll-track: #c1c1c1;
+  --scroll-radius: 0;
+}
+.cute .prompt-slip {
+  --scroll-ink: #14433d;
+  --scroll-track: #b9d6ce;
+}
+.prompt-slip textarea {
+  resize: none;
+  height: 13rem;
+  min-height: 0;
+  max-height: none;
+  padding: 1rem 0.75rem 1rem 0;
+  margin-block: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-ink) var(--scroll-track);
+  overscroll-behavior-y: contain;
+}
+.prompt-slip textarea::-webkit-scrollbar {
+  width: 0.45rem;
+}
+.prompt-slip textarea::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+  border-radius: var(--scroll-radius);
+}
+.prompt-slip textarea::-webkit-scrollbar-thumb {
+  background: var(--scroll-ink);
+  border-radius: var(--scroll-radius);
+}
+.prompt-slip textarea::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.copy-feedback {
+  font-size: 0.75rem;
+  min-height: 2.1em;
+}
+.copy-button {
+  font-size: 0.85rem;
+}
+.kit-actions :is(a, button),
+.copy-button,
+.header-controls button,
+.index-dialog nav a {
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+.kit-actions :is(a, button):active {
+  transform: translateY(0.1rem) scale(0.98);
+}
+.header-controls .index-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.menu-icon {
+  display: grid;
+  gap: 0.3rem;
+  width: 1.2rem;
+}
+.menu-icon i {
+  display: block;
+  height: 0.1rem;
+  background: currentColor;
+  transition: transform 0.25s;
+}
+.index-button:hover .menu-icon i:first-child {
+  transform: translateX(0.15rem);
+}
+.index-button:hover .menu-icon i:last-child {
+  transform: translateX(-0.15rem);
+}
+
+/* Native dialogs keep focus trapping and Escape, with an animated exit before close(). */
+dialog {
+  --dialog-paper: #fff2cc;
+  --dialog-ink: #701c39;
+  background: var(--dialog-paper);
+  color: var(--dialog-ink);
+  border-color: var(--dialog-ink);
+  box-shadow: 0 1.5rem 6rem #0003;
+  border-radius: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dialog-ink) var(--dialog-paper);
+}
+dialog[open] {
+  animation: dialog-arrive 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+dialog[open]::backdrop {
+  animation: backdrop-arrive 0.3s ease both;
+}
+dialog[data-closing] {
+  animation: dialog-leave 0.24s ease both;
+}
+dialog[data-closing]::backdrop {
+  animation: backdrop-leave 0.24s ease both;
+}
+dialog::backdrop {
+  background: #1118;
+  backdrop-filter: blur(0.3rem);
+}
+dialog[data-style="minimal-type-gallery"] {
+  --dialog-paper: #fff;
+  --dialog-ink: #121212;
+  border-radius: 2rem;
+}
+dialog[data-style="colorful-type-poster"] {
+  --dialog-paper: #c7ffcd;
+  --dialog-ink: #000;
+  border-radius: 0.875rem;
+}
+dialog[data-style="vintage-newspaper"] {
+  --dialog-paper: #e2dedb;
+  --dialog-ink: #1d1d1b;
+  border-radius: 0;
+  border: 0.25rem double;
+  font-family: Georgia, serif;
+}
+dialog[data-style="animated-cartoon-pop"] {
+  --dialog-paper: #8584bd;
+  --dialog-ink: #1a1a1a;
+  border-radius: 0.375rem;
+  border-width: 0.15rem;
+}
+dialog[data-style="architectural-color-blocks"] {
+  --dialog-paper: #d9d9d9;
+  --dialog-ink: #1f1f1f;
+  border-radius: 0;
+}
+dialog[data-style="cute-retro-pastels"] {
+  --dialog-paper: #fdf7e7;
+  --dialog-ink: #14433d;
+  border-radius: 2rem;
+}
+.dialog-inner h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+.dialog-inner h2 i {
+  display: inline-block;
+  margin-top: 0.65rem;
+  font-size: 0.5em;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+.dialog-inner li :is(a, button),
+.desktop-link {
+  border-radius: 0.4rem;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.dialog-inner li :is(a, button):hover {
+  transform: translateX(0.2rem);
+}
+.index-dialog nav a:hover {
+  padding-left: 0.4rem;
+  background: #701c390c;
+}
+@keyframes dialog-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes dialog-leave {
+  to {
+    opacity: 0;
+    transform: translateY(0.8rem) scale(0.985);
+  }
+}
+@keyframes backdrop-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes backdrop-leave {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Paper flight: separate wrappers keep entrance, scroll and palette reactions independent. */
+.cartoon-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  overflow-clip-margin: 0;
+  padding: 2rem 1rem 3rem;
+  min-height: 35rem;
+}
+.cartoon-stage > div:first-child {
+  position: relative;
+  z-index: 2;
+}
+.cartoon-line {
+  display: block;
+  transform-origin: 0 50%;
+}
+.character-wrap {
+  z-index: 3;
+}
+.paper-pal {
+  transition: filter 0.3s;
+}
+.paper-flight {
+  transform-origin: 50% 65%;
+}
+.flying-sheet {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  color: #1a1a1a;
+  pointer-events: none;
+  z-index: 1;
+  border: 0.125rem solid #1a1a1a;
+  border-radius: 0.375rem;
+}
+.sheet-one {
+  right: 22%;
+  top: 6%;
+  width: 9rem;
+  height: 11rem;
+  background: #f8c1ba;
+  transform: rotate(-15deg);
+  font:
+    700 4rem/1 Georgia,
+    serif;
+}
+.sheet-one span {
+  font:
+    700 0.6rem/1.3 Arial,
+    sans-serif;
+  align-self: end;
+  padding-bottom: 0.7rem;
+}
+.sheet-two {
+  right: 1%;
+  top: 20%;
+  width: 7rem;
+  height: 8rem;
+  background: #b5c995;
+  transform: rotate(18deg);
+  font-size: 5rem;
+}
+.sheet-three {
+  right: 25%;
+  bottom: 7%;
+  width: 8rem;
+  height: 5rem;
+  background: #f4ed36;
+  transform: rotate(12deg);
+  font:
+    italic 2.5rem/1 Georgia,
+    serif;
+}
+.cartoon-ribbon {
+  overflow: clip;
+  border-block: 0.125rem solid currentColor;
+  padding-block: 1.1rem;
+  margin-top: 2rem;
+}
+.cartoon-ribbon-track {
+  width: max-content;
+  max-width: none;
+  font:
+    900 clamp(2rem, 5vw, 5rem)/1 Arial,
+    sans-serif;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+.cartoon-ribbon-track span {
+  -webkit-text-stroke: 0.0625rem var(--cartoon-ink);
+  color: transparent;
+}
+.mood-buttons button > span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.mood-buttons button:hover > span {
+  transform: rotate(-15deg) scale(1.15);
+}
+.mood-name {
+  font-size: 0.8rem;
+  min-width: 5rem;
+}
+@media (max-width: 42rem) {
+  .warp {
+    font-size: clamp(2.75rem, 14vw, 5.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+  }
+  .warp-echo {
+    transform: translate(0.12rem, -0.12rem);
+  }
+  .warp {
+    padding-block: 0.5rem;
+  }
+  .warp-echo {
+    inset-block: 0.5rem;
+  }
+  .hero-topline,
+  .chapter-meta,
+  .chapter-meta > span:last-child:not(:first-child) {
+    font-size: 0.75rem;
+  }
+  .hero-topline > span:first-child {
+    max-width: none;
+  }
+  .hero-footer > span {
+    font-size: 0.65rem;
+    max-width: 7rem;
+  }
+  .header-controls button {
+    font-size: 0.75rem;
+  }
+  .indian .prompt-slip,
+  .cartoon .prompt-slip {
+    transform: none;
+    box-shadow: 0.2rem 0.2rem 0 currentColor;
+  }
+  .kit-actions :is(a, button),
+  .copy-button {
+    font-size: 0.85rem;
+  }
+  .prompt-bottom {
+    flex-wrap: wrap;
+  }
+  .copy-feedback {
+    font-size: 0.75rem;
+    max-width: 65%;
+  }
+  .prompt-slip textarea {
+    height: 14rem;
+  }
+  .cartoon-stage {
+    min-height: 31rem;
+    padding: 1rem 0 7rem;
+  }
+  .cartoon-stage h2 {
+    font-size: 18vw;
+    line-height: 0.92;
+  }
+  .cartoon-stage .character-wrap {
+    width: 43%;
+    max-width: 43%;
+    right: 1rem;
+    bottom: 1rem;
+  }
+  .flying-sheet {
+    opacity: 0.9;
+  }
+  .sheet-one {
+    width: 4rem;
+    height: 5rem;
+    font-size: 2rem;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+  .sheet-one span {
+    display: none;
+  }
+  .sheet-two {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    right: 45%;
+    top: auto;
+    bottom: 2rem;
+  }
+  .sheet-three {
+    width: 4rem;
+    height: 2.5rem;
+    font-size: 1.3rem;
+    right: 5%;
+    bottom: 0.5rem;
+  }
+  dialog {
+    max-width: calc(100% - 1.5rem);
+    max-height: calc(100svh - 2rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter-seam {
+    display: none;
+  }
+}
+.gallery[data-motion="off"] .chapter-seam {
+  display: none;
+}
+@media (max-width: 22rem) {
+  .wordmark span {
+    display: none;
+  }
+  .header-controls .index-button {
+    white-space: nowrap;
+  }
+}
+dialog[data-style="animated-cartoon-pop"] .dialog-inner h2 {
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+}
+dialog[data-style="architectural-color-blocks"] .dialog-inner h2,
+dialog[data-style="colorful-type-poster"] .dialog-inner h2 {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+}
+dialog[data-style="indian-print-maximalism"] .dialog-inner h2 {
+  font-family: "Yatra One", Georgia, serif;
+  font-weight: 400;
 }
