@@ -1,0 +1,46 @@
+/* Generated from token.json by scripts/build-tokens.mjs. */
+/* Tailwind v4 only. Inline preserves element-scoped semantic shadow colors. */
+@theme inline {
+  --color-ipm-mango: #ffcc32;
+  --color-ipm-maroon: #701c39;
+  --color-ipm-rani: #e72b78;
+  --color-ipm-indigo: #25216b;
+  --color-ipm-vermilion: #ce2a24;
+  --color-ipm-paper: #fff2cc;
+  --color-ipm-leaf: #28654a;
+  --color-ipm-lime: #d6e35c;
+  --color-ipm-ink: #2a1424;
+  --color-ipm-gulabi: #f4b6ca;
+  --font-ipm-display: 'Teko', Impact, 'Arial Narrow', sans-serif;
+  --font-ipm-painted: 'Yatra One', Georgia, serif;
+  --font-ipm-body: Arial, 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+  --font-ipm-label: 'Courier New', ui-monospace, monospace;
+  --text-ipm-micro: 0.75rem;
+  --text-ipm-caption: 0.875rem;
+  --text-ipm-body: 1rem;
+  --text-ipm-lead: 1.125rem;
+  --text-ipm-subheading: 1.75rem;
+  --text-ipm-heading: 3rem;
+  --text-ipm-display: 10rem;
+  --leading-ipm-display: 0.82;
+  --leading-ipm-painted: 1.3;
+  --leading-ipm-body: 1.6;
+  --leading-ipm-label: 1.4;
+  --tracking-ipm-display: -0.125rem;
+  --tracking-ipm-label: 0.0875rem;
+  --font-weight-ipm-regular: 400;
+  --font-weight-ipm-bold: 700;
+  --spacing-ipm-1: 0.25rem;
+  --spacing-ipm-2: 0.5rem;
+  --spacing-ipm-3: 0.75rem;
+  --spacing-ipm-4: 1rem;
+  --spacing-ipm-6: 1.5rem;
+  --spacing-ipm-8: 2rem;
+  --spacing-ipm-12: 3rem;
+  --spacing-ipm-16: 4rem;
+  --spacing-ipm-24: 6rem;
+  --radius-ipm-paper: 0.125rem;
+  --radius-ipm-ticket: 0.375rem;
+  --shadow-ipm-ticket: 0.25rem 0.25rem 0 var(--ipm-extrusion);
+  --shadow-ipm-panel: 0.5rem 0.5rem 0 var(--ipm-extrusion);
+}

@@ -1,0 +1,52 @@
+:root {
+  /* Colors */
+  --color-pledge-mint: #c7ffcd;
+  --color-ink-black: #000000;
+  --color-carbon: #101010;
+
+  /* Typography — Font Families */
+  --font-helvetica-neue: 'Helvetica Neue', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-good-glyphs: 'good-glyphs', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 0.8125rem;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.024375rem;
+  --text-subheading: 1.75rem;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.0525rem;
+  --text-display: 18rem;
+  --leading-display: 0.8;
+  --tracking-display: -0.54rem;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 0.25rem;
+  --spacing-4: 0.25rem;
+  --spacing-7: 0.4375rem;
+  --spacing-14: 0.875rem;
+  --spacing-28: 1.75rem;
+
+  /* Layout */
+  --section-gap: 5.25rem;
+  --card-padding: 0.875rem;
+  --element-gap: 0.4375rem;
+
+  /* Border Radius */
+  --radius-xl: 0.875rem;
+  --radius-full: 8.75rem;
+
+  /* Named Radii */
+  --radius-cards: 0.875rem;
+  --radius-buttons: 8.75rem;
+
+  /* Surfaces */
+  --surface-pledge-mint-canvas: #c7ffcd;
+  --surface-ink-black-band: #000000;
+  --text-body: 0.875rem;
+  --leading-body: 1.5;
+  --tracking-body: -0.02625rem;
+}

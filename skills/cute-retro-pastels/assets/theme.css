@@ -1,0 +1,81 @@
+@theme {
+  /* Colors */
+  --color-forest-ink: #14433d;
+  --color-cream-paper: #fdf7e7;
+  --color-mint-sage: #d3e8e3;
+  --color-charcoal: #3a3a3a;
+  --color-pure-white: #ffffff;
+  --color-hairline-gray: #e3e3e3;
+  --color-wine-press: #7e0022;
+  --color-bright-teal: #2ad2c9;
+  --color-fountain-teal: #008b70;
+  --color-cardinal-red: #d32737;
+  --color-banana-cream: #fdf4b5;
+  --color-watermelon-lime: #a9df71;
+  --color-crisp-apple: #febac4;
+  --color-classic-grape: #e3d2ed;
+  --color-vintage-cola: #f8d5c0;
+
+  /* Typography */
+  --font-windsoref: 'WindsorEF', 'Cooper Black', Georgia, 'Times New Roman', serif;
+  --font-ano: 'Ano', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helvetica: 'Helvetica', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-micro: 0.75rem;
+  --leading-micro: 2.33;
+  --text-micro--line-height: 2.33;
+  --text-caption: 0.875rem;
+  --leading-caption: 1.8;
+  --text-caption--line-height: 1.8;
+  --text-body-sm: 1rem;
+  --leading-body-sm: 1.67;
+  --text-body-sm--line-height: 1.67;
+  --text-body-lg: 1.25rem;
+  --leading-body-lg: 1.5;
+  --text-body-lg--line-height: 1.5;
+  --text-subheading-sm: 1.375rem;
+  --leading-subheading-sm: 1.48;
+  --text-subheading-sm--line-height: 1.48;
+  --text-subheading: 1.5rem;
+  --leading-subheading: 1.4;
+  --text-subheading--line-height: 1.4;
+  --text-heading-sm: 2rem;
+  --leading-heading-sm: 1;
+  --text-heading-sm--line-height: 1;
+  --text-heading-lg: 3.25rem;
+  --leading-heading-lg: 1;
+  --text-heading-lg--line-height: 1;
+  --text-display-sm: 4.5rem;
+  --leading-display-sm: 1;
+  --text-display-sm--line-height: 1;
+  --text-display: 5rem;
+  --leading-display: 1;
+  --text-display--line-height: 1;
+
+  /* Spacing */
+  --spacing-4: 0.25rem;
+  --spacing-8: 0.5rem;
+  --spacing-12: 0.75rem;
+  --spacing-16: 1rem;
+  --spacing-20: 1.25rem;
+  --spacing-24: 1.5rem;
+  --spacing-28: 1.75rem;
+  --spacing-32: 2rem;
+  --spacing-40: 2.5rem;
+  --spacing-60: 3.75rem;
+  --spacing-80: 5rem;
+  --spacing-112: 7rem;
+  --spacing-128: 8rem;
+  --spacing-224: 14rem;
+
+  /* Border Radius */
+  --radius-lg: 0.625rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 3.125rem;
+  --radius-full-2: 6.25rem;
+
+  /* Shadows */
+  --shadow-lg: rgba(0, 0, 0, 0.1) 0rem 0rem 1.5rem 0rem;
+}

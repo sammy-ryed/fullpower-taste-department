@@ -1,0 +1,116 @@
+/* Example composition only; import printwork.css for reusable components. */
+body { margin: 0; background: #2a1424; }
+.ipm { padding: 0 clamp(0.75rem, 2vw, 2rem); }
+.ipm .skip { position: absolute; left: 1rem; top: -8rem; z-index: 10; }
+.ipm .skip:focus { top: 1rem; }
+.ipm .toolbar, .ipm .poster, .ipm .workbench, .ipm .colophon { max-inline-size: var(--ipm-layout-max); margin-inline: auto; }
+.ipm .toolbar { display: flex; align-items: center; gap: 1.5rem; justify-content: space-between; padding: 1.25rem 0; }
+.ipm .toolbar p { margin: 0.15rem 0 0; font-family: var(--ipm-font-painted); font-size: 1.125rem; }
+.ipm .palette-controls { display: flex; gap: 0.375rem; flex-wrap: wrap; }
+.ipm .palette-controls button, .ipm .motion-toggle { display: inline-flex; align-items: center; gap: 0.5rem; min-block-size: 2.75rem; border: 0.0625rem solid currentColor; background: transparent; color: var(--ipm-ink); padding: 0.5rem 0.75rem; cursor: pointer; font-size: 0.875rem; }
+.ipm .palette-controls button[aria-pressed="true"] { background: var(--ipm-ink); color: var(--ipm-canvas); }
+.ipm .palette-controls button[aria-pressed="true"]::after { content: '✓'; }
+.ipm .palette-controls i { display: block; inline-size: 0.875rem; block-size: 0.875rem; border-radius: 50%; border: 0.0625rem solid currentColor; }
+.ipm [data-palette="mango"] i { background: var(--ipm-color-mango); }
+.ipm [data-palette="indigo"] i { background: var(--ipm-color-indigo); }
+.ipm [data-palette="gulabi"] i { background: var(--ipm-color-gulabi); }
+.ipm .poster { border: 0.25rem solid var(--ipm-color-maroon); padding: 0.5rem; background: var(--ipm-color-rani); box-shadow: 0.375rem 0.375rem 0 var(--ipm-color-ink); }
+.ipm .rail { block-size: 1.5rem; background: url('motifs/border-tile.svg') 0 50% / 5.625rem 1.5rem repeat-x; }
+.ipm .poster-inner { position: relative; isolation: isolate; border: 0.1875rem solid var(--ipm-color-maroon); background: var(--ipm-canvas); padding: 0 clamp(1rem, 3.5vw, 3.5rem); }
+.ipm .poster-inner::before { content: ''; position: absolute; inset: 0.5rem; border: 0.0625rem solid var(--ipm-ink); pointer-events: none; z-index: -1; }
+.ipm .issue-line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; border-bottom: 0.0625rem solid var(--ipm-ink); padding: 1rem 0; }
+.ipm .presenter { text-align: center; margin: 1.5rem 0 1rem; }
+.ipm .hero-stage { display: grid; grid-template-columns: 1.55fr 1fr; position: relative; min-inline-size: 0; }
+.ipm .title-block { z-index: 2; min-inline-size: 0; container-type: inline-size; padding: 1.75rem 0 0.75rem; }
+.ipm h1 { margin: 0; }
+.ipm h1 .ipm-display { display: block; font-size: clamp(3rem, 36cqi, 18rem); letter-spacing: -0.1875rem; }
+.ipm .title-full { transform: rotate(-2deg); transform-origin: left center; }
+.ipm .title-power { padding-block-start: 0.5rem; transform: rotate(-2deg); transform-origin: left center; }
+.ipm .frontend { display: block; position: relative; inline-size: fit-content; margin: 0.25rem 0 0 0.625rem; padding: 0.125rem 2rem 0.5rem; background: var(--ipm-color-vermilion); color: var(--ipm-color-paper); border: 0.125rem solid var(--ipm-color-maroon); box-shadow: 0.3125rem 0.3125rem 0 var(--ipm-color-maroon); font-size: clamp(2rem, 5.8vw, 5.5rem); line-height: 1.1; transform: rotate(-3deg); }
+.ipm .title-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.75rem; inline-size: 80%; }
+.ipm .title-arrow { font-size: 2.5rem; line-height: 1; }
+.ipm .illustration { position: relative; min-inline-size: 0; display: grid; place-items: center; margin-top: -1.5rem; }
+.ipm .sunburst { position: absolute; inline-size: 100%; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(from 2deg, var(--ipm-accent) 0deg 12deg, transparent 12deg 24deg); opacity: 0.36; }
+.ipm .illustration-ring { position: absolute; inline-size: 110%; aspect-ratio: 1; border: 0.0625rem solid var(--ipm-ink); border-radius: 50%; }
+.ipm .pendant { position: relative; z-index: 1; inline-size: min(78%, 18rem); transform-origin: 50% 0; filter: drop-shadow(0.1875rem 0.25rem 0 var(--ipm-keyline)); }
+.ipm .flower { position: absolute; inline-size: clamp(2.5rem, 6vw, 5rem); }
+.ipm .flower-a { inset: 5% auto auto 1%; transform: rotate(-12deg); }
+.ipm .flower-b { inset: auto -1% 6% auto; transform: rotate(12deg); }
+.ipm .maker-seal { z-index: 2; position: absolute; inset: 4% -4% auto auto; inline-size: 7.25rem; aspect-ratio: 1; border-radius: 50%; padding: 0.65rem 0.3rem; background: var(--ipm-color-paper); color: var(--ipm-color-maroon); border: 0.1875rem double var(--ipm-color-maroon); outline: 0.125rem solid var(--ipm-color-paper); outline-offset: 0.125rem; text-align: center; transform: rotate(12deg); }
+.ipm .maker-seal span { display: block; font: 700 0.5625rem/1.4 var(--ipm-font-label); letter-spacing: 0.0625rem; }
+.ipm .maker-seal b { display: block; font: 700 1.75rem/0.85 var(--ipm-font-display); margin: 0.3rem 0; }
+.ipm .invitation { border-top: 0.125rem solid var(--ipm-ink); border-bottom: 0.125rem solid var(--ipm-ink); display: grid; grid-template-columns: 0.9fr 1.5fr auto; align-items: center; gap: 2rem; padding: 1.5rem 0; margin-top: 1rem; }
+.ipm .invitation > p { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.15; margin: 0; }
+.ipm .invitation-copy p { margin: 0 0 1rem; font-size: 1rem; }
+.ipm .mini-stamp { border: 0.125rem solid currentColor; padding: 0.875rem; transform: rotate(4deg); text-align: center; font-size: 0.6875rem; }
+.ipm .credits { text-align: center; padding: 1.5rem 0; }
+.ipm .credits p { margin: 0.4rem 0; font-weight: 700; font-size: clamp(1rem, 1.7vw, 1.5rem); line-height: 1.4; }
+.ipm .credits p span { padding-inline: 0.75rem; }
+.ipm .paper-dots { position: absolute; inset: 0; z-index: -1; }
+.ipm .workbench { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(1.5rem, 5vw, 5rem); padding: 4rem 0 3rem; scroll-margin-top: 1rem; }
+.ipm .workbench-heading h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin: 1rem 0; }
+.ipm .workbench-heading p { margin: 0; max-inline-size: 26rem; }
+.ipm .prompt-slip { background: var(--ipm-panel); color: var(--ipm-panel-ink); border: 0.125rem solid var(--ipm-color-ink); padding: 1.5rem; box-shadow: var(--ipm-shadow-panel); align-self: start; }
+.ipm .slip-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 0.0625rem solid var(--ipm-color-ink); padding-bottom: 0.75rem; }
+.ipm .copy-button { min-block-size: 2.75rem; background: var(--ipm-color-maroon); color: var(--ipm-color-paper); border: 0; padding: 0.5rem 0.75rem; cursor: pointer; font-size: 0.875rem; }
+.ipm .prompt-text { font-family: var(--ipm-font-label); font-size: 0.9375rem; line-height: 1.65; user-select: text; overflow-wrap: anywhere; }
+.ipm .copy-status { font-size: 0.875rem; margin: 0.5rem 0 0; min-block-size: 1.4rem; }
+.ipm .colophon { display: flex; gap: 1rem; justify-content: space-between; border-top: 0.0625rem solid currentColor; padding: 1rem 0 1.5rem; font-size: 0.6875rem; }
+@media (max-width: 64rem) {
+  .ipm .toolbar { flex-wrap: wrap; gap: 0.75rem; }
+  .ipm .toolbar > div:first-child { flex-basis: 100%; }
+  .ipm .maker-seal { inline-size: 6rem; right: -2%; }
+  .ipm .maker-seal b { font-size: 1.375rem; }
+  .ipm .invitation { grid-template-columns: 0.85fr 1.5fr; }
+  .ipm .mini-stamp { display: none; }
+}
+@media (max-width: 40rem) {
+  .ipm { padding-inline: 0.625rem; }
+  .ipm .toolbar { padding: 1rem 0; }
+  .ipm .palette-controls { gap: 0.25rem; }
+  .ipm .palette-controls button { padding-inline: 0.45rem; font-size: 0.75rem; }
+  .ipm .motion-toggle { font-size: 0.75rem; margin-left: auto; }
+  .ipm .poster { padding: 0.25rem; border-width: 0.125rem; box-shadow: 0.1875rem 0.1875rem 0 var(--ipm-color-ink); }
+  .ipm .rail { block-size: 1rem; background-size: 3.75rem 1rem; }
+  .ipm .poster-inner { padding-inline: 1rem; }
+  .ipm .issue-line { font-size: 0.5625rem; letter-spacing: 0.025rem; padding-block: 0.75rem; }
+  .ipm .presenter { margin: 1.25rem 0 0.75rem; font-size: 0.625rem; letter-spacing: 0.0625rem; }
+  .ipm .hero-stage { grid-template-columns: 1fr; }
+  .ipm .title-block { padding-top: 0.5rem; }
+  .ipm h1 .ipm-display { font-size: clamp(1.5rem, 32cqi, 10.5rem); letter-spacing: -0.125rem; }
+  .ipm .title-power { padding-top: 0.125rem; }
+  .ipm .frontend { margin: 0.625rem 0 0; padding-inline: 0.25rem; font-size: clamp(0.875rem, 12cqi, 3.5rem); }
+  .ipm .title-foot { inline-size: 100%; margin-top: 1.5rem; }
+  .ipm .title-foot .ipm-label { font-size: 0.625rem; }
+  .ipm .illustration { min-block-size: 17rem; inline-size: 100%; margin: 0.5rem 0; }
+  .ipm .pendant { inline-size: min(8.5rem, 60%); }
+  .ipm .sunburst { inline-size: min(14rem, 92%); }
+  .ipm .illustration-ring { inline-size: min(15rem, 100%); }
+  .ipm .flower-a { top: 14%; left: 2%; }
+  .ipm .flower-b { bottom: 7%; right: 5%; }
+  .ipm .maker-seal { top: 1%; right: 3%; inline-size: 5.5rem; }
+  .ipm .maker-seal b { font-size: 1.2rem; }
+  .ipm .maker-seal span { font-size: 0.5rem; }
+  .ipm .invitation { grid-template-columns: 1fr; gap: 1rem; margin-top: 0.5rem; padding: 1.5rem 0; }
+  .ipm .invitation > p br { display: none; }
+  .ipm .invitation > p { font-size: 1.625rem; }
+  .ipm .invitation > p br::after { content: ' '; }
+  .ipm .invitation-copy p { font-size: 0.9375rem; }
+  .ipm .wide-only { display: none; }
+  .ipm .credits { padding: 1.25rem 0; }
+  .ipm .credits p span { display: block; padding: 0.1rem 0; }
+  .ipm .credits .ipm-label { font-size: 0.625rem; }
+  .ipm .workbench { grid-template-columns: 1fr; padding: 2.5rem 0; gap: 1.5rem; }
+  .ipm .prompt-slip { padding: 1rem; }
+  .ipm .colophon { flex-direction: column; }
+}
+@media (max-width: 24rem) {
+  .ipm .maker-seal { display: none; }
+  .ipm .ipm-ticket { padding-inline: 0.75rem; }
+}
+@media print {
+  body { background: white; }
+  .ipm { padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .ipm .toolbar, .ipm .workbench, .ipm .colophon, .ipm .skip, .ipm .invitation .ipm-ticket { display: none; }
+  .ipm .poster { box-shadow: none; break-inside: avoid; }
+}

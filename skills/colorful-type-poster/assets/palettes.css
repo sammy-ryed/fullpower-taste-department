@@ -1,0 +1,26 @@
+[data-good-glyphs-palette] {
+  --gg-canvas: #c7ffcd;
+  --gg-ink: #000000;
+  background-color: var(--gg-canvas);
+  color: var(--gg-ink);
+}
+[data-good-glyphs-palette="brown"] { --gg-canvas: #806247; --gg-ink: #ffffff; }
+[data-good-glyphs-palette="mauve-red"] { --gg-canvas: #b39cb1; --gg-ink: #701000; }
+[data-good-glyphs-palette="yellow"] { --gg-canvas: #ffeb62; --gg-ink: #000000; }
+[data-good-glyphs-palette="white"] { --gg-canvas: #ffffff; --gg-ink: #000000; }
+[data-good-glyphs-palette="blue"] { --gg-canvas: #e1e1e1; --gg-ink: #1600df; }
+[data-good-glyphs-palette="red"] { --gg-canvas: #d40000; --gg-ink: #ffffff; }
+[data-good-glyphs-palette] .gg-inverted { background-color: var(--gg-ink); color: var(--gg-canvas); }
+[data-good-glyphs-palette] .gg-outline {
+  border: 0.0625rem solid currentColor;
+  border-radius: 8.75rem;
+  background: transparent;
+  color: inherit;
+  min-block-size: 2.75rem;
+  padding: 0.4375rem 0.875rem;
+  font: inherit;
+  cursor: pointer;
+}
+[data-good-glyphs-palette] .gg-outline:hover { background: var(--gg-ink); color: var(--gg-canvas); }
+[data-good-glyphs-palette] .gg-inverted .gg-outline:hover { background: var(--gg-canvas); color: var(--gg-ink); }
+[data-good-glyphs-palette] :focus-visible { outline: 0.125rem solid currentColor; outline-offset: 0.25rem; }

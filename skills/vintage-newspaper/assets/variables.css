@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --color-parchment: #e2dedb;
+  --color-bone-cream: #cdc6be;
+  --color-ink-black: #1d1d1b;
+  --color-charcoal: #69645f;
+  --color-pure-black: #000000;
+  --color-ember-orange: #c03f13;
+
+  /* Typography — Font Families */
+  --font-editorial-new: 'Editorial New', Georgia, "Times New Roman", serif;
+  --font-canopee: 'Canopee', Georgia, "Times New Roman", serif;
+  --font-domaine-display: 'Domaine Display', Georgia, "Times New Roman", serif;
+  --font-germgoth: 'Germgoth', Georgia, "Times New Roman", serif;
+
+  /* Typography — Scale */
+  --text-caption: 0.875rem;
+  --leading-caption: 1.18;
+  --tracking-caption: -0.016875rem;
+  --text-body-sm: 1rem;
+  --leading-body-sm: 1.27;
+  --tracking-body-sm: -0.01rem;
+  --text-subheading: 1.375rem;
+  --leading-subheading: 1.18;
+  --tracking-subheading: -0.034375rem;
+  --text-heading-sm: 2rem;
+  --leading-heading-sm: 1.11;
+  --tracking-heading-sm: -0.06rem;
+  --text-heading: 4.0625rem;
+  --leading-heading: 0.91;
+  --tracking-heading: -0.13rem;
+  --text-heading-lg: 7.625rem;
+  --leading-heading-lg: 0.79;
+  --tracking-heading-lg: -0.305rem;
+  --text-display: 27.875rem;
+  --leading-display: 0.73;
+  --tracking-display: -1.39375rem;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 0.25rem;
+  --spacing-4: 0.25rem;
+  --spacing-7: 0.4375rem;
+  --spacing-10: 0.625rem;
+  --spacing-12: 0.75rem;
+  --spacing-14: 0.875rem;
+  --spacing-17: 1.0625rem;
+  --spacing-22: 1.375rem;
+  --spacing-28: 1.75rem;
+  --spacing-29: 1.8125rem;
+  --spacing-36: 2.25rem;
+  --spacing-43: 2.6875rem;
+  --spacing-58: 3.625rem;
+  --spacing-65: 4.0625rem;
+  --spacing-115: 7.1875rem;
+
+  /* Layout */
+  --page-max-width: 90rem;
+  --section-gap: 2.6875rem;
+  --card-padding: 1.5rem;
+  --element-gap: 0.875rem;
+
+  /* Border Radius */
+  --radius-sm: 0.18rem;
+  --radius-lg: 0.45rem;
+  --radius-xl: 0.72rem;
+
+  /* Named Radii */
+  --radius-tags: 0.18rem;
+  --radius-cards: 0.72rem;
+  --radius-images: 0rem;
+  --radius-buttons: 0.18rem;
+
+  /* Shadows */
+  --shadow-sm: rgba(29, 29, 27, 0.2) -0.25rem 0.25rem 0.375rem 0rem;
+  --shadow-sm-2: rgba(29, 29, 27, 0.2) -0.3125rem 0.1875rem 0.375rem 0rem;
+
+  /* Surfaces */
+  --surface-parchment: #e2dedb;
+  --surface-bone-cream: #cdc6be;
+  --surface-ink-black: #1d1d1b;
+  --surface-pure-black: #000000;
+  /* Readable long-form copy; supplements the compact source scale. */
+  --text-body: 1rem;
+  --leading-body: 1.5;
+  --tracking-body: -0.01rem;
+}

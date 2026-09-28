@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Indian Print Maximalism — Full-power Frontend style study</title>
+  <link rel="icon" href="motifs/flower.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="variables.css">
+  <link rel="stylesheet" href="printwork.css">
+  <link rel="stylesheet" href="specimen.css">
+  <script src="specimen.js" defer></script>
+</head>
+<body>
+  <main class="ipm" data-ipm-palette="mango" data-ipm-motion="on">
+    <a class="skip ipm-ticket" href="#prompt">Skip to starter prompt</a>
+    <header class="toolbar">
+      <div><span class="ipm-label">Full-power Frontend / Skill 07</span><p>Indian print maximalism</p></div>
+      <div class="palette-controls" role="group" aria-label="Choose an ink palette">
+        <button type="button" data-palette="mango" aria-pressed="true"><i aria-hidden="true"></i>Mango</button>
+        <button type="button" data-palette="indigo" aria-pressed="false"><i aria-hidden="true"></i>Indigo</button>
+        <button type="button" data-palette="gulabi" aria-pressed="false"><i aria-hidden="true"></i>Gulabi</button>
+      </div>
+      <button class="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
+    </header>
+
+    <section class="poster" aria-labelledby="workshop-title">
+      <div class="rail" aria-hidden="true"></div>
+      <div class="poster-inner">
+        <div class="issue-line ipm-label"><span>An invitation to make</span><span>Ideas welcome. Always.</span></div>
+        <p class="presenter ipm-label">OpenAI Student Collective presents</p>
+
+        <div class="hero-stage">
+          <div class="title-block">
+            <h1 id="workshop-title" aria-label="Full-power Frontend">
+              <span class="ipm-display title-full" aria-hidden="true">FULL</span>
+              <span class="ipm-display title-power" aria-hidden="true">POWER</span>
+              <span class="frontend ipm-painted" aria-hidden="true">Frontend</span>
+            </h1>
+            <div class="title-foot"><span class="ipm-label">A hands-on workshop</span><span class="title-arrow" aria-hidden="true">↗</span></div>
+          </div>
+
+          <div class="illustration" aria-hidden="true">
+            <div class="sunburst"></div>
+            <div class="illustration-ring"></div>
+            <img class="pendant" src="motifs/lime-chilli.svg" alt="">
+            <div class="maker-seal"><span>GOOD TASTE</span><b>NO<br>BLAND<br>BUILDS.</b><span>FULL POWER</span></div>
+            <img class="flower flower-a" src="motifs/flower.svg" alt="">
+            <img class="flower flower-b" src="motifs/flower.svg" alt="">
+          </div>
+        </div>
+
+        <div class="invitation">
+          <p class="ipm-painted">Your idea. <br>Made loud.</p>
+          <div class="invitation-copy"><p>Pick a design skill. Give your idea a frontend.<br class="wide-only"> Make something that looks like you.</p><a class="ipm-ticket" href="#prompt">Start with a prompt <span aria-hidden="true">↗</span></a></div>
+          <div class="mini-stamp ipm-label">More making.<br>Less same-same.</div>
+        </div>
+
+        <footer class="credits"><span class="ipm-label">Hosted by</span><p>Samarth Ryan Edward <span aria-hidden="true">×</span> Parv Bhawsar</p><span class="ipm-label">OpenAI Student Collective</span></footer>
+        <div class="ipm-halftone paper-dots" aria-hidden="true"></div>
+      </div>
+      <div class="rail" aria-hidden="true"></div>
+    </section>
+
+    <section class="workbench" id="prompt" aria-labelledby="prompt-title">
+      <div class="workbench-heading"><span class="ipm-label">From print to pixels / Try the skill</span><h2 id="prompt-title" class="ipm-painted">Take the taste.<br>Make it yours.</h2><p>One visual language. Your own idea.<br>This is a style study, not the final event page.</p></div>
+      <div class="prompt-slip">
+        <div class="slip-top"><span class="ipm-label">Starter prompt</span><button type="button" class="copy-button">Copy prompt <span aria-hidden="true">↗</span></button></div>
+        <p class="prompt-text" id="prompt-text">Use the attached indian-print-maximalism skill to build a frontend for [my idea]. Read SKILL.md and its relevant references. Use expressive layered lettering, a deliberate ornamental frame, one strong graphic focal point, and a calm reading field. Adapt the layout to my content. Use rem, accessible controls, and reduced-motion support. Build it and visually test it.</p>
+        <span class="ipm-label">Attach the skill folder alongside this prompt.</span>
+        <p class="copy-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+    <footer class="colophon ipm-label"><span>Original vector ornaments · Local fonts · Three ink runs</span><span>Visual specimen / Not a published event announcement</span></footer>
+    <span class="ipm-sr-only" role="status" aria-live="polite" id="palette-status"></span>
+  </main>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* Generated from token.json by scripts/build-tokens.mjs. */
+.ipm {
+  --ipm-color-mango: #ffcc32;
+  --ipm-color-maroon: #701c39;
+  --ipm-color-rani: #e72b78;
+  --ipm-color-indigo: #25216b;
+  --ipm-color-vermilion: #ce2a24;
+  --ipm-color-paper: #fff2cc;
+  --ipm-color-leaf: #28654a;
+  --ipm-color-lime: #d6e35c;
+  --ipm-color-ink: #2a1424;
+  --ipm-color-gulabi: #f4b6ca;
+  --ipm-font-display: 'Teko', Impact, 'Arial Narrow', sans-serif;
+  --ipm-font-painted: 'Yatra One', Georgia, serif;
+  --ipm-font-body: Arial, 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+  --ipm-font-label: 'Courier New', ui-monospace, monospace;
+  --ipm-text-micro: 0.75rem;
+  --ipm-text-caption: 0.875rem;
+  --ipm-text-body: 1rem;
+  --ipm-text-lead: 1.125rem;
+  --ipm-text-subheading: 1.75rem;
+  --ipm-text-heading: 3rem;
+  --ipm-text-display: 10rem;
+  --ipm-leading-display: 0.82;
+  --ipm-leading-painted: 1.3;
+  --ipm-leading-body: 1.6;
+  --ipm-leading-label: 1.4;
+  --ipm-tracking-display: -0.125rem;
+  --ipm-tracking-label: 0.0875rem;
+  --ipm-weight-regular: 400;
+  --ipm-weight-bold: 700;
+  --ipm-spacing-1: 0.25rem;
+  --ipm-spacing-2: 0.5rem;
+  --ipm-spacing-3: 0.75rem;
+  --ipm-spacing-4: 1rem;
+  --ipm-spacing-6: 1.5rem;
+  --ipm-spacing-8: 2rem;
+  --ipm-spacing-12: 3rem;
+  --ipm-spacing-16: 4rem;
+  --ipm-spacing-24: 6rem;
+  --ipm-radius-paper: 0.125rem;
+  --ipm-radius-ticket: 0.375rem;
+  --ipm-border-fine: 0.0625rem;
+  --ipm-border-ink: 0.125rem;
+  --ipm-border-frame: 0.25rem;
+  --ipm-layout-max: 90rem;
+  --ipm-layout-reading: 42rem;
+  --ipm-layout-touch: 2.75rem;
+  --ipm-shadow-ticket: 0.25rem 0.25rem 0 var(--ipm-extrusion);
+  --ipm-shadow-panel: 0.5rem 0.5rem 0 var(--ipm-extrusion);
+  --ipm-duration-press: 0.18s;
+  --ipm-duration-ink: 0.22s;
+  --ipm-duration-reveal: 0.75s;
+  --ipm-canvas: var(--ipm-color-mango);
+  --ipm-ink: var(--ipm-color-maroon);
+  --ipm-face: var(--ipm-color-maroon);
+  --ipm-keyline: var(--ipm-color-paper);
+  --ipm-extrusion: var(--ipm-color-maroon);
+  --ipm-accent: var(--ipm-color-rani);
+  --ipm-panel: var(--ipm-color-paper);
+  --ipm-panel-ink: var(--ipm-color-ink);
+}
+
+.ipm[data-ipm-palette="mango"] {
+  --ipm-canvas: var(--ipm-color-mango);
+  --ipm-ink: var(--ipm-color-maroon);
+  --ipm-face: var(--ipm-color-maroon);
+  --ipm-keyline: var(--ipm-color-paper);
+  --ipm-extrusion: var(--ipm-color-maroon);
+  --ipm-accent: var(--ipm-color-rani);
+  --ipm-panel: var(--ipm-color-paper);
+  --ipm-panel-ink: var(--ipm-color-ink);
+}
+
+.ipm[data-ipm-palette="indigo"] {
+  --ipm-canvas: var(--ipm-color-indigo);
+  --ipm-ink: var(--ipm-color-paper);
+  --ipm-face: var(--ipm-color-mango);
+  --ipm-keyline: var(--ipm-color-ink);
+  --ipm-extrusion: var(--ipm-color-rani);
+  --ipm-accent: var(--ipm-color-mango);
+  --ipm-panel: var(--ipm-color-paper);
+  --ipm-panel-ink: var(--ipm-color-indigo);
+}
+
+.ipm[data-ipm-palette="gulabi"] {
+  --ipm-canvas: var(--ipm-color-gulabi);
+  --ipm-ink: var(--ipm-color-indigo);
+  --ipm-face: var(--ipm-color-indigo);
+  --ipm-keyline: var(--ipm-color-paper);
+  --ipm-extrusion: var(--ipm-color-maroon);
+  --ipm-accent: var(--ipm-color-maroon);
+  --ipm-panel: var(--ipm-color-paper);
+  --ipm-panel-ink: var(--ipm-color-ink);
+}

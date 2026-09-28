@@ -1,0 +1,1898 @@
+@import url("../public/art/indian-variables.css");
+@import url("../public/art/printwork.css");
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+body {
+  margin: 0;
+  background: #ffcc32;
+  color: #1a1a1a;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button,
+input,
+textarea {
+  font: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-underline-offset: 0.25rem;
+}
+button:disabled {
+  cursor: default;
+}
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible {
+  outline: 0.1875rem solid currentColor;
+  outline-offset: 0.3rem;
+}
+button {
+  color: inherit;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+a,
+button {
+  touch-action: manipulation;
+}
+.sr-only {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.skip-link {
+  position: fixed;
+  top: -5rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 1rem;
+  background: white;
+  color: black;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+.site-header {
+  height: 4rem;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  border-bottom: 0.0625rem solid #701c39;
+  background: #ffcc32;
+  color: #701c39;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font:
+    700 2.4rem/0.8 Teko,
+    Impact,
+    sans-serif;
+  text-decoration: none;
+}
+.wordmark span {
+  font:
+    700 0.55rem/1.25 Arial,
+    sans-serif;
+  letter-spacing: 0.08rem;
+}
+.header-caption {
+  font:
+    0.62rem/1.2 "Courier New",
+    monospace;
+  letter-spacing: 0.08rem;
+}
+.header-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.header-controls button {
+  border: 0;
+  background: none;
+  font:
+    0.7rem/1.2 Arial,
+    sans-serif;
+  min-height: 2.75rem;
+}
+.header-controls button span {
+  margin-left: 0.7rem;
+  font-size: 1.2rem;
+}
+.index-button {
+  font-weight: 700 !important;
+}
+.site-header[data-theme="1"] {
+  background: #fff;
+  color: #121212;
+  border-color: #dbdada;
+}
+.site-header[data-theme="2"] {
+  background: #c7ffcd;
+  color: #000;
+  border-color: #000;
+}
+.site-header[data-theme="3"] {
+  background: #e2dedb;
+  color: #1d1d1b;
+  border-color: #1d1d1b;
+}
+.site-header[data-theme="4"] {
+  background: #8584bd;
+  color: #1a1a1a;
+  border-color: #1a1a1a;
+}
+.site-header[data-theme="5"] {
+  background: #d9d9d9;
+  color: #1f1f1f;
+  border-color: #1f1f1f;
+}
+.site-header[data-theme="6"] {
+  background: #fdf7e7;
+  color: #14433d;
+  border-color: #14433d;
+}
+.chapter-rail {
+  position: fixed;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+  display: grid;
+  gap: 0.1rem;
+}
+.chapter-rail a {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.rail-dot {
+  display: block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 0.0625rem solid #181818;
+  border-radius: 50%;
+  background: var(--dot);
+  box-shadow: 0 0 0 0.1rem #ffffff80;
+}
+.chapter-rail [aria-current] .rail-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  outline: 0.0625rem solid #181818;
+  outline-offset: 0.2rem;
+}
+.rail-label {
+  display: none;
+  position: absolute;
+  right: 2.1rem;
+  white-space: nowrap;
+  color: #fff;
+  background: #181818;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.7rem;
+}
+.chapter-rail a:is(:hover, :focus-visible) .rail-label {
+  display: block;
+}
+.chapter {
+  position: relative;
+  isolation: isolate;
+  scroll-margin-top: 4rem;
+}
+.section-shell {
+  max-width: 100rem;
+  margin: auto;
+  padding: 4rem clamp(1.25rem, 4.5vw, 6rem) 6rem;
+}
+.chapter-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font:
+    0.68rem/1.4 "Courier New",
+    monospace;
+  letter-spacing: 0.045rem;
+  border-bottom: 0.0625rem solid currentColor;
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+}
+.eyebrow {
+  font:
+    0.65rem/1.5 "Courier New",
+    monospace;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+.skill-kit {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.5rem 5rem;
+  margin-top: 4rem;
+}
+.kit-description h3 {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  margin: 0.8rem 0 1rem;
+}
+.kit-description > p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 33rem;
+}
+.source-link {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin-top: 1.25rem;
+}
+.prompt-slip {
+  padding: 1.5rem;
+  align-self: start;
+}
+.prompt-label {
+  display: flex;
+  justify-content: space-between;
+  font:
+    0.7rem/1.5 "Courier New",
+    monospace;
+  border-bottom: 0.0625rem solid currentColor;
+  padding-bottom: 0.75rem;
+}
+.prompt-label > span {
+  font-size: 1.25rem;
+}
+.prompt-slip textarea {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  width: 100%;
+  resize: vertical;
+  min-height: 10rem;
+  max-height: 25rem;
+  font:
+    0.875rem/1.65 "Courier New",
+    monospace;
+  padding: 1rem 0;
+  display: block;
+}
+.prompt-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 0.6rem;
+  border-top: 0.0625rem solid currentColor;
+}
+.copy-feedback {
+  font-size: 0.65rem;
+  line-height: 1.4;
+  max-width: 17rem;
+}
+.copy-button {
+  border: 0;
+  background: none;
+  padding: 0.6rem 0.2rem;
+  min-height: 2.75rem;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+.kit-actions {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.kit-actions a,
+.kit-actions button {
+  min-height: 3.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.85rem 1.3rem;
+  text-decoration: none;
+  border: 0.0625rem solid currentColor;
+  background: transparent;
+  font-size: 0.85rem;
+}
+.kit-actions .primary-action {
+  font-weight: 700;
+}
+.bundle-caption {
+  margin-left: auto;
+  font:
+    0.62rem/1.5 "Courier New",
+    monospace;
+  max-width: 13rem;
+}
+.chapter-intro {
+  position: relative;
+}
+.indian {
+  padding-top: 5.3rem;
+}
+.poster-frame {
+  position: relative;
+  margin: 0 1.35rem;
+  border: 0.2rem solid var(--ipm-ink);
+  padding: 1.6rem 2.3rem 1.5rem;
+  outline: 0.07rem solid var(--ipm-ink);
+  outline-offset: -0.65rem;
+  min-height: calc(100svh - 6.6rem);
+}
+.ornament-rail {
+  height: 0.6rem;
+  background: url("/art/border-tile.svg") repeat-x center/auto 100%;
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+}
+.top-rail {
+  top: 0.6rem;
+}
+.bottom-rail {
+  bottom: 0.6rem;
+}
+.hero-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0 1rem;
+  border-bottom: 0.08rem solid var(--ipm-ink);
+  font:
+    700 0.6rem/1.4 "Courier New",
+    monospace;
+  letter-spacing: 0.08rem;
+}
+.hero-composition {
+  display: grid;
+  grid-template-columns: 1fr 23%;
+  align-items: center;
+  gap: 1rem;
+  min-height: 34rem;
+  padding: 2.2rem 0;
+}
+.hero-copy {
+  min-width: 0;
+}
+.painted-label {
+  font:
+    1.6rem/1.3 "Yatra One",
+    Georgia,
+    serif;
+  margin: 0 0 1.8rem 0.5rem;
+  transform: rotate(-2deg);
+  width: fit-content;
+}
+.hero-copy h1 {
+  font-size: clamp(5rem, 13.1vw, 15rem);
+  letter-spacing: -0.16rem;
+}
+.hero-title-line {
+  display: block;
+  width: fit-content;
+  white-space: nowrap;
+}
+.hero-under {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  padding-left: 0.5rem;
+}
+.issue-tag {
+  font:
+    700 0.7rem/1.4 "Courier New",
+    monospace;
+  border: 0.1rem solid currentColor;
+  padding: 0.5rem 0.7rem;
+  transform: rotate(-6deg);
+}
+.hero-under p {
+  font:
+    1.3rem/1.15 "Yatra One",
+    Georgia,
+    serif;
+}
+.hero-scroll {
+  display: grid;
+  place-items: center;
+  width: 3.3rem;
+  height: 3.3rem;
+  border: 0.1rem solid currentColor;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.8rem;
+  margin-left: auto;
+  margin-right: 3rem;
+}
+.hero-art {
+  align-self: stretch;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pendant {
+  width: 100%;
+  max-height: 31rem;
+  object-fit: contain;
+}
+.art-note {
+  position: absolute;
+  bottom: 0.1rem;
+  right: 0;
+  transform: rotate(6deg);
+  font:
+    700 0.65rem/1.3 "Courier New",
+    monospace;
+}
+.hero-flower {
+  position: absolute;
+  width: 4rem;
+  top: 0.5rem;
+  right: 0;
+  color: var(--ipm-accent);
+}
+.hero-footer {
+  border-top: 0.08rem solid currentColor;
+  padding: 1rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.65rem;
+}
+.hero-footer p {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.hero-footer > span {
+  font:
+    0.6rem/1.3 "Courier New",
+    monospace;
+  letter-spacing: 0.04rem;
+}
+.indian-details {
+  padding-top: 3rem;
+}
+.ink-controls {
+  display: flex;
+  gap: 1rem;
+}
+.ink-controls button {
+  background: none;
+  border: 0;
+  padding: 0.6rem 0.1rem;
+  font:
+    0.7rem/1 "Courier New",
+    monospace;
+  text-transform: capitalize;
+  min-height: 2.75rem;
+}
+.indian-subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+.indian-subtitle h2 {
+  font:
+    700 clamp(3rem, 7vw, 7rem)/0.9 Teko,
+    Impact,
+    sans-serif;
+}
+.indian-subtitle h2 span {
+  font-size: 0.5em;
+}
+.indian-subtitle > p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.indian .kit-description h3 {
+  font:
+    400 1.65rem/1.3 "Yatra One",
+    Georgia,
+    serif;
+}
+.indian .prompt-slip {
+  background: var(--ipm-panel);
+  color: var(--ipm-panel-ink);
+  border: 0.1rem solid currentColor;
+  box-shadow: 0.35rem 0.35rem 0 var(--ipm-ink);
+  transform: rotate(1deg);
+}
+.indian .kit-actions .primary-action {
+  background: var(--ipm-ink);
+  color: var(--ipm-canvas);
+  border-color: var(--ipm-ink);
+  box-shadow: 0.2rem 0.2rem 0 var(--ipm-keyline);
+}
+.minimal {
+  background: #fff;
+  color: #121212;
+}
+.minimal .section-shell {
+  padding-top: 4.5rem;
+}
+.minimal-kicker {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 1rem 0 3rem;
+}
+.warp {
+  position: relative;
+  isolation: isolate;
+  line-height: 0.86;
+  font:
+    400 clamp(4rem, 12vw, 13rem)/0.88 Georgia,
+    "Times New Roman",
+    serif;
+  letter-spacing: -0.065em;
+  padding-bottom: 1rem;
+}
+.warp h2 {
+  font: inherit;
+  position: relative;
+  z-index: 2;
+}
+.warp h2 i {
+  font-weight: 400;
+}
+.warp-echo {
+  position: absolute;
+  inset: 0;
+  color: #ee585a;
+  z-index: 1;
+  transform: translate(0.35rem, -0.4rem);
+}
+.warp-slice {
+  position: absolute;
+  inset: 0;
+  font: inherit;
+}
+.minimal-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.0625rem solid #dbdada;
+  padding: 2.5rem 0 2rem;
+  font:
+    0.6rem/1.3 "Courier New",
+    monospace;
+}
+.coral-disc {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  background: #ee585a;
+  border-radius: 50%;
+  font:
+    2rem/1 Arial,
+    sans-serif;
+}
+.minimal .skill-kit {
+  margin-top: 3.5rem;
+}
+.minimal .prompt-slip {
+  background: #f6f6f6;
+  border-radius: 1.5rem;
+}
+.minimal .kit-actions a,
+.minimal .kit-actions button {
+  border-radius: 2rem;
+}
+.minimal .kit-actions .primary-action {
+  background: #121212;
+  color: #fff;
+}
+.minimal .kit-description h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.colorful {
+  background: var(--poster-bg);
+  color: var(--poster-ink);
+}
+.palette-cycle {
+  background: none;
+  border: 0.0625rem solid currentColor;
+  border-radius: 3rem;
+  padding: 0.75rem 1.1rem;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font:
+    0.75rem/1 Arial,
+    sans-serif;
+}
+.palette-cycle > span[aria-hidden] {
+  font-size: 1.3rem;
+}
+.colorful h2 {
+  font:
+    300 clamp(5rem, 16vw, 18rem)/0.81 Arial,
+    Helvetica,
+    sans-serif;
+  letter-spacing: -0.075em;
+  position: relative;
+  margin: 1.5rem 0 3rem;
+}
+.colorful h2 > span {
+  display: inline-block;
+}
+.poster-flower {
+  position: absolute;
+  right: 7%;
+  top: 19%;
+  width: 22%;
+  --flower-center: var(--poster-bg);
+}
+.glyph-band {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  background: var(--poster-ink);
+  color: var(--poster-bg);
+  padding: 1.5rem 2rem;
+  border-radius: 0.875rem;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 1;
+}
+.glyph-band small {
+  font:
+    0.65rem/1.4 Arial,
+    sans-serif;
+  margin-left: auto;
+  max-width: 4rem;
+}
+.colorful .kit-description h3 {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: -0.05em;
+}
+.colorful .prompt-slip {
+  background: var(--poster-ink);
+  color: var(--poster-bg);
+  border-radius: 0.875rem;
+}
+.colorful .kit-actions a,
+.colorful .kit-actions button {
+  border-radius: 8rem;
+  min-height: 4.2rem;
+}
+.colorful .kit-actions .primary-action {
+  flex: 1;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+.colorful .kit-actions .small-action {
+  border-radius: 50%;
+  width: 5.5rem;
+  height: 5.5rem;
+  gap: 0.5rem;
+}
+.colorful .bundle-caption {
+  display: none;
+}
+.newspaper {
+  background: #e2dedb;
+  color: #1d1d1b;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.newspaper .chapter-meta {
+  border-bottom: 0.2rem double currentColor;
+  font-size: 0.6rem;
+}
+.masthead {
+  font:
+    700 clamp(5rem, 14.3vw, 15.5rem)/0.79 Georgia,
+    serif;
+  letter-spacing: -0.08em;
+  text-align: center;
+  border-bottom: 0.2rem double currentColor;
+  padding: 0 0 2.5rem;
+  margin-bottom: 2rem;
+}
+.masthead i {
+  font-weight: 400;
+}
+.newspaper-columns {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1fr;
+  gap: 2rem;
+  border-bottom: 0.1rem solid currentColor;
+  padding-bottom: 2rem;
+}
+.newspaper-columns article {
+  position: relative;
+}
+.newspaper-columns h3 {
+  font-size: clamp(1.7rem, 3vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  margin: 0.8rem 0 1rem;
+}
+.newspaper-columns p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.dropcap:first-letter {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  margin: 0.3rem 0.3rem 0 0;
+}
+.print-symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-inline: 0.0625rem solid currentColor;
+  padding: 1rem;
+}
+.print-symbol > span {
+  font:
+    italic 14rem/0.85 Georgia,
+    serif;
+}
+.print-symbol > div {
+  font:
+    0.5rem/1.4 "Courier New",
+    monospace;
+  margin-top: 1.3rem;
+  text-align: center;
+}
+.editor-stamp {
+  display: block;
+  width: fit-content;
+  background: #c03f13;
+  color: #fff2cc;
+  transform: rotate(-9deg);
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font:
+    700 0.7rem/1 Georgia,
+    serif;
+  outline: 0.0625rem dashed #c03f13;
+  outline-offset: 0.18rem;
+}
+.newspaper .skill-kit {
+  grid-template-columns: 1fr 1.35fr;
+  gap: 2rem 3rem;
+}
+.newspaper .kit-description h3 {
+  font:
+    700 2rem/1 Georgia,
+    serif;
+  letter-spacing: -0.05em;
+}
+.newspaper .kit-description p {
+  font-size: 1.1rem;
+}
+.newspaper .prompt-slip {
+  border: 0.0625rem solid currentColor;
+  outline: 0.0625rem solid currentColor;
+  outline-offset: -0.4rem;
+  background: #cdc6be;
+}
+.newspaper .kit-actions {
+  border-top: 0.0625rem solid currentColor;
+  padding-top: 1.5rem;
+}
+.newspaper .kit-actions .primary-action {
+  background: #1d1d1b;
+  color: #e2dedb;
+}
+.newspaper .kit-actions a {
+  border: none;
+  text-decoration: underline;
+  padding-inline: 0.5rem;
+}
+.cartoon {
+  background: var(--cartoon-bg);
+  color: var(--cartoon-ink);
+}
+.cartoon-stage {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding-top: 2rem;
+}
+.cartoon-stage h2 {
+  font:
+    900 clamp(5rem, 10.5vw, 12rem)/0.82 Arial,
+    Helvetica,
+    sans-serif;
+  letter-spacing: -0.08em;
+}
+.cartoon-stage h2 em {
+  font-style: normal;
+  color: #f4ed36;
+  -webkit-text-stroke: 0.08rem #1a1a1a;
+  paint-order: stroke fill;
+  text-shadow: 0.2rem 0.25rem 0 #1a1a1a;
+}
+.cartoon-sticker {
+  display: block;
+  width: fit-content;
+  padding: 1rem 1.6rem;
+  border: 0.12rem solid #1a1a1a;
+  border-radius: 50%;
+  background: #f4ed36;
+  color: #1a1a1a;
+  transform: rotate(-10deg);
+  font:
+    700 0.65rem/1.2 "Courier New",
+    monospace;
+  margin-bottom: 2rem;
+}
+.character-wrap {
+  position: relative;
+  transform: rotate(7deg);
+}
+.paper-pal {
+  width: 100%;
+  max-height: 32rem;
+  display: block;
+}
+.character-caption {
+  font:
+    0.6rem/1.5 "Courier New",
+    monospace;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+}
+.cartoon-palette {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0 1rem;
+  border-block: 0.1rem solid currentColor;
+  padding: 1.3rem 0;
+}
+.cartoon-palette > p {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.cartoon-palette small {
+  font-weight: 400;
+  font-size: 0.7rem;
+}
+.mood-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+.mood-buttons button {
+  border: 0.13rem solid #1a1a1a;
+  background: var(--swatch);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: #1a1a1a;
+  box-shadow: 0.15rem 0.15rem 0 #1a1a1a;
+  position: relative;
+}
+.mood-buttons button:last-child {
+  color: white;
+}
+.mood-buttons button[aria-pressed="true"] {
+  outline: 0.1rem solid currentColor;
+  outline-offset: 0.2rem;
+}
+.mood-name {
+  margin-left: auto;
+  font:
+    0.65rem/1.3 "Courier New",
+    monospace;
+}
+.cartoon .kit-description h3 {
+  font-size: 2.3rem;
+  letter-spacing: -0.06em;
+  font-weight: 900;
+}
+.cartoon .prompt-slip {
+  background: #f9f5f2;
+  color: #1a1a1a;
+  border: 0.15rem solid #1a1a1a;
+  border-radius: 0.375rem;
+  box-shadow: 0.4rem 0.4rem 0 #1a1a1a;
+  transform: rotate(-1.5deg);
+}
+.cartoon .kit-actions button,
+.cartoon .kit-actions a {
+  border: 0.125rem solid #1a1a1a;
+  border-radius: 6rem;
+  color: #1a1a1a;
+  background: #f9f5f2;
+  box-shadow: 0.2rem 0.2rem 0 #1a1a1a;
+}
+.cartoon .kit-actions .primary-action {
+  background: #f4ed36;
+}
+.cartoon .kit-actions :is(a, button):hover {
+  transform: translateY(-0.15rem);
+}
+.architecture {
+  background: #d9d9d9;
+  color: #1f1f1f;
+}
+.architecture-top {
+  padding-bottom: 3rem;
+}
+.architecture h2 {
+  font:
+    400 clamp(6rem, 18vw, 20rem)/0.72 Arial,
+    Helvetica,
+    sans-serif;
+  letter-spacing: -0.08em;
+  padding-bottom: 1rem;
+}
+.architecture-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+}
+.number-stage {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: clip;
+}
+.number-panel {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem clamp(2rem, 5vw, 6rem);
+  min-height: 34rem;
+}
+.panel-one {
+  background: #fa4d43;
+}
+.panel-two {
+  background: #fbb833;
+}
+.panel-three {
+  background: #027b49;
+  color: #fff;
+}
+.big-number {
+  font:
+    400 clamp(12rem, 38vw, 38rem)/0.85 Arial,
+    Helvetica,
+    sans-serif;
+  letter-spacing: -0.1em;
+}
+.number-panel > div {
+  border-top: 0.0625rem solid currentColor;
+  padding-top: 1.25rem;
+  align-self: center;
+}
+.number-panel h3 {
+  font:
+    400 clamp(2.5rem, 5vw, 6rem)/0.9 Arial,
+    sans-serif;
+  letter-spacing: -0.06em;
+  margin: 2rem 0;
+}
+.number-panel p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.architecture-bottom {
+  padding-top: 1rem;
+}
+.architecture .kit-description h3 {
+  font-size: 2.3rem;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+}
+.architecture .prompt-slip {
+  border-block: 0.0625rem solid currentColor;
+  padding-inline: 0;
+}
+.architecture .kit-actions a,
+.architecture .kit-actions button {
+  border-radius: 6rem;
+}
+.architecture .kit-actions .primary-action {
+  background: #1f1f1f;
+  color: #d9d9d9;
+}
+.cute {
+  background: #fdf7e7;
+  color: #14433d;
+}
+.cute-hero {
+  background: #d3e8e3;
+  border-radius: 1.5rem;
+  padding: 3rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+.cute-label {
+  font:
+    0.65rem/1.4 "Courier New",
+    monospace;
+  letter-spacing: 0.07rem;
+}
+.cute h2 {
+  font:
+    900 clamp(3.5rem, 7vw, 7.5rem)/0.96 Georgia,
+    serif;
+  letter-spacing: -0.065em;
+  margin: 1.5rem 0;
+}
+.cute h2 i {
+  font-weight: 400;
+}
+.cute-hero p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #3a3a3a;
+}
+.cute-art {
+  position: relative;
+}
+.cute-medallion {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background: #fdf4b5;
+  display: grid;
+  place-items: center;
+  position: relative;
+  transform: rotate(-8deg);
+}
+.cute-medallion svg {
+  width: 75%;
+  color: #febac4;
+  --flower-center: #fdf4b5;
+}
+.flower-face {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font:
+    700 2.4rem/0.55 Georgia,
+    serif;
+  letter-spacing: 0.7rem;
+  padding-left: 0.7rem;
+  text-align: center;
+}
+.flower-face b {
+  font:
+    400 3rem/0.6 Georgia,
+    serif;
+  letter-spacing: 0;
+  margin-left: -0.6rem;
+}
+.cute-note {
+  display: block;
+  text-align: right;
+  margin-top: 1rem;
+  font:
+    italic 1rem/1.1 Georgia,
+    serif;
+  transform: rotate(-7deg);
+}
+.cute-sparkle {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font:
+    4rem/1 Georgia,
+    serif;
+}
+.flavor-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.flavor {
+  border-radius: 1rem;
+  padding: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 7rem;
+}
+.flavor > span:first-child {
+  font:
+    0.65rem/1 "Courier New",
+    monospace;
+  align-self: flex-start;
+}
+.flavor strong {
+  font:
+    700 1.5rem/1 Georgia,
+    serif;
+  letter-spacing: -0.07em;
+}
+.flavor > span:last-child {
+  margin-left: auto;
+  font:
+    italic 2.5rem/1 Georgia,
+    serif;
+}
+.yellow {
+  background: #fdf4b5;
+}
+.pink {
+  background: #febac4;
+}
+.purple {
+  background: #e3d2ed;
+}
+.pill-doodle {
+  border: 0.1rem solid currentColor;
+  width: 3rem;
+  height: 1.6rem;
+  border-radius: 3rem;
+  transform: rotate(-30deg);
+}
+.cute .kit-description h3 {
+  font:
+    900 2rem/1 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+}
+.cute .kit-description p {
+  color: #3a3a3a;
+}
+.cute .prompt-slip {
+  background: #d3e8e3;
+  border-radius: 1rem;
+}
+.cute .kit-actions a,
+.cute .kit-actions button {
+  border-radius: 4rem;
+}
+.cute .kit-actions .primary-action {
+  background: #14433d;
+  color: #fff;
+  box-shadow: 0 0 1.5rem #0000001a;
+}
+.site-footer {
+  background: #14433d;
+  color: #fdf7e7;
+  padding: 4rem clamp(1.25rem, 4.5vw, 6rem) 2rem;
+  text-align: center;
+}
+.site-footer h2 {
+  font-size: clamp(3rem, 7vw, 7rem);
+}
+.site-footer p {
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+.site-footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 2rem 0 3rem;
+}
+.site-footer a,
+.site-footer button {
+  background: none;
+  border: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  font-size: 0.8rem;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+.site-footer small {
+  font-size: 0.6rem;
+  line-height: 1.5;
+  display: block;
+}
+dialog {
+  border: 0.1rem solid #1a1a1a;
+  padding: 0;
+  max-width: min(43rem, calc(100% - 2rem));
+  max-height: calc(100svh - 3rem);
+  color: #1a1a1a;
+  background: #fff2cc;
+  box-shadow: 0.6rem 0.6rem 0 #1a1a1a;
+}
+dialog::backdrop {
+  background: #1a1a1ab8;
+}
+.dialog-inner {
+  padding: 3rem;
+  position: relative;
+}
+.dialog-close {
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem;
+  border: 0;
+  background: none;
+  font: 2rem/1 Arial;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+.dialog-inner h2 {
+  font:
+    700 3.6rem/0.9 Teko,
+    Impact,
+    sans-serif;
+  margin: 1.5rem 0;
+}
+.dialog-inner > p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.dialog-inner ol {
+  padding-left: 1.4rem;
+}
+.dialog-inner li {
+  padding: 0.5rem 0;
+}
+.dialog-inner li button {
+  border: 0;
+  background: none;
+  padding: 0.5rem 0;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  text-align: left;
+}
+.dialog-inner li a {
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+.dialog-inner li span {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+.dialog-inner .dialog-status {
+  font-size: 0.8rem;
+  min-height: 1.6rem;
+}
+.desktop-link {
+  display: inline-block;
+  margin: 1rem 0;
+}
+.dialog-inner small {
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+.index-dialog {
+  width: 45rem;
+}
+.index-dialog nav {
+  display: grid;
+}
+.index-dialog nav a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  border-bottom: 0.0625rem solid currentColor;
+  padding: 0.85rem 0;
+  font-size: 0.9rem;
+  min-height: 3rem;
+}
+.index-dialog nav a > span:first-child {
+  font:
+    0.65rem/1 "Courier New",
+    monospace;
+}
+.index-dialog nav i {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 0.0625rem solid #1a1a1a;
+  margin-left: auto;
+}
+.index-dialog h2 i {
+  font-family: Georgia, serif;
+  font-size: 0.6em;
+  font-weight: 400;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .kit-actions :is(a, button),
+  .hero-scroll,
+  .cute-medallion {
+    transition: transform 0.2s;
+  }
+  .kit-actions :is(a, button):hover {
+    transform: translateY(-0.12rem);
+  }
+  .architecture .kit-actions :is(a, button):hover {
+    transform: none;
+    background: #1f1f1f;
+    color: #fff;
+  }
+  .cute-art:hover .cute-medallion {
+    transform: rotate(-6deg) translateY(-0.25rem);
+  }
+  .hero-scroll:hover {
+    transform: translateY(0.2rem);
+  }
+}
+@media (min-width: 100rem) {
+  .hero-composition {
+    min-height: 40rem;
+  }
+  .poster-frame {
+    max-width: 110rem;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 60rem) {
+  .chapter-rail {
+    display: none;
+  }
+  .header-caption {
+    display: none;
+  }
+  .site-header {
+    padding-inline: 1.2rem;
+  }
+  .section-shell {
+    padding-block: 3rem 4rem;
+  }
+  .hero-composition {
+    min-height: 28rem;
+    grid-template-columns: 1fr 21%;
+  }
+  .poster-frame {
+    padding: 1.5rem;
+    margin-inline: 1rem;
+    min-height: 0;
+  }
+  .hero-copy h1 {
+    font-size: 13vw;
+  }
+  .painted-label {
+    font-size: 1.3rem;
+  }
+  .hero-under {
+    gap: 1rem;
+  }
+  .hero-under p {
+    font-size: 1rem;
+  }
+  .hero-scroll {
+    margin-right: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .hero-topline {
+    font-size: 0.5rem;
+  }
+  .hero-topline > span:last-child {
+    max-width: 11rem;
+    text-align: right;
+  }
+  .hero-footer > span {
+    max-width: 11rem;
+    text-align: right;
+  }
+  .skill-kit {
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  .bundle-caption {
+    display: none;
+  }
+  .cartoon-stage h2 {
+    font-size: 11.5vw;
+  }
+  .cartoon-palette {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .mood-name {
+    margin-left: 0;
+  }
+  .flavor {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .flavor strong {
+    font-size: 1.2rem;
+  }
+  .flavor > span:last-child {
+    font-size: 1.8rem;
+  }
+  .cute-hero {
+    padding: 2rem;
+  }
+  .newspaper-columns {
+    gap: 1.3rem;
+  }
+  .print-symbol > span {
+    font-size: 10rem;
+  }
+  .number-panel {
+    min-height: 30rem;
+  }
+  .architecture h2 {
+    font-size: 19vw;
+  }
+}
+@media (max-width: 42rem) {
+  .site-header {
+    height: 3.5rem;
+    padding: 0.3rem 1rem;
+  }
+  .wordmark {
+    font-size: 2rem;
+  }
+  .wordmark span {
+    font-size: 0.48rem;
+  }
+  .header-controls {
+    gap: 0.7rem;
+  }
+  .header-controls button {
+    font-size: 0.63rem;
+  }
+  .header-controls button span {
+    margin-left: 0.3rem;
+  }
+  .chapter {
+    scroll-margin-top: 3.5rem;
+  }
+  .indian {
+    padding-top: 4.3rem;
+  }
+  .poster-frame {
+    margin-inline: 0.6rem;
+    padding: 1.2rem 0.9rem;
+    outline-offset: -0.45rem;
+  }
+  .hero-topline {
+    padding-top: 0.25rem;
+    font-size: 0.52rem;
+    letter-spacing: 0;
+  }
+  .hero-topline > span:last-child {
+    display: none;
+  }
+  .hero-composition {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 0;
+    padding: 1.8rem 0.3rem 0.7rem;
+  }
+  .painted-label {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-copy h1 {
+    font-size: 16.2vw;
+    letter-spacing: -0.06rem;
+  }
+  .hero-art {
+    position: relative;
+    height: 10rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  .pendant {
+    width: 8rem;
+    height: 12rem;
+    position: absolute;
+    right: 1rem;
+    top: -0.5rem;
+  }
+  .hero-flower {
+    width: 3rem;
+    right: auto;
+    left: 1rem;
+    top: 1.5rem;
+  }
+  .art-note {
+    left: 1rem;
+    right: auto;
+    bottom: 0.5rem;
+    font-size: 0.55rem;
+  }
+  .hero-under {
+    margin-top: 1.5rem;
+    gap: 0.85rem;
+    padding-left: 0;
+  }
+  .issue-tag {
+    font-size: 0.55rem;
+  }
+  .hero-under p {
+    font-size: 1rem;
+  }
+  .hero-scroll {
+    margin-left: auto;
+    font-size: 1.5rem;
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  .hero-footer {
+    align-items: flex-start;
+    margin-top: 1rem;
+    gap: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .hero-footer p {
+    max-width: 13rem;
+    gap: 0.25rem 0.4rem;
+  }
+  .hero-footer > span {
+    max-width: 6rem;
+    font-size: 0.5rem;
+  }
+  .section-shell {
+    padding-inline: 1.25rem;
+  }
+  .chapter-meta {
+    font-size: 0.56rem;
+    margin-bottom: 2rem;
+    gap: 0.75rem;
+  }
+  .chapter-meta > span:last-child:not(:first-child) {
+    font-size: 0.55rem;
+  }
+  .ink-controls {
+    gap: 0.7rem;
+  }
+  .indian-subtitle {
+    display: block;
+  }
+  .indian-subtitle h2 {
+    font-size: 4rem;
+  }
+  .indian-subtitle > p {
+    margin-top: 1.5rem;
+  }
+  .skill-kit,
+  .newspaper .skill-kit {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    margin-top: 2.5rem;
+  }
+  .kit-description > p {
+    font-size: 1rem;
+  }
+  .kit-actions {
+    gap: 0.6rem;
+  }
+  .kit-actions a,
+  .kit-actions button {
+    font-size: 0.75rem;
+    padding: 0.8rem 1rem;
+    gap: 1rem;
+  }
+  .kit-actions .primary-action {
+    width: 100%;
+  }
+  .kit-actions .download-action {
+    flex: 1;
+  }
+  .kit-actions .small-action {
+    flex: 0 0 auto;
+  }
+  .prompt-slip {
+    padding: 1.2rem;
+  }
+  .prompt-slip textarea {
+    font-size: 0.83rem;
+    min-height: 12rem;
+  }
+  .prompt-bottom {
+    gap: 0.5rem;
+  }
+  .copy-feedback {
+    font-size: 0.59rem;
+  }
+  .copy-button {
+    font-size: 0.7rem;
+  }
+  .minimal-kicker {
+    margin-bottom: 2.5rem;
+  }
+  .warp {
+    font-size: 15vw;
+    letter-spacing: -0.06em;
+  }
+  .minimal-caption {
+    padding: 1.5rem 0;
+  }
+  .minimal-caption > span:first-child {
+    max-width: 9rem;
+  }
+  .coral-disc {
+    width: 3rem;
+    height: 3rem;
+  }
+  .colorful h2 {
+    font-size: 22vw;
+    margin-block: 2rem;
+  }
+  .poster-flower {
+    width: 28%;
+    right: 0;
+    top: 20%;
+  }
+  .glyph-band {
+    gap: 0.8rem;
+    padding: 1.2rem;
+    font-size: 2.5rem;
+  }
+  .glyph-band small {
+    display: none;
+  }
+  .colorful .kit-actions .small-action {
+    width: auto;
+    height: 4.2rem;
+    border-radius: 8rem;
+  }
+  .masthead {
+    font-size: 18vw;
+    padding-bottom: 1.8rem;
+  }
+  .newspaper-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+  .print-symbol {
+    display: none;
+  }
+  .newspaper-columns article + article {
+    border-left: 0.0625rem solid currentColor;
+    padding-left: 1rem;
+  }
+  .newspaper-columns h3 {
+    font-size: 1.6rem;
+  }
+  .newspaper-columns p {
+    font-size: 0.9rem;
+  }
+  .newspaper .chapter-meta > span:last-child {
+    display: none;
+  }
+  .cartoon-stage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-top: 0;
+  }
+  .cartoon-stage h2 {
+    font-size: 19.5vw;
+  }
+  .cartoon-sticker {
+    margin-bottom: 1.5rem;
+  }
+  .character-wrap {
+    position: absolute;
+    width: 46%;
+    right: -0.1rem;
+    bottom: -3rem;
+    transform: rotate(8deg);
+  }
+  .cartoon-stage h2 em {
+    font-size: 0.8em;
+  }
+  .cartoon-stage {
+    padding-bottom: 4rem;
+  }
+  .character-caption {
+    font-size: 0.45rem;
+  }
+  .cartoon-palette {
+    margin-top: 3rem;
+  }
+  .cartoon-palette > p {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  .mood-buttons {
+    gap: 0.55rem;
+  }
+  .mood-buttons button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .mood-name {
+    font-size: 0.6rem;
+  }
+  .architecture h2 {
+    font-size: 21.5vw;
+  }
+  .architecture-caption {
+    font-size: 0.65rem;
+    gap: 1rem;
+  }
+  .architecture-caption > span {
+    max-width: 11rem;
+  }
+  .number-panel {
+    grid-template-columns: 0.7fr 1fr;
+    gap: 1.5rem;
+    padding: 2.5rem 1.25rem;
+    min-height: 22rem;
+  }
+  .big-number {
+    font-size: 40vw;
+  }
+  .number-panel h3 {
+    font-size: 2.6rem;
+    margin: 1rem 0;
+  }
+  .number-panel p {
+    font-size: 0.85rem;
+  }
+  .number-panel .eyebrow {
+    font-size: 0.55rem;
+  }
+  .cute-hero {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+  }
+  .cute h2 {
+    font-size: 3.8rem;
+  }
+  .cute-art {
+    max-width: 16rem;
+    margin: 1rem auto 0;
+    width: 100%;
+  }
+  .cute-hero > div:first-child {
+    position: relative;
+    z-index: 1;
+  }
+  .cute-note {
+    font-size: 0.8rem;
+  }
+  .cute-label {
+    font-size: 0.6rem;
+  }
+  .flavor-row {
+    gap: 0.5rem;
+  }
+  .flavor {
+    padding: 0.8rem 0.65rem;
+    min-height: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .flavor strong {
+    font-size: 1.1rem;
+  }
+  .flavor > span:last-child {
+    font-size: 1.7rem;
+    margin-left: 0;
+  }
+  .pill-doodle {
+    width: 2rem;
+    height: 1rem;
+  }
+  .site-footer h2 {
+    font-size: 3.3rem;
+  }
+  .site-footer > div {
+    gap: 1rem;
+  }
+  .dialog-inner {
+    padding: 2.6rem 1.4rem 1.5rem;
+  }
+  .dialog-inner h2 {
+    font-size: 3rem;
+  }
+  .index-dialog nav a {
+    font-size: 0.75rem;
+    gap: 0.6rem;
+  }
+  .index-dialog nav i {
+    flex-shrink: 0;
+  }
+  .dialog-inner > p {
+    font-size: 0.9rem;
+  }
+}
+.chapter {
+  scroll-margin-top: 0;
+}
+.prompt-slip textarea {
+  font-size: 1rem;
+}
+.cartoon-stage {
+  overflow: clip;
+  overflow-clip-margin: 1rem;
+}
+.character-wrap {
+  max-width: 90%;
+  justify-self: center;
+}
+.architecture h2 {
+  font-size: clamp(5rem, 16vw, 18rem);
+}
+@media (max-width: 42rem) {
+  .cartoon-stage {
+    overflow: clip;
+    overflow-clip-margin: 0.5rem;
+  }
+  .character-wrap {
+    max-width: 46%;
+    right: 0.25rem;
+    bottom: 0;
+  }
+  .architecture h2 {
+    font-size: 19vw;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+html[data-motion="off"] {
+  scroll-behavior: auto;
+}
+.gallery[data-motion="off"] * {
+  animation: none !important;
+  transition: none !important;
+}
