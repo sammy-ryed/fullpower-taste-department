@@ -27,6 +27,25 @@ for (const marker of [
   );
 }
 const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+for (const idea of [
+  "breaking-news",
+  "support-beverage",
+  "emergency-rebrand",
+  "museum-of-almost",
+]) {
+  for (const suffix of ["", "-skill", "-extra", "-prompt"]) {
+    assert.ok(
+      ids.includes(`${idea}${suffix}`),
+      `Missing idea control: ${idea}${suffix}`,
+    );
+  }
+}
+assert.equal(
+  (html.match(/<textarea[^>]*readonly/gi) || []).length,
+  11,
+  "Seven skill prompts and four idea prompts must be rendered",
+);
+assert.ok(html.includes("@Sites"), "Sites instructions missing from export");
 assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
 for (const [, id] of html.matchAll(/href="#([^"]+)"/g))
   assert.ok(ids.includes(id), `Broken anchor #${id}`);

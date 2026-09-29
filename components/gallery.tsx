@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { repository, skills, starterPrompt, type Skill } from "@/lib/skills";
+import { IdeaLab } from "@/components/idea-lab";
 
 const Arrow = ({ down = false }: { down?: boolean }) => (
   <span aria-hidden="true">{down ? "↓" : "↗"}</span>
@@ -767,7 +768,13 @@ export default function Gallery() {
                 <span>&</span>
                 <strong>Parv Bhawsar</strong>
               </p>
-              <span>Keep going. There are seven of these. ↓</span>
+              <div>
+                <span>Keep going. There are seven of these. ↓</span>
+                <br />
+                <a className="hero-ideas-link" href="#build-ideas">
+                  Need an idea? Steal a brief.
+                </a>
+              </div>
             </div>
             <div className="ornament-rail bottom-rail" />
           </div>
@@ -1235,6 +1242,7 @@ export default function Gallery() {
             </div>
             <Kit skill={skills[6]} onOpen={showKit} />
           </div>
+          <IdeaLab />
           <footer className="site-footer">
             <span className="eyebrow">Found one you like?</span>
             <h2>Go make a thing.</h2>
@@ -1298,7 +1306,8 @@ export default function Gallery() {
               </a>
               <span>
                 Paste the prompt and replace [Enter your prompt here] with your
-                idea. If it cannot read the repository, attach the ZIP.
+                idea. Select @Sites from the mention picker if needed. If it
+                cannot read the repository, attach the ZIP.
               </span>
             </li>
             <li>
@@ -1378,6 +1387,21 @@ export default function Gallery() {
               </a>
             ))}
           </nav>
+          <a
+            className="idea-index-link"
+            href="#build-ideas"
+            onClick={(e) => {
+              e.preventDefault();
+              menuDialog.close(() => {
+                document
+                  .getElementById("build-ideas")
+                  ?.scrollIntoView({ behavior: reduce ? "instant" : "smooth" });
+                window.history.replaceState(null, "", "#build-ideas");
+              });
+            }}
+          >
+            No idea yet? Steal one of our four build briefs.
+          </a>
         </div>
       </dialog>
     </div>

@@ -26,6 +26,7 @@ test("Every prompt targets its exact public skill and asks for a working accessi
   assert.ok(repository.startsWith("https://github.com/"));
   for (const skill of skills) {
     const prompt = starterPrompt(skill);
+    assert.ok(prompt.startsWith("@Sites"));
     assert.ok(prompt.includes(`/blob/main/skills/${skill.slug}/SKILL.md`));
     assert.ok(prompt.includes("Next.js"));
     assert.ok(prompt.includes("rem-based"));
@@ -35,6 +36,39 @@ test("Every prompt targets its exact public skill and asks for a working accessi
     assert.ok(!prompt.includes("Build a "));
     assert.ok(skill.description.length > 100);
   }
+});
+
+test("Four editable idea briefs use Sites, skill placeholders and honest ChatGPT handoffs", async () => {
+  const ideaSource = await readFile(
+    new URL("../lib/ideas.ts", import.meta.url),
+    "utf8",
+  );
+  const output = transpileModule(ideaSource, {
+    compilerOptions: { module: ModuleKind.ESNext },
+  }).outputText;
+  const { ideas, ideaPrompt } = await import(
+    `data:text/javascript;base64,${Buffer.from(output).toString("base64")}`
+  );
+  assert.equal(ideas.length, 4);
+  assert.equal(new Set(ideas.map((idea) => idea.id)).size, 4);
+  for (const idea of ideas) {
+    assert.ok(skills.some((skill) => skill.slug === idea.suggestion));
+    const blank = ideaPrompt(idea);
+    assert.ok(blank.startsWith("@Sites"));
+    assert.ok(blank.includes("[add skill here"));
+    assert.ok(blank.includes("ChatGPT itself"));
+    assert.ok(blank.includes("paste the answer back"));
+    assert.ok(blank.includes("[Add your own twist"));
+    const customized = ideaPrompt(
+      idea,
+      "https://example.com/SKILL.md",
+      "Make it bilingual.",
+    );
+    assert.ok(customized.includes("https://example.com/SKILL.md"));
+    assert.ok(customized.endsWith("Make it bilingual."));
+    assert.ok(!customized.includes("[add skill here"));
+  }
+  assert.match(ideas[0].brief, /LinkedIn.*Reddit.*newspaper/);
 });
 
 function zipNames(buffer) {

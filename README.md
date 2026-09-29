@@ -31,19 +31,35 @@ Each bundle contains `SKILL.md`, design notes, theme CSS, CSS variables, and des
 3. Paste this, replace the brackets, and let it build:
 
 ```text
-Use the [skill name] frontend skill for my request below.
+@Sites — use the [skill name] frontend skill to build my website in ChatGPT.
 Read its SKILL.md and linked references/assets before coding.
 If you cannot access the files, ask me to attach the ZIP.
 
 Follow the skill's design and motion guidance. Use rem-based sizing,
 responsive layouts, keyboard-accessible controls, and reduced-motion fallbacks.
 Keep my content and requirements. Don't invent a different project.
+Use the supported @Sites stack. For LLM writing, use ChatGPT;
+if direct in-site generation is unavailable, provide a clear
+copy-prompt / open-ChatGPT / paste-result handoff. Do not fake live AI.
 
 My request:
 [Enter your prompt here]
 ```
 
 On the website, **Take this to GPT** helps you copy the prompt and then open ChatGPT. Nothing is auto-sent. The optional desktop handoff needs a compatible installed app. You can always copy the prompt manually instead.
+
+## No idea? Steal a brief.
+
+[Open the four build briefs](https://fullpower-taste-department.vercel.app/#build-ideas):
+
+- **Breaking News: You Did One Thing** — turn an ordinary incident into a LinkedIn victory lap, absurd Reddit confession, or newspaper front page.
+- **Emotional Support Beverage** — mix a mood into a fictional drink and export its label.
+- **The Personal Rebrand Emergency Kit** — invent a new persona and business card after a tiny embarrassment.
+- **The Museum of Almost** — curate unfinished projects like expensive art.
+
+Each brief has an example, must-have interactions, a stretch challenge, all seven skills in a picker, and room for your own instructions. Leave the picker empty to keep `[add skill here]` in the prompt. These are workshop briefs, not four finished apps embedded in the gallery.
+
+All gallery build prompts mention `@Sites`. Paste into ChatGPT and select Sites from the mention picker if needed. [Sites availability and workflow](https://learn.chatgpt.com/docs/sites) depend on your account. The prompts ask ChatGPT to check supported generation capabilities; where direct in-site AI writing is unavailable, they specify a transparent copy-and-paste ChatGPT handoff, not browser API keys or fake AI results.
 
 ## Run the website
 

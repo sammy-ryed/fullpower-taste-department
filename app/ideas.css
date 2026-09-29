@@ -1,0 +1,302 @@
+.idea-lab {
+  background: #fdf7e7;
+  color: #14433d;
+  padding: clamp(3rem, 7vw, 7rem) clamp(1rem, 4vw, 4rem);
+  border-top: 0.125rem solid currentColor;
+  scroll-margin-top: 5rem;
+}
+.idea-lab-heading {
+  max-width: 67rem;
+  margin: 0 auto 3rem;
+}
+.idea-lab .idea-lab-heading h2 {
+  font:
+    700 clamp(3.25rem, 8vw, 7rem)/0.97 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  margin: 1.5rem 0;
+}
+.idea-lab-heading h2 em {
+  color: #8c2442;
+}
+.idea-lab-heading > p {
+  max-width: 37rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.idea-lab-heading .idea-workflow {
+  font-size: 0.875rem;
+  max-width: 42rem;
+  margin-top: 1.5rem;
+}
+.idea-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 80rem;
+  margin: auto;
+  align-items: start;
+}
+.idea-card {
+  --brief-paper: #e2dedb;
+  --brief-ink: #1d1d1b;
+  --selection-paper: var(--brief-ink);
+  --selection-ink: var(--brief-paper);
+  min-width: 0;
+  background: var(--brief-paper);
+  color: var(--brief-ink);
+  border: 0.0625rem solid currentColor;
+  padding: clamp(1.1rem, 3vw, 2.25rem);
+  box-shadow: 0.35rem 0.35rem 0 var(--brief-ink);
+  scroll-margin-top: 6rem;
+}
+.idea-card[data-vibe="soda"] {
+  --brief-paper: #fce5ec;
+  --brief-ink: #14433d;
+  border-radius: 2rem;
+}
+.idea-card[data-vibe="rebrand"] {
+  --brief-paper: #c7ffcd;
+  --brief-ink: #101010;
+}
+.idea-card[data-vibe="museum"] {
+  --brief-paper: #fff;
+  --brief-ink: #121212;
+  box-shadow: none;
+}
+.idea-card-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font:
+    700 0.75rem/1.4 Arial,
+    sans-serif;
+  letter-spacing: 0.05em;
+  padding-bottom: 1rem;
+  border-bottom: 0.0625rem solid;
+}
+.idea-card h3 {
+  font:
+    700 clamp(2rem, 3vw, 3rem)/1.04 Georgia,
+    serif;
+  letter-spacing: -0.045em;
+  margin: 1.5rem 0 1rem;
+}
+.idea-card[data-vibe="rebrand"] h3 {
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.idea-card[data-vibe="museum"] h3 {
+  font-weight: 400;
+  font-style: italic;
+}
+.idea-description {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+.idea-specimen {
+  margin: 1.5rem 0;
+  padding: 1.25rem 0;
+  border-block: 0.1875rem double;
+}
+.idea-example-label {
+  display: block;
+  font:
+    700 0.6875rem/1.5 Arial,
+    sans-serif;
+  letter-spacing: 0.045em;
+}
+.idea-specimen blockquote {
+  margin: 1rem 0;
+  font:
+    700 clamp(1.4rem, 2vw, 2rem)/1.15 Georgia,
+    serif;
+}
+.idea-specimen figcaption {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.idea-card[data-vibe="soda"] .idea-specimen {
+  padding: 1.25rem;
+  border: 0.0625rem solid;
+  border-radius: 1rem;
+  background: #fdf7e7;
+}
+.idea-card[data-vibe="rebrand"] .idea-specimen {
+  padding: 1.25rem;
+  background: #101010;
+  color: #c7ffcd;
+  --selection-paper: #c7ffcd;
+  --selection-ink: #101010;
+}
+.idea-card[data-vibe="museum"] .idea-specimen {
+  border: 0;
+  border-left: 0.25rem solid #ee585a;
+  padding-left: 1.25rem;
+}
+.idea-card h4 {
+  font:
+    700 0.875rem/1.5 Arial,
+    sans-serif;
+  margin: 1.5rem 0 0.5rem;
+}
+.idea-card ul {
+  padding-left: 1.2rem;
+  margin: 0 0 1.25rem;
+}
+.idea-card li {
+  padding-left: 0.25rem;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.idea-stretch,
+.idea-pairing {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.idea-pairing {
+  padding-block: 0.75rem;
+}
+.idea-builder {
+  border-top: 0.125rem solid;
+  margin-top: 1rem;
+}
+.idea-builder summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+  font-weight: 700;
+}
+.idea-builder summary::-webkit-details-marker {
+  display: none;
+}
+.idea-builder summary span {
+  font-size: 1.75rem;
+  transition: transform 0.2s;
+}
+.idea-builder[open] summary span {
+  transform: rotate(45deg);
+}
+.idea-builder-content {
+  display: grid;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+}
+.idea-builder label {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.idea-builder label span {
+  font-weight: 400;
+}
+.idea-builder select,
+.idea-builder textarea {
+  width: 100%;
+  min-width: 0;
+  border: 0.0625rem solid currentColor;
+  border-radius: 0.25rem;
+  background: var(--brief-paper);
+  color: var(--brief-ink);
+  padding: 0.85rem;
+  font:
+    1rem/1.5 Arial,
+    sans-serif;
+}
+.idea-builder select {
+  text-overflow: ellipsis;
+}
+.idea-builder textarea {
+  resize: vertical;
+  scrollbar-color: var(--brief-ink) var(--brief-paper);
+  scrollbar-width: thin;
+}
+.idea-builder textarea::-webkit-scrollbar {
+  width: 0.6rem;
+}
+.idea-builder textarea::-webkit-scrollbar-track {
+  background: var(--brief-paper);
+}
+.idea-builder textarea::-webkit-scrollbar-thumb {
+  background: var(--brief-ink);
+  border: 0.125rem solid var(--brief-paper);
+  border-radius: 1rem;
+}
+.idea-builder textarea::placeholder {
+  color: inherit;
+  opacity: 0.65;
+}
+.idea-builder .idea-prompt {
+  font:
+    0.875rem/1.6 ui-monospace,
+    monospace;
+  min-height: 12rem;
+}
+.idea-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+.idea-actions button,
+.idea-actions a {
+  padding: 0.8rem 1rem;
+  min-height: 2.75rem;
+  border: 0.0625rem solid var(--brief-ink);
+  color: var(--brief-ink);
+  background: var(--brief-paper);
+  border-radius: 0.25rem;
+  font:
+    700 0.875rem/1.5 Arial,
+    sans-serif;
+  text-decoration: none;
+}
+.idea-actions button {
+  background: var(--brief-ink);
+  color: var(--brief-paper);
+}
+.idea-actions a:hover {
+  text-decoration: underline;
+}
+.idea-feedback {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  margin: 0.4rem 0;
+  min-height: 3.7em;
+}
+.idea-index-link {
+  display: block;
+  padding-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.hero-ideas-link {
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 1rem;
+  text-underline-offset: 0.3rem;
+}
+@media (max-width: 48rem) {
+  .idea-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .idea-card {
+    box-shadow: 0.2rem 0.2rem 0 var(--brief-ink);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .idea-builder summary span {
+    transition: none;
+  }
+}
+html[data-motion="off"] .idea-builder summary span {
+  transition: none;
+}
