@@ -1400,7 +1400,7 @@ export default function Gallery() {
               });
             }}
           >
-            No idea yet? Steal one of our four build briefs.
+            No idea yet? Steal one of our six build briefs.
           </a>
         </div>
       </dialog>

@@ -55,6 +55,21 @@
   --brief-ink: #14433d;
   border-radius: 2rem;
 }
+.idea-card[data-vibe="funeral"] {
+  --brief-paper: #302435;
+  --brief-ink: #f6e9dc;
+  border-radius: 1.5rem 1.5rem 0 0;
+  box-shadow: 0.35rem 0.35rem 0 #b994ae;
+}
+.idea-card[data-vibe="bureau"] {
+  --brief-paper: #ffcc32;
+  --brief-ink: #701c39;
+  border: 0.25rem double;
+}
+.idea-card[data-vibe="bureau"] .idea-specimen {
+  border: 0.125rem dashed;
+  padding: 1.25rem;
+}
 .idea-card[data-vibe="rebrand"] {
   --brief-paper: #c7ffcd;
   --brief-ink: #101010;

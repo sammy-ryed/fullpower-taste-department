@@ -137,13 +137,14 @@ export function IdeaLab() {
           <em>Take a bad one.</em>
         </h2>
         <p>
-          Four very buildable bad decisions. Pick a brief, borrow a frontend,
-          add your own nonsense.
+          Six very buildable bad decisions. Pick a brief, borrow a frontend, add
+          your own nonsense.
         </p>
         <p className="idea-workflow">
           Build with <strong>@Sites</strong> in ChatGPT. Need AI writing? The
           briefs ask for ChatGPT too, with a copy-and-paste handoff when an
-          in-site connection isn’t available.{" "}
+          in-site connection isn’t available. The funeral-home brief is the
+          exception: private messages never leave your device.{" "}
           <a
             href="https://learn.chatgpt.com/docs/sites"
             target="_blank"

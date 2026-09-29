@@ -1,6 +1,6 @@
 # Fullpower Frontend — The Taste Department
 
-Seven ways to stop making the same website.
+Seven frontend skills. Six very buildable bad decisions.
 
 **[Open the live gallery →](https://fullpower-taste-department.vercel.app/)**
 
@@ -50,16 +50,22 @@ On the website, **Take this to GPT** helps you copy the prompt and then open Cha
 
 ## No idea? Steal a brief.
 
-[Open the four build briefs](https://fullpower-taste-department.vercel.app/#build-ideas):
+[Open the build briefs](https://fullpower-taste-department.vercel.app/#build-ideas):
 
-- **Breaking News: You Did One Thing** — turn an ordinary incident into a LinkedIn victory lap, absurd Reddit confession, or newspaper front page.
-- **Emotional Support Beverage** — mix a mood into a fictional drink and export its label.
-- **The Personal Rebrand Emergency Kit** — invent a new persona and business card after a tiny embarrassment.
-- **The Museum of Almost** — curate unfinished projects like expensive art.
+- **[Breaking News: You Did One Thing](https://fullpower-taste-department.vercel.app/#breaking-news)** — turn an ordinary incident into a LinkedIn victory lap, absurd Reddit confession, or newspaper front page.
+- **[Emotional Support Beverage](https://fullpower-taste-department.vercel.app/#support-beverage)** — mix a mood into a fictional drink and export its label.
+- **[The Personal Rebrand Emergency Kit](https://fullpower-taste-department.vercel.app/#emergency-rebrand)** — invent a new persona and business card after a tiny embarrassment.
+- **[The Museum of Almost](https://fullpower-taste-department.vercel.app/#museum-of-almost)** — curate unfinished projects like expensive art.
+- **[The Unsent Message Funeral Home](https://fullpower-taste-department.vercel.app/#unsent-message-funeral)** — flowers, an obituary, and a private ceremony for a message you wisely never sent. The brief keeps private content in memory on the device; no AI handoff of real messages.
+- **[The Bureau of Fake Expertise](https://fullpower-taste-department.vercel.app/#fake-expertise)** — create a fictional speaker, absurd keynote, and exportable badge with an unmistakable parody label.
 
-Each brief has an example, must-have interactions, a stretch challenge, all seven skills in a picker, and room for your own instructions. Leave the picker empty to keep `[add skill here]` in the prompt. These are workshop briefs, not four finished apps embedded in the gallery.
+Each brief has an example, must-have interactions, a stretch challenge, all seven skills in a picker, and room for your own instructions. Leave the picker empty to keep `[add skill here]` in the prompt. These are workshop briefs, not six finished apps embedded in the gallery.
 
 All gallery build prompts mention `@Sites`. Paste into ChatGPT and select Sites from the mention picker if needed. [Sites availability and workflow](https://learn.chatgpt.com/docs/sites) depend on your account. The prompts ask ChatGPT to check supported generation capabilities; where direct in-site AI writing is unavailable, they specify a transparent copy-and-paste ChatGPT handoff, not browser API keys or fake AI results.
+
+**How to use a brief:** Open **Steal this brief**, choose any of the seven styles (or leave `[add skill here]`), add your own twist, then copy the build prompt and paste it into ChatGPT. The gallery does not send anything automatically.
+
+**Privacy exception:** The Funeral Home prompt overrides the general AI-writing instructions. ChatGPT can help create generic fictional copy while building; visitors' real messages and obituaries must never leave the finished app's device-local memory. Reloading or clearing discards them. The Fake Expertise prompt requires a visible **PARODY / FICTIONAL SPEAKER** label in the app and every export, with made-up organisations rather than real credentials.
 
 ## Run the website
 
@@ -109,6 +115,9 @@ These are public values, not secrets. See [.env.example](.env.example).
 | [components/gallery.tsx](components/gallery.tsx) | Sections, prompts, interactions, and GSAP scenes             |
 | [app/globals.css](app/globals.css)               | Section styles, selection, scrollbars, responsive layout     |
 | [lib/skills.ts](lib/skills.ts)                   | Skill names, descriptions, and starter prompts               |
+| [lib/ideas.ts](lib/ideas.ts)                     | All six build briefs and their customizable Sites prompts   |
+| [components/idea-lab.tsx](components/idea-lab.tsx) | Brief cards, skill picker, extra instructions, and copy controls |
+| [app/ideas.css](app/ideas.css)                   | Individual brief themes and responsive layouts              |
 | [public/art/](public/art/)                       | Page artwork and licensed fonts                              |
 | [tests/](tests/)                                 | Content, bundle, accessibility-structure, and release checks |
 

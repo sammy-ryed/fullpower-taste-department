@@ -38,7 +38,7 @@ test("Every prompt targets its exact public skill and asks for a working accessi
   }
 });
 
-test("Four editable idea briefs use Sites, skill placeholders and honest ChatGPT handoffs", async () => {
+test("Six editable idea briefs use Sites with private-content protection", async () => {
   const ideaSource = await readFile(
     new URL("../lib/ideas.ts", import.meta.url),
     "utf8",
@@ -49,15 +49,21 @@ test("Four editable idea briefs use Sites, skill placeholders and honest ChatGPT
   const { ideas, ideaPrompt } = await import(
     `data:text/javascript;base64,${Buffer.from(output).toString("base64")}`
   );
-  assert.equal(ideas.length, 4);
-  assert.equal(new Set(ideas.map((idea) => idea.id)).size, 4);
+  assert.equal(ideas.length, 6);
+  assert.equal(new Set(ideas.map((idea) => idea.id)).size, 6);
   for (const idea of ideas) {
     assert.ok(skills.some((skill) => skill.slug === idea.suggestion));
     const blank = ideaPrompt(idea);
     assert.ok(blank.startsWith("@Sites"));
     assert.ok(blank.includes("[add skill here"));
     assert.ok(blank.includes("ChatGPT itself"));
-    assert.ok(blank.includes("paste the answer back"));
+    if (idea.id === "unsent-message-funeral") {
+      assert.ok(blank.includes("Do not add an AI handoff for private content"));
+      assert.ok(blank.includes("in memory only"));
+      assert.ok(!blank.includes("paste the answer back"));
+    } else {
+      assert.ok(blank.includes("paste the answer back"));
+    }
     assert.ok(blank.includes("[Add your own twist"));
     const customized = ideaPrompt(
       idea,
@@ -69,6 +75,10 @@ test("Four editable idea briefs use Sites, skill placeholders and honest ChatGPT
     assert.ok(!customized.includes("[add skill here"));
   }
   assert.match(ideas[0].brief, /LinkedIn.*Reddit.*newspaper/);
+  assert.match(
+    ideas.find((idea) => idea.id === "fake-expertise").brief,
+    /PARODY \/ FICTIONAL SPEAKER/,
+  );
 });
 
 function zipNames(buffer) {

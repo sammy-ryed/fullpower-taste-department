@@ -32,6 +32,8 @@ for (const idea of [
   "support-beverage",
   "emergency-rebrand",
   "museum-of-almost",
+  "unsent-message-funeral",
+  "fake-expertise",
 ]) {
   for (const suffix of ["", "-skill", "-extra", "-prompt"]) {
     assert.ok(
@@ -42,8 +44,8 @@ for (const idea of [
 }
 assert.equal(
   (html.match(/<textarea[^>]*readonly/gi) || []).length,
-  11,
-  "Seven skill prompts and four idea prompts must be rendered",
+  13,
+  "Seven skill prompts and six idea prompts must be rendered",
 );
 assert.ok(html.includes("@Sites"), "Sites instructions missing from export");
 assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
