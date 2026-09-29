@@ -1,6 +1,7 @@
 ---
 name: indian-print-maximalism
-description: Design expressive websites, event posters, and campaign identities using Indian hand-painted signboard and popular-print influences: layered lettering, ornamental frames, saturated inks, halftone, and intentional collage. Use for Indian maximalist, desi poster, truck-art-inspired, or Full-power Frontend art direction; adapt the composition to the actual brief rather than copying a reference poster.
+description: >-
+  Design expressive websites, event posters, and campaign identities using Indian hand-painted signboard and popular-print influences: layered lettering, ornamental frames, saturated inks, halftone, and intentional collage. Use for Indian maximalist, desi poster, truck-art-inspired, or Full-power Frontend art direction; adapt the composition to the actual brief rather than copying a reference poster.
 ---
 
 # Indian Print Maximalism

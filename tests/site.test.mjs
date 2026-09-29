@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { transpileModule, ModuleKind } from "typescript";
 import { inflateRawSync } from "node:zlib";
+import { format } from "prettier";
 
 const source = await readFile(
   new URL("../lib/skills.ts", import.meta.url),
@@ -15,6 +16,16 @@ const { skills, starterPrompt, repository } = await import(
   `data:text/javascript;base64,${Buffer.from(compiled).toString("base64")}`
 );
 const root = new URL("../", import.meta.url);
+
+test("Every skill metadata header parses as YAML", async () => {
+  for (const skill of skills) {
+    const content = await readFile(new URL(`skills/${skill.slug}/SKILL.md`, root), "utf8");
+    const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+    assert.ok(frontmatter, `${skill.slug}: missing YAML header`);
+    await assert.doesNotReject(() => format(frontmatter[1], { parser: "yaml" }), `${skill.slug}: invalid YAML`);
+  }
+  await assert.rejects(() => format("name: regression\ndescription: Print influences: layered lettering\n", { parser: "yaml" }));
+});
 
 test("All seven styles are present, with Indian print first and unique anchors", () => {
   assert.equal(skills.length, 7);
