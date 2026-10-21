@@ -1,6 +1,7 @@
 @import url("../public/art/indian-variables.css");
 @import url("../public/art/printwork.css");
 @import url("./ideas.css");
+@import url("./references.css");
 
 * {
   box-sizing: border-box;

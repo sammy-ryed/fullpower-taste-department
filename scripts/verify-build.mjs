@@ -48,6 +48,14 @@ assert.equal(
   "Seven skill prompts and six idea prompts must be rendered",
 );
 assert.ok(html.includes("@Sites"), "Sites instructions missing from export");
+assert.ok(ids.includes("references"), "Reference shelf missing from export");
+for (const url of [
+  "https://styles.refero.design/", "https://getskillmd.com/",
+  "https://designskills.dev/", "https://uiverse.io/",
+  "https://skiper-ui.com/", "https://godly.design/websites/", "https://gsap.com/",
+]) {
+  assert.ok(html.includes(`href="${url}"`), `Missing reference link: ${url}`);
+}
 assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
 for (const [, id] of html.matchAll(/href="#([^"]+)"/g))
   assert.ok(ids.includes(id), `Broken anchor #${id}`);

@@ -17,6 +17,28 @@ const { skills, starterPrompt, repository } = await import(
 );
 const root = new URL("../", import.meta.url);
 
+test("All seven reference sites have matching README descriptions and safe links", async () => {
+  const referenceSource = await readFile(new URL("lib/references.ts", root), "utf8");
+  const output = transpileModule(referenceSource, {
+    compilerOptions: { module: ModuleKind.ESNext },
+  }).outputText;
+  const { references } = await import(`data:text/javascript;base64,${Buffer.from(output).toString("base64")}`);
+  assert.deepEqual(references.map(({ url }) => url), [
+    "https://styles.refero.design/", "https://getskillmd.com/",
+    "https://designskills.dev/", "https://uiverse.io/",
+    "https://skiper-ui.com/", "https://godly.design/websites/", "https://gsap.com/",
+  ]);
+  const readme = await readFile(new URL("README.md", root), "utf8");
+  for (const reference of references) {
+    assert.ok(readme.includes(`[${reference.name}](${reference.url})`));
+    assert.ok(readme.includes(reference.description));
+  }
+  const component = await readFile(new URL("components/reference-shelf.tsx", root), "utf8");
+  assert.ok(component.includes('rel="noopener noreferrer"'));
+  assert.ok(component.includes('id="references"'));
+  assert.ok(component.includes("opens in a new tab"));
+});
+
 test("Every skill metadata header parses as YAML", async () => {
   for (const skill of skills) {
     const content = await readFile(new URL(`skills/${skill.slug}/SKILL.md`, root), "utf8");

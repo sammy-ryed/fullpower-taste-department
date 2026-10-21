@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { repository, skills, starterPrompt, type Skill } from "@/lib/skills";
 import { IdeaLab } from "@/components/idea-lab";
+import { ReferenceShelf } from "@/components/reference-shelf";
 
 const Arrow = ({ down = false }: { down?: boolean }) => (
   <span aria-hidden="true">{down ? "↓" : "↗"}</span>
@@ -1243,6 +1244,7 @@ export default function Gallery() {
             <Kit skill={skills[6]} onOpen={showKit} />
           </div>
           <IdeaLab />
+          <ReferenceShelf />
           <footer className="site-footer">
             <span className="eyebrow">Found one you like?</span>
             <h2>Go make a thing.</h2>
@@ -1254,6 +1256,7 @@ export default function Gallery() {
             <div>
               <a href="#indian-print-maximalism">One more scroll? ↑</a>
               <button onClick={menuDialog.open}>Pick your skill ↗</button>
+              <a href="#references">Need more references? ↗</a>
               {repository && (
                 <a href={repository} target="_blank" rel="noreferrer">
                   Get everything on GitHub ↗
@@ -1401,6 +1404,21 @@ export default function Gallery() {
             }}
           >
             No idea yet? Steal one of our six build briefs.
+          </a>
+          <a
+            className="idea-index-link"
+            href="#references"
+            onClick={(e) => {
+              e.preventDefault();
+              menuDialog.close(() => {
+                document.getElementById("references")?.scrollIntoView({
+                  behavior: reduce ? "instant" : "smooth",
+                });
+                window.history.replaceState(null, "", "#references");
+              });
+            }}
+          >
+            Need references? Seven tabs worth keeping open.
           </a>
         </div>
       </dialog>

@@ -67,6 +67,20 @@ All gallery build prompts mention `@Sites`. Paste into ChatGPT and select Sites 
 
 **Privacy exception:** The Funeral Home prompt overrides the general AI-writing instructions. ChatGPT can help create generic fictional copy while building; visitors' real messages and obituaries must never leave the finished app's device-local memory. Reloading or clearing discards them. The Fake Expertise prompt requires a visible **PARODY / FICTIONAL SPEAKER** label in the app and every export, with made-up organisations rather than real credentials.
 
+## Tabs worth keeping open
+
+[Browse the reference shelf on the website](https://fullpower-taste-department.vercel.app/#references). Seven places to find a direction, inspect useful UI, or learn how an interaction works:
+
+- **[Refero Styles](https://styles.refero.design/)** — Website styles broken down into colour, type, spacing and DESIGN.md files. For when ‘make it look nice’ needs actual instructions.
+- **[skillmd](https://getskillmd.com/)** — Turn a website, design system or docs URL into structured instructions for your coding assistant. Bring a reference; leave with something it can read.
+- **[Design Skills](https://designskills.dev/)** — A directory of design skills covering styles, layouts, motion and accessibility. Because seven flavours were never going to be enough for you.
+- **[Uiverse](https://uiverse.io/)** — Community-made buttons, inputs, loaders and other UI bits with code to inspect. Your submit button is allowed to have a personality.
+- **[Skiper UI](https://skiper-ui.com/)** — Interactive components for shadcn/ui, from hover effects to scroll experiments. Some are free, some are paid; all are worth a nose around.
+- **[Godly](https://godly.design/websites/)** — A gallery of real websites worth pulling apart with your eyes. Study the type, spacing and movement. Then close the tabs and make your own thing.
+- **[GSAP](https://gsap.com/)** — Animation tools, demos and docs for timelines, scroll effects and very satisfying motion. Give your page choreography, not motion sickness.
+
+Use these for direction, not as permission to copy an entire site. Check each resource’s licence before reusing code or assets. These are external resources, not bundled downloads or workshop partners.
+
 ## Run the website
 
 Use **Node.js 22** and npm.
@@ -116,6 +130,9 @@ These are public values, not secrets. See [.env.example](.env.example).
 | [app/globals.css](app/globals.css)               | Section styles, selection, scrollbars, responsive layout     |
 | [lib/skills.ts](lib/skills.ts)                   | Skill names, descriptions, and starter prompts               |
 | [lib/ideas.ts](lib/ideas.ts)                     | All six build briefs and their customizable Sites prompts   |
+| [lib/references.ts](lib/references.ts)           | Seven external reference links and their descriptions       |
+| [components/reference-shelf.tsx](components/reference-shelf.tsx) | Reference shelf below the build briefs               |
+| [app/references.css](app/references.css)         | Responsive reference shelf styles                          |
 | [components/idea-lab.tsx](components/idea-lab.tsx) | Brief cards, skill picker, extra instructions, and copy controls |
 | [app/ideas.css](app/ideas.css)                   | Individual brief themes and responsive layouts              |
 | [public/art/](public/art/)                       | Page artwork and licensed fonts                              |
