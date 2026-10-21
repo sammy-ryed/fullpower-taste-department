@@ -52,6 +52,9 @@ for (const [, prompt] of html.matchAll(/<textarea\b[^>]*\breadonly\b[^>]*>([\s\S
   assert.ok(prompt.includes("Mock any backend and/or database"), "Exported prompt must require a mocked backend/database");
 }
 assert.ok(ids.includes("references"), "Reference shelf missing from export");
+assert.ok(ids.includes("workshop-playlist"), "Workshop playlist missing from export");
+assert.ok(html.includes('src="https://open.spotify.com/embed/playlist/3hAnuBAKbsyiCESlHkViJi"'), "Clean Spotify embed missing");
+assert.ok(html.includes('href="https://open.spotify.com/playlist/3hAnuBAKbsyiCESlHkViJi"'), "Spotify fallback link missing");
 for (const url of [
   "https://styles.refero.design/", "https://getskillmd.com/",
   "https://designskills.dev/", "https://uiverse.io/",

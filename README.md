@@ -85,6 +85,14 @@ All thirteen gallery build prompts mention `@Sites`. Paste into ChatGPT and sele
 
 Use these for direction, not as permission to copy an entire site. Check each resource’s licence before reusing code or assets. These are external resources, not bundled downloads or workshop partners.
 
+## The workshop mixtape
+
+**[Listen on the website](https://fullpower-taste-department.vercel.app/#workshop-playlist)** · **[Open the playlist in Spotify](https://open.spotify.com/playlist/3hAnuBAKbsyiCESlHkViJi)**
+
+Samarth's Full-power Frontend playlist, for good tunes and questionable commits. The black, hot-pink and acid-yellow section takes its direction from the welcome screen of the workshop stage. Spotify's official embedded player displays the playlist artwork and track list; playback starts only when you press play. Sharing/tracking parameters have been removed from both Spotify URLs.
+
+The player is lazy-loaded and connects to Spotify, whose privacy and playback rules apply. If your browser blocks embeds, use **Open in Spotify**. No Spotify API key or SDK is needed, and no playlist artwork or music is redistributed in this repository.
+
 ## Run the website
 
 Use **Node.js 22** and npm.
@@ -105,13 +113,15 @@ npm run verify:build # Verify exported assets, downloads, anchors, and metadata
 npm start        # Serve that production output locally
 ```
 
-No database, API keys, account system, or tracking scripts. Fonts and artwork used by the page are local.
+No database, API keys, account system, or first-party tracking scripts. Our fonts and artwork are local; the playlist is a third-party Spotify embed.
 
 ## Deploy on Vercel
 
 Import this GitHub repository as a **Next.js** project. Set the root directory to `./` (the repository root, not `site/`), use **Node.js 22**, and keep `main` as the production branch.
 
-The checked-in `vercel.json` runs `npm ci`, then the type checks and tests before building. It also sets security headers and makes both bundle formats download as ZIP archives. Vercel's Git integration deploys subsequent pushes automatically. See [Vercel's Git deployment guide](https://vercel.com/docs/git).
+The checked-in `vercel.json` explicitly enables Git deployments and runs `npm ci`, then the type checks and tests before building. It also sets security headers and makes both bundle formats download as ZIP archives. The existing `fullpower-taste-department` Vercel project is connected to this GitHub repository, with `main` as its production branch.
+
+Push to `main` to build and publish production; other branches get preview deployments. No manual Vercel command or GitHub Actions token is needed for normal updates. Check the commit's **Vercel** status on GitHub before assuming it is live: failed checks or builds leave the previous successful site online. Keep the Vercel GitHub App authorised for this repository. See [Vercel's Git deployment guide](https://vercel.com/docs/git).
 
 The app exports static files. Do not add server-only features without updating that deployment model.
 
@@ -137,6 +147,8 @@ These are public values, not secrets. See [.env.example](.env.example).
 | [lib/references.ts](lib/references.ts)           | Seven external reference links and their descriptions       |
 | [components/reference-shelf.tsx](components/reference-shelf.tsx) | Reference shelf below the build briefs               |
 | [app/references.css](app/references.css)         | Responsive reference shelf styles                          |
+| [components/workshop-playlist.tsx](components/workshop-playlist.tsx) | Clean Spotify links and the official workshop playlist player |
+| [app/playlist.css](app/playlist.css)             | Workshop-stage-inspired mixtape section, isolated from the skill themes |
 | [components/idea-lab.tsx](components/idea-lab.tsx) | Brief cards, skill picker, extra instructions, and copy controls |
 | [app/ideas.css](app/ideas.css)                   | Individual brief themes and responsive layouts              |
 | [public/art/](public/art/)                       | Page artwork and licensed fonts                              |

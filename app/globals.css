@@ -2,6 +2,7 @@
 @import url("../public/art/printwork.css");
 @import url("./ideas.css");
 @import url("./references.css");
+@import url("./playlist.css");
 
 * {
   box-sizing: border-box;

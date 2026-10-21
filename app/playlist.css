@@ -1,0 +1,144 @@
+/* Workshop stage's welcome-screen palette, isolated from the seven skill themes. */
+.workshop-playlist {
+  --selection-paper: #ff168b;
+  --selection-ink: #080808;
+  background: #080808;
+  color: #f5f1df;
+  padding: clamp(1rem, 3vw, 3rem);
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-margin-top: 5rem;
+}
+.mixtape-frame {
+  position: relative;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 3rem);
+  border: 0.125rem solid #f5f1df;
+}
+.mixtape-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0.25rem;
+  border: 0.0625rem solid #f5f1df55;
+  pointer-events: none;
+}
+.mixtape-topline,
+.mixtape-bottomline {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+.mixtape-topline {
+  padding-bottom: 1rem;
+  border-bottom: 0.0625rem solid #f5f1df;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mixtape-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 5rem);
+  padding: clamp(3.5rem, 7vw, 7rem) 0;
+}
+.mixtape-kicker {
+  margin: 0 0 1.5rem;
+  font-size: 0.8125rem;
+}
+.workshop-playlist .mixtape-copy h2 {
+  margin: 0;
+  font-family: "Teko", Impact, sans-serif;
+  font-size: clamp(3.25rem, 7.3vw, 8.5rem);
+  font-weight: 700;
+  font-style: normal;
+  line-height: 0.88;
+  letter-spacing: -0.025em;
+}
+.mixtape-copy h2 span { display: block; color: #ff168b; }
+.mixtape-copy h2 span + span { color: #e9ff00; }
+.mixtape-description {
+  max-width: 30rem;
+  margin: 1.75rem 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.mixtape-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  min-height: 3rem;
+  padding: 0.875rem 1.25rem;
+  background: #e9ff00;
+  color: #080808;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+.mixtape-link:focus-visible { outline: 0.1875rem solid #ff168b; outline-offset: 0.375rem; }
+.mixtape-player-wrap { position: relative; min-width: 0; }
+.mixtape-stamp {
+  position: absolute;
+  z-index: 1;
+  top: -3.25rem;
+  right: -0.5rem;
+  display: grid;
+  align-content: center;
+  width: 6.25rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.125rem dashed #080808;
+  outline: 0.25rem solid #ff168b;
+  background: #ff168b;
+  color: #080808;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.2;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+.mixtape-player {
+  padding: 1rem;
+  border: 0.125rem solid #e9ff00;
+  background: #151513;
+  box-shadow: 0.5rem 0.5rem 0 #e9ff00;
+}
+.mixtape-player-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 6rem 1rem 0;
+  color: #e9ff00;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+.mixtape-player iframe {
+  display: block;
+  width: 100%;
+  height: 22rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #242424;
+}
+.mixtape-player p { margin: 1rem 0 0; font-size: 0.75rem; line-height: 1.5; }
+.mixtape-bottomline { padding-top: 1rem; border-top: 0.0625rem solid #f5f1df55; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .mixtape-link:hover { background: #ff168b; transform: translateY(-0.125rem); }
+}
+@media (max-width: 48rem) {
+  .mixtape-grid { grid-template-columns: minmax(0, 1fr); gap: 5rem; padding: 2.75rem 0; }
+  .workshop-playlist .mixtape-copy h2 { font-size: clamp(3.25rem, 12vw, 6.5rem); }
+  .mixtape-player { padding: 0.5rem; box-shadow: 0.25rem 0.25rem 0 #e9ff00; }
+  .mixtape-player-label { padding-left: 0.5rem; }
+  .mixtape-player p { padding: 0 0.5rem 0.5rem; }
+  .mixtape-stamp { right: 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mixtape-link { transition: none; }
+}

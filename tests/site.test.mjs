@@ -39,6 +39,28 @@ test("All seven reference sites have matching README descriptions and safe links
   assert.ok(component.includes("opens in a new tab"));
 });
 
+test("Workshop playlist uses clean official Spotify URLs and responsive rem styling", async () => {
+  const component = await readFile(new URL("components/workshop-playlist.tsx", root), "utf8");
+  const css = await readFile(new URL("app/playlist.css", root), "utf8");
+  const readme = await readFile(new URL("README.md", root), "utf8");
+  assert.ok(component.includes('id="workshop-playlist"'));
+  assert.ok(component.includes('aria-labelledby="playlist-title"'));
+  assert.ok(component.includes('title="Spotify player: Full-power Frontend workshop playlist"'));
+  assert.ok(component.includes('loading="lazy"'));
+  assert.ok(component.includes('rel="noopener noreferrer"'));
+  const urls = [...component.matchAll(/https:\/\/open\.spotify\.com\/[^"\s]+/g)].map(([url]) => new URL(url));
+  assert.equal(urls.length, 2);
+  for (const url of urls) {
+    assert.equal(url.search, "");
+    assert.ok(url.pathname.endsWith("/playlist/3hAnuBAKbsyiCESlHkViJi"));
+  }
+  assert.ok(css.includes("height: 22rem"));
+  assert.ok(css.includes("prefers-reduced-motion"));
+  assert.ok(!/\b\d+(?:\.\d+)?px\b/.test(css));
+  assert.ok(readme.includes("#workshop-playlist"));
+  assert.ok(readme.includes("third-party Spotify embed"));
+});
+
 test("Every skill metadata header parses as YAML", async () => {
   for (const skill of skills) {
     const content = await readFile(new URL(`skills/${skill.slug}/SKILL.md`, root), "utf8");
@@ -271,6 +293,7 @@ test("Deployment gates builds and serves bundles as attachments", async () => {
     await readFile(new URL("vercel.json", root), "utf8"),
   );
   assert.equal(config.framework, "nextjs");
+  assert.equal(config.git.deploymentEnabled, true);
   assert.ok(config.buildCommand.includes("npm run check"));
   const globalHeaders = config.headers.find(
     (h) => h.source === "/(.*)",

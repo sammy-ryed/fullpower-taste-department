@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { repository, skills, starterPrompt, type Skill } from "@/lib/skills";
 import { IdeaLab } from "@/components/idea-lab";
 import { ReferenceShelf } from "@/components/reference-shelf";
+import { WorkshopPlaylist } from "@/components/workshop-playlist";
 
 const Arrow = ({ down = false }: { down?: boolean }) => (
   <span aria-hidden="true">{down ? "↓" : "↗"}</span>
@@ -1245,6 +1246,7 @@ export default function Gallery() {
           </div>
           <IdeaLab />
           <ReferenceShelf />
+          <WorkshopPlaylist />
           <footer className="site-footer">
             <span className="eyebrow">Found one you like?</span>
             <h2>Go make a thing.</h2>
@@ -1257,6 +1259,7 @@ export default function Gallery() {
               <a href="#indian-print-maximalism">One more scroll? ↑</a>
               <button onClick={menuDialog.open}>Pick your skill ↗</button>
               <a href="#references">Need more references? ↗</a>
+              <a href="#workshop-playlist">Put the workshop playlist on ↗</a>
               {repository && (
                 <a href={repository} target="_blank" rel="noreferrer">
                   Get everything on GitHub ↗
@@ -1419,6 +1422,21 @@ export default function Gallery() {
             }}
           >
             Need references? Seven tabs worth keeping open.
+          </a>
+          <a
+            className="idea-index-link"
+            href="#workshop-playlist"
+            onClick={(e) => {
+              e.preventDefault();
+              menuDialog.close(() => {
+                document.getElementById("workshop-playlist")?.scrollIntoView({
+                  behavior: reduce ? "instant" : "smooth",
+                });
+                window.history.replaceState(null, "", "#workshop-playlist");
+              });
+            }}
+          >
+            Headphones on. The workshop playlist is here.
           </a>
         </div>
       </dialog>
