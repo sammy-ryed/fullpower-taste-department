@@ -48,6 +48,9 @@ assert.equal(
   "Seven skill prompts and six idea prompts must be rendered",
 );
 assert.ok(html.includes("@Sites"), "Sites instructions missing from export");
+for (const [, prompt] of html.matchAll(/<textarea\b[^>]*\breadonly\b[^>]*>([\s\S]*?)<\/textarea>/gi)) {
+  assert.ok(prompt.includes("Mock any backend and/or database"), "Exported prompt must require a mocked backend/database");
+}
 assert.ok(ids.includes("references"), "Reference shelf missing from export");
 for (const url of [
   "https://styles.refero.design/", "https://getskillmd.com/",

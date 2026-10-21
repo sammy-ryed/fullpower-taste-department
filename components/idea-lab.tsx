@@ -141,10 +141,10 @@ export function IdeaLab() {
           your own nonsense.
         </p>
         <p className="idea-workflow">
-          Build with <strong>@Sites</strong> in ChatGPT. Need AI writing? The
-          briefs ask for ChatGPT too, with a copy-and-paste handoff when an
-          in-site connection isn’t available. The funeral-home brief is the
-          exception: private messages never leave your device.{" "}
+          Build with <strong>@Sites</strong> in ChatGPT. Frontend only: mock the
+          backend, database, and AI results with sample data. Make the buttons
+          work, not a whole company. Private funeral-home messages stay in
+          memory and disappear on reload.{" "}
           <a
             href="https://learn.chatgpt.com/docs/sites"
             target="_blank"

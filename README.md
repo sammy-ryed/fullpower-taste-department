@@ -38,9 +38,13 @@ If you cannot access the files, ask me to attach the ZIP.
 Follow the skill's design and motion guidance. Use rem-based sizing,
 responsive layouts, keyboard-accessible controls, and reduced-motion fallbacks.
 Keep my content and requirements. Don't invent a different project.
-Use the supported @Sites stack. For LLM writing, use ChatGPT;
-if direct in-site generation is unavailable, provide a clear
-copy-prompt / open-ChatGPT / paste-result handoff. Do not fake live AI.
+Use the supported @Sites stack. This is a frontend-only idea showcase.
+Mock any backend and/or database with sample data and in-memory client state.
+Mock authentication, payments, uploads, and API responses where needed.
+Do not create real servers, databases, accounts, integrations, or require API keys.
+Keep interactions working locally, with clearly labelled demo states and results.
+Use ChatGPT while building to author sample copy; mock AI responses in the
+finished prototype and never present them as live generation.
 
 My request:
 [Enter your prompt here]
@@ -61,7 +65,7 @@ On the website, **Take this to GPT** helps you copy the prompt and then open Cha
 
 Each brief has an example, must-have interactions, a stretch challenge, all seven skills in a picker, and room for your own instructions. Leave the picker empty to keep `[add skill here]` in the prompt. These are workshop briefs, not six finished apps embedded in the gallery.
 
-All gallery build prompts mention `@Sites`. Paste into ChatGPT and select Sites from the mention picker if needed. [Sites availability and workflow](https://learn.chatgpt.com/docs/sites) depend on your account. The prompts ask ChatGPT to check supported generation capabilities; where direct in-site AI writing is unavailable, they specify a transparent copy-and-paste ChatGPT handoff, not browser API keys or fake AI results.
+All thirteen gallery build prompts mention `@Sites`. Paste into ChatGPT and select Sites from the mention picker if needed. [Sites availability and workflow](https://learn.chatgpt.com/docs/sites) depend on your account. Every prompt requests a **frontend-only prototype**, with any backend and/or database mocked using sample data and in-memory client state. Authentication, payments, uploads, and API responses are demo interactions, not real services. ChatGPT can author sample copy during development; AI-style results in the finished prototype must be visibly labelled mock examples. No real backend, database, LLM integration, or API keys are required.
 
 **How to use a brief:** Open **Steal this brief**, choose any of the seven styles (or leave `[add skill here]`), add your own twist, then copy the build prompt and paste it into ChatGPT. The gallery does not send anything automatically.
 

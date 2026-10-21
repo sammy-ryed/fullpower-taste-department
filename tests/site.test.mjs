@@ -66,6 +66,10 @@ test("Every prompt targets its exact public skill and asks for a working accessi
     assert.ok(prompt.includes("reduced-motion"));
     assert.ok(prompt.includes("attach the ZIP"));
     assert.ok(prompt.includes("[Enter your prompt here]"));
+    assert.ok(prompt.includes("FRONTEND-ONLY WORKSHOP DEMO"));
+    assert.ok(prompt.includes("Mock any backend and/or database"));
+    assert.ok(prompt.includes("in-memory client-side state"));
+    assert.ok(prompt.includes("Do not connect an LLM service"));
     assert.ok(!prompt.includes("Build a "));
     assert.ok(skill.description.length > 100);
   }
@@ -90,12 +94,18 @@ test("Six editable idea briefs use Sites with private-content protection", async
     assert.ok(blank.startsWith("@Sites"));
     assert.ok(blank.includes("[add skill here"));
     assert.ok(blank.includes("ChatGPT itself"));
+    assert.ok(blank.includes("FRONTEND-ONLY WORKSHOP DEMO"));
+    assert.ok(blank.includes("Mock any backend and/or database"));
+    assert.ok(blank.includes("without a backend or database"));
+    assert.ok(!blank.includes("supported generation or the transparent handoff"));
+    assert.ok(!blank.includes("use IndexedDB"));
     if (idea.id === "unsent-message-funeral") {
       assert.ok(blank.includes("Do not add an AI handoff for private content"));
       assert.ok(blank.includes("in memory only"));
       assert.ok(!blank.includes("paste the answer back"));
     } else {
-      assert.ok(blank.includes("paste the answer back"));
+      assert.ok(blank.includes("Do not connect an LLM service"));
+      assert.ok(blank.includes("mock demo examples, not live AI"));
     }
     assert.ok(blank.includes("[Add your own twist"));
     const customized = ideaPrompt(
