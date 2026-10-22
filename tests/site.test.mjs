@@ -81,7 +81,8 @@ test("Every prompt targets its exact public skill and asks for a working accessi
   assert.ok(repository.startsWith("https://github.com/"));
   for (const skill of skills) {
     const prompt = starterPrompt(skill);
-    assert.ok(prompt.startsWith("@Sites"));
+    assert.ok(prompt.startsWith("@Sites @Skill Installer"));
+    assert.ok(prompt.includes("Use @Skill Installer to install the chosen design skill"));
     assert.ok(prompt.includes(`/blob/main/skills/${skill.slug}/SKILL.md`));
     assert.ok(prompt.includes("Next.js"));
     assert.ok(prompt.includes("rem-based"));
@@ -113,7 +114,8 @@ test("Six editable idea briefs use Sites with private-content protection", async
   for (const idea of ideas) {
     assert.ok(skills.some((skill) => skill.slug === idea.suggestion));
     const blank = ideaPrompt(idea);
-    assert.ok(blank.startsWith("@Sites"));
+    assert.ok(blank.startsWith("@Sites @Skill Installer"));
+    assert.ok(blank.includes("Use @Skill Installer to install the chosen design skill"));
     assert.ok(blank.includes("[add skill here"));
     assert.ok(blank.includes("ChatGPT itself"));
     assert.ok(blank.includes("FRONTEND-ONLY WORKSHOP DEMO"));
@@ -276,6 +278,7 @@ test("README exposes instructions and both direct downloads for every skill", as
     }
   }
   assert.ok(readme.includes("npm run check"));
+  assert.ok(readme.includes("@Sites @Skill Installer"));
 });
 
 test("Selection is themed without disabling selection of real content", async () => {

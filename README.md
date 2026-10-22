@@ -31,7 +31,8 @@ Each bundle contains `SKILL.md`, design notes, theme CSS, CSS variables, and des
 3. Paste this, replace the brackets, and let it build:
 
 ```text
-@Sites — use the [skill name] frontend skill to build my website in ChatGPT.
+@Sites @Skill Installer — use the [skill name] frontend skill to build my website in ChatGPT.
+Use @Skill Installer to install the chosen design skill if supported in this environment; otherwise read its SKILL.md and supporting files directly. Only report a successful installation when confirmed.
 Read its SKILL.md and linked references/assets before coding.
 If you cannot access the files, ask me to attach the ZIP.
 
@@ -65,7 +66,7 @@ On the website, **Take this to GPT** helps you copy the prompt and then open Cha
 
 Each brief has an example, must-have interactions, a stretch challenge, all seven skills in a picker, and room for your own instructions. Leave the picker empty to keep `[add skill here]` in the prompt. These are workshop briefs, not six finished apps embedded in the gallery.
 
-All thirteen gallery build prompts mention `@Sites`. Paste into ChatGPT and select Sites from the mention picker if needed. [Sites availability and workflow](https://learn.chatgpt.com/docs/sites) depend on your account. Every prompt requests a **frontend-only prototype**, with any backend and/or database mocked using sample data and in-memory client state. Authentication, payments, uploads, and API responses are demo interactions, not real services. ChatGPT can author sample copy during development; AI-style results in the finished prototype must be visibly labelled mock examples. No real backend, database, LLM integration, or API keys are required.
+All thirteen gallery build prompts mention both `@Sites` and `@Skill Installer`. Paste into ChatGPT and select both from the mention picker if available; pasted mention text does not automatically attach an app or skill. Skill Installer should set up the chosen design skill before Sites builds the frontend. If installation is unavailable, the prompt falls back to reading the skill files directly. [Sites availability and workflow](https://learn.chatgpt.com/docs/sites) depend on your account. Every prompt requests a **frontend-only prototype**, with any backend and/or database mocked using sample data and in-memory client state. Authentication, payments, uploads, and API responses are demo interactions, not real services. ChatGPT can author sample copy during development; AI-style results in the finished prototype must be visibly labelled mock examples. No real backend, database, LLM integration, or API keys are required.
 
 **How to use a brief:** Open **Steal this brief**, choose any of the seven styles (or leave `[add skill here]`), add your own twist, then copy the build prompt and paste it into ChatGPT. The gallery does not send anything automatically.
 
